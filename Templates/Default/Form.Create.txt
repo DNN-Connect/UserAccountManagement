@@ -1,0 +1,36 @@
+
+<div class="dnnForm dnnClear">
+	
+	<div class="dnnFormItem dnnClear">
+		[DNNLBL:USER:Username:HideRequired]
+		[CTL:USER:Username]
+	</div>
+		
+	<div class="dnnFormItem dnnClear">
+		[DNNLBL:USER:Email:HideRequired]
+		[CTL:USER:Email]
+		[REQUIRED:USER:Email]
+	</div>
+
+	<div class="dnnFormItem dnnClear">
+		[DNNLBL:USER:Firstname:HideRequired]
+		[CTL:USER:Firstname]
+		[REQUIRED:USER:Firstname]
+	</div>
+
+	<div class="dnnFormItem dnnClear">
+		[DNNLBL:USER:Lastname:HideRequired]
+		[CTL:USER:Lastname]
+		[REQUIRED:USER:Lastname]
+	</div>
+
+	<div class="dnnFormItem dnnClear">
+		[DNNLBL:USER:Displayname:HideRequired]
+		[CTL:USER:Displayname]
+		[REQUIRED:USER:Displayname]
+	</div>
+
+	<div class="dnnFormItem dnnClear">
+		<i>Since password retrieval is disabled in this website you cannot set the password for the account. The user will have to set the password on the first login</i>
+	</div>
+</div>

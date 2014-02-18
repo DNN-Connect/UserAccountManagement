@@ -1,0 +1,24 @@
+
+<div class="dnnForm dnnClear">
+	
+	<div class="dnnFormItem dnnClear">
+		[DNNLBL:PROFILE:Firstname:HideRequired]
+		[CTL:PROFILE:Firstname]
+	</div>
+
+	<div class="dnnFormItem dnnClear">
+		[DNNLBL:PROFILE:Lastname:HideRequired]
+		[CTL:PROFILE:Lastname]
+	</div>
+		
+	<div class="dnnFormItem dnnClear">
+		[DNNLBL:PROFILE:Postalcode:HideRequired]
+		[CTL:PROFILE:Postalcode]
+	</div>
+
+	<div class="dnnFormItem dnnClear">
+		[DNNLBL:PROFILE:City:HideRequired]
+		[CTL:PROFILE:City]
+	</div>
+
+</div>

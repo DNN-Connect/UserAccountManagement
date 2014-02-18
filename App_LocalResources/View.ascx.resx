@@ -1,0 +1,477 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Actions.Text" xml:space="preserve">
+    <value>Actions</value>
+  </data>
+  <data name="btnApplyOptions.Text" xml:space="preserve">
+    <value>Apply Options</value>
+  </data>
+  <data name="Cell.Header" xml:space="preserve">
+    <value>Cell</value>
+  </data>
+  <data name="City.Header" xml:space="preserve">
+    <value>City</value>
+  </data>
+  <data name="Country.Header" xml:space="preserve">
+    <value>Country</value>
+  </data>
+  <data name="Created.Header" xml:space="preserve">
+    <value>Member since</value>
+  </data>
+  <data name="DeleteAccount.Text" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="DisplayName.Header" xml:space="preserve">
+    <value>Display Name</value>
+  </data>
+  <data name="EditAccount.Text" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="Email.Header" xml:space="preserve">
+    <value>E-Mail</value>
+  </data>
+  <data name="FirstName.Header" xml:space="preserve">
+    <value>Firstname</value>
+  </data>
+  <data name="HardDeleteAccount.Text" xml:space="preserve">
+    <value>Hard Delete</value>
+  </data>
+  <data name="ImpersonateAccount.Text" xml:space="preserve">
+    <value>Impersonate</value>
+  </data>
+  <data name="LastName.Header" xml:space="preserve">
+    <value>Lastname</value>
+  </data>
+  <data name="lblGridSetup.Text" xml:space="preserve">
+    <value>Grid Setup:</value>
+  </data>
+  <data name="lblPageSize.Text" xml:space="preserve">
+    <value>Page Size:</value>
+  </data>
+  <data name="lblSearchOptions.Text" xml:space="preserve">
+    <value>Search in:</value>
+  </data>
+  <data name="PostalCode.Header" xml:space="preserve">
+    <value>Postal Code</value>
+  </data>
+  <data name="PreferredLocale.Header" xml:space="preserve">
+    <value>Preferred Locale</value>
+  </data>
+  <data name="RestoreAccount.Text" xml:space="preserve">
+    <value>Restore</value>
+  </data>
+  <data name="Telephone.Header" xml:space="preserve">
+    <value>Telephone</value>
+  </data>
+  <data name="UserID.Header" xml:space="preserve">
+    <value>User ID</value>
+  </data>
+  <data name="Username.Header" xml:space="preserve">
+    <value>Username</value>
+  </data>
+  <data name="btnExport.Text" xml:space="preserve">
+    <value>Export Selection</value>
+  </data>
+  <data name="btnHardDelete.Text" xml:space="preserve">
+    <value>Empty Bin</value>
+  </data>
+  <data name="btnReport.Text" xml:space="preserve">
+    <value>Run Report</value>
+  </data>
+  <data name="btnSearch.Text" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="lblGridTab.Text" xml:space="preserve">
+    <value>Grid</value>
+  </data>
+  <data name="lblPreferencesTab.Text" xml:space="preserve">
+    <value>Preferences</value>
+  </data>
+  <data name="cmdAuthorizeAccount.Text" xml:space="preserve">
+    <value>Approve Account</value>
+  </data>
+  <data name="cmdBack.Text" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="cmdCreateAccount.Text" xml:space="preserve">
+    <value>Create Account</value>
+  </data>
+  <data name="cmdDeleteAccount.Text" xml:space="preserve">
+    <value>Delete Account</value>
+  </data>
+  <data name="cmdForcePasswordChange.Text" xml:space="preserve">
+    <value>Force Password Change</value>
+  </data>
+  <data name="cmdUnlockAccount.Text" xml:space="preserve">
+    <value>Unlock Account</value>
+  </data>
+  <data name="cmdUpdateAccount.Text" xml:space="preserve">
+    <value>Update Account</value>
+  </data>
+  <data name="cmdUpdateSites.Text" xml:space="preserve">
+    <value>Update Sites</value>
+  </data>
+  <data name="lblAccountTab.Text" xml:space="preserve">
+    <value>Account</value>
+  </data>
+  <data name="lblAuthorizedStatusLabel.Text" xml:space="preserve">
+    <value>Status:</value>
+  </data>
+  <data name="lblEmailTab.Text" xml:space="preserve">
+    <value>E-Mail</value>
+  </data>
+  <data name="lblForcePasswordChangeLabel.Text" xml:space="preserve">
+    <value>Force password change:</value>
+  </data>
+  <data name="lblLastActivityLabel.Text" xml:space="preserve">
+    <value>Last activity:</value>
+  </data>
+  <data name="lblLastLockoutLabel.Text" xml:space="preserve">
+    <value>Last lockout:</value>
+  </data>
+  <data name="lblLastLoginLabel.Text" xml:space="preserve">
+    <value>Last login:</value>
+  </data>
+  <data name="lblLastPasswordChangeLabel.Text" xml:space="preserve">
+    <value>Last password change:</value>
+  </data>
+  <data name="lblLockoutStatusLabel.Text" xml:space="preserve">
+    <value>Current lock status:</value>
+  </data>
+  <data name="lblMemberSinceLabel.Text" xml:space="preserve">
+    <value>Member since:</value>
+  </data>
+  <data name="lblPasswordTab.Text" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="lblProfileTab.Text" xml:space="preserve">
+    <value>Profile</value>
+  </data>
+  <data name="lblRolesTab.Text" xml:space="preserve">
+    <value>Roles</value>
+  </data>
+  <data name="lblSitesTab.Text" xml:space="preserve">
+    <value>Sites</value>
+  </data>
+  <data name="lblUserOnlineStatusLabel.Text" xml:space="preserve">
+    <value>Current activity:</value>
+  </data>
+  <data name="Never.Text" xml:space="preserve">
+    <value>never</value>
+  </data>
+  <data name="UserIsApproved.Text" xml:space="preserve">
+    <value>approved</value>
+  </data>
+  <data name="UserIsLockedOut.Text" xml:space="preserve">
+    <value>locked</value>
+  </data>
+  <data name="UserIsNotLockedOut.Text" xml:space="preserve">
+    <value>unlocked</value>
+  </data>
+  <data name="UserIsOffline.Text" xml:space="preserve">
+    <value>offline</value>
+  </data>
+  <data name="UserIsOnline.Text" xml:space="preserve">
+    <value>online</value>
+  </data>
+  <data name="UserIsUnApproved.Text" xml:space="preserve">
+    <value>awaiting approval</value>
+  </data>
+  <data name="UserMustNotUpdatePassword.Text" xml:space="preserve">
+    <value>no</value>
+  </data>
+  <data name="UserMustUpdatePassword.Text" xml:space="preserve">
+    <value>yes</value>
+  </data>
+  <data name="ManageTemplates.Action" xml:space="preserve">
+    <value>Manage Templates</value>
+  </data>
+  <data name="cmdUpdatePassword.Text" xml:space="preserve">
+    <value>Reset now</value>
+  </data>
+  <data name="cmdUpdateProfile.Text" xml:space="preserve">
+    <value>Update Profile</value>
+  </data>
+  <data name="lblAccountNote.Text" xml:space="preserve">
+    <value>Edit details of the account</value>
+  </data>
+  <data name="lblEmailNote.Text" xml:space="preserve">
+    <value>You may send an e-mail directly to the account's e-mail address</value>
+  </data>
+  <data name="lblPassword1.Text" xml:space="preserve">
+    <value>New password:</value>
+  </data>
+  <data name="lblPassword2.Text" xml:space="preserve">
+    <value>Repeat new password:</value>
+  </data>
+  <data name="lblPasswordNote.Text" xml:space="preserve">
+    <value>You may reset the user's password by entering a new password two times.</value>
+  </data>
+  <data name="lblProfileNote.Text" xml:space="preserve">
+    <value>Edit the profile of the account</value>
+  </data>
+  <data name="lblRolesNote.Text" xml:space="preserve">
+    <value>The account is a member of the following roles:</value>
+  </data>
+  <data name="lblSitesNote.Text" xml:space="preserve">
+    <value>The account is a member of the following portals:</value>
+  </data>
+  <data name="AccountDataUpdated.Text" xml:space="preserve">
+    <value>Account data updated sucessfully</value>
+  </data>
+  <data name="btnAddToRole.Text" xml:space="preserve">
+    <value>Add Role</value>
+  </data>
+  <data name="btnNotifyPassword.Text" xml:space="preserve">
+    <value>Send Notification</value>
+  </data>
+  <data name="btnNotifyPasswordSkip.Text" xml:space="preserve">
+    <value>Skip</value>
+  </data>
+  <data name="btnNotifyRole.Text" xml:space="preserve">
+    <value>Send notification</value>
+  </data>
+  <data name="btnNotifyRoleSkip.Text" xml:space="preserve">
+    <value>Skip</value>
+  </data>
+  <data name="btnNotifyUser.Text" xml:space="preserve">
+    <value>Send E-Mail</value>
+  </data>
+  <data name="CannotUsePassword.Text" xml:space="preserve">
+    <value>This password cannot be used!</value>
+  </data>
+  <data name="cmdAddAccount.Text" xml:space="preserve">
+    <value>Create User</value>
+  </data>
+  <data name="cmdCancelCreate.Text" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="EffectiveDate.Header" xml:space="preserve">
+    <value>Member since</value>
+  </data>
+  <data name="ExpiryDate.Header" xml:space="preserve">
+    <value>Member until</value>
+  </data>
+  <data name="FieldsRequired.Text" xml:space="preserve">
+    <value>You must fill in all required fields</value>
+  </data>
+  <data name="HiddenPassword.Text" xml:space="preserve">
+    <value>*********</value>
+  </data>
+  <data name="lblNotificationNote_Roles.Text" xml:space="preserve">
+    <value>Roles have been updated. Do you want to notify the account holder of the changes?</value>
+  </data>
+  <data name="lblRolesChanged.Text" xml:space="preserve">
+    <value>User roles have been updated sucessfully. </value>
+  </data>
+  <data name="MessageNotSent.Text" xml:space="preserve">
+    <value>The message could not be sent. E-Mail transport failed with the following message: {0}</value>
+  </data>
+  <data name="MessageSent.Text" xml:space="preserve">
+    <value>Message sent sucessfully.</value>
+  </data>
+  <data name="PasswordMatchError.Text" xml:space="preserve">
+    <value>The passwords don't match!</value>
+  </data>
+  <data name="PasswordPoliciesError.Text" xml:space="preserve">
+    <value>The password provided does not meet the password policies of this site.</value>
+  </data>
+  <data name="PasswordResetError.Text" xml:space="preserve">
+    <value>An error occured while reseting the password.</value>
+  </data>
+  <data name="PasswordSet.Text" xml:space="preserve">
+    <value>The password has been reset sucessfully.</value>
+  </data>
+  <data name="PasswordSetNotifyQuestion.Text" xml:space="preserve">
+    <value>The password has been reset. Would you like to notifiy the account holder of the changes?</value>
+  </data>
+  <data name="RoleName.Header" xml:space="preserve">
+    <value>Role</value>
+  </data>
+  <data name="txtNotifyPasswordSubject.Text" xml:space="preserve">
+    <value>[{0}] - password update</value>
+  </data>
+  <data name="txtNotifyRoleSubject.Text" xml:space="preserve">
+    <value>[{0}] - access level changed</value>
+  </data>
+  <data name="txtNotifyUserSubject.Text" xml:space="preserve">
+    <value>[{0}] - account information</value>
+  </data>
+  <data name="UserNotifiedPassword.Text" xml:space="preserve">
+    <value> The password has been reset, the account has been notified.</value>
+  </data>
+  <data name="BinEmpty.Text" xml:space="preserve">
+    <value>No deleted users found</value>
+  </data>
+  <data name="no.Text" xml:space="preserve">
+    <value>no</value>
+  </data>
+  <data name="NoResultsFoundInRole.Text" xml:space="preserve">
+    <value>No users found in the selected role</value>
+  </data>
+  <data name="NoUsersFoundInRole.Text" xml:space="preserve">
+    <value>The selected role does not contain any users</value>
+  </data>
+  <data name="Password1.Help" xml:space="preserve">
+    <value>Enter a valid password. {0}</value>
+  </data>
+  <data name="Password1.Text" xml:space="preserve">
+    <value>Password:</value>
+  </data>
+  <data name="Password2.Help" xml:space="preserve">
+    <value>Repeat the password</value>
+  </data>
+  <data name="Password2.Text" xml:space="preserve">
+    <value>Repeat password:</value>
+  </data>
+  <data name="PasswordPolicy_MinLength.Text" xml:space="preserve">
+    <value> The minimum password length is {0}</value>
+  </data>
+  <data name="PasswordPolicy_MinNonAlphaNumeric.Text" xml:space="preserve">
+    <value>, it must contain at least {0} non-alphanumerical chars.</value>
+  </data>
+  <data name="Reports.Action" xml:space="preserve">
+    <value>Manage Reports</value>
+  </data>
+  <data name="UserCreateError.Text" xml:space="preserve">
+    <value>The account could not be created. The system says &lt;i&gt;&lt;strong&gt;{0}&lt;/strong&gt;&lt;/i&gt;</value>
+  </data>
+  <data name="UsernameAlreadyExists.Text" xml:space="preserve">
+    <value>The account could not be created. The system says &lt;i&gt;&lt;strong&gt;the username already exists.&lt;/strong&gt;&lt;/i&gt;</value>
+  </data>
+  <data name="yes.Text" xml:space="preserve">
+    <value>yes</value>
+  </data>
+  <data name="ClickToReset.Text" xml:space="preserve">
+    <value>Click here to reset your password</value>
+  </data>
+  <data name="ResetPasswordLink.Text" xml:space="preserve">
+    <value>Send Resetlink</value>
+  </data>
+  <data name="ResetPasswordNote.Text" xml:space="preserve">
+    <value>Press the Send Resetlink button to send a password reset mail to the user - this mail will be valid for 24hrs. From within that e-mail the user can reset his password</value>
+  </data>
+  <data name="UserNotifiedReset.Text" xml:space="preserve">
+    <value>The reset link has been sent to the user</value>
+  </data>
+  <data name="ClickToSet.Text" xml:space="preserve">
+    <value>Click here to set your password</value>
+  </data>
+</root>

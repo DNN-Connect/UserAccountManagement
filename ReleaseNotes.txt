@@ -1,0 +1,38 @@
+﻿<h3>Connect: AccountUpdate</h3>
+<p class="Contributor">
+	Philipp Becker<br />
+	DNN-Connect<br />
+	http://dnn-connect.org
+</p>
+<hr/>
+<div class="License">
+	<h3>Release Notes</h3>
+	
+	<p class="Owner">
+		<b>Version 01.00.01</b><br /><br />
+	</p>
+	<p>Service release. Mainly focused on better support for password management in newer dnn installations where password retrieval is disabled.</p>	
+	<h4>Changes</h4>
+	<ul>
+			<li>New token in e-mail templates: [RESETLINK]</li>
+			<li>New token in forms: [PASSWORDCURRENT]; needed for setting a new password in the account update form</li>
+	</ul>
+
+	<p class="Owner">
+		<b>Version 01.00.00</b><br /><br />
+	</p>
+	<p>Initial release of Account registration, login and update module. The formly module dnnWerk.Users has been separated into dedocated modules for registering and updating account. The main task for this release was to extract the actual modules from the original package. I do have improved the feature set in various ways though:</p>
+	
+	<h4>Changes</h4>
+	<ul>
+			<li>Added template management view to simplify template management</li>
+			<li>Made sharing templates across module instances possible</li>
+			<li>Added tokens for letting users login from within the registration module</li>
+			<li>Changed notification e-mail setting to notification role. This will now send e-mails to all members of a given role on submitting the form</li>
+			<li>Made tokens compatible with the DNN form pattern</li>
+			<li>Added support for question and answer fields</li>
+			<li>Added support for changing usernames when registering through e-mail address is configured</li>
+			<li>Improved error handling</li>
+	</ul>
+	
+</div>

@@ -1,0 +1,33 @@
+
+<div class="dnnForm dnnClear">
+	
+	<div class="dnnFormItem dnnClear">
+		[DNNLBL:USER:Username:HideRequired]
+		[VALUE:USER:Username]
+	</div>
+		
+	<div class="dnnFormItem dnnClear">
+		[DNNLBL:USER:Email:HideRequired]
+		[CTL:USER:Email]
+		[REQUIRED:USER:Email]
+	</div>
+
+	<div class="dnnFormItem dnnClear">
+		[DNNLBL:USER:Firstname:HideRequired]
+		[CTL:USER:Firstname]
+		[REQUIRED:USER:Firstname]
+	</div>
+
+	<div class="dnnFormItem dnnClear">
+		[DNNLBL:USER:Lastname:HideRequired]
+		[CTL:USER:Lastname]
+		[REQUIRED:USER:Lastname]
+	</div>
+
+	<div class="dnnFormItem dnnClear">
+		[DNNLBL:USER:Displayname:HideRequired]
+		[CTL:USER:Displayname]
+		[REQUIRED:USER:Displayname]
+	</div>
+
+</div>

@@ -1,0 +1,7 @@
+D:\Development\Websites\dev_DNN7\website\bin\Connect.Modules.AccountManagement.dll
+D:\Development\Websites\dev_DNN7\website\bin\Connect.Modules.AccountManagement.pdb
+D:\Development\Websites\dev_DNN7\website\bin\Connect.Modules.AccountManagement.xml
+D:\Development\Websites\dev_DNN7\website\DesktopModules\Connect\AccountManagement\obj\Release\Connect.Modules.AccountManagement.dll
+D:\Development\Websites\dev_DNN7\website\DesktopModules\Connect\AccountManagement\obj\Release\Connect.Modules.AccountManagement.xml
+D:\Development\Websites\dev_DNN7\website\DesktopModules\Connect\AccountManagement\obj\Release\Connect.Modules.AccountManagement.pdb
+D:\Development\Websites\dev_DNN7\website\DesktopModules\Connect\AccountManagement\obj\Release\Connect_AccountManagement.vbprojResolveAssemblyReference.cache

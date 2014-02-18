@@ -1,0 +1,25 @@
+
+<p>Dear [DISPLAYNAME],</p>
+<p>you have been added to a security role in the <strong>[PORTALNAME]</strong> website.</p>
+<table>
+    <tr>
+        <td>Website URL</td><td><a href="http://[PORTALURL]">[PORTALURL]</a></td>
+    </tr>
+    <tr>
+        <td>Role:</td><td>[ROLE]</td>
+    </tr>  
+    <tr>
+        <td>Effective Date:</td><td>[EFFECTIVEDATE]</td>
+    </tr> 
+    <tr>
+        <td>Expiry Date:</td><td>[EXPIRYDATE]</td>
+    </tr>            
+    <tr>
+        <td>Your Username:</td><td>[USERNAME]</td>
+    </tr>
+    <tr>
+        <td>Your Password:</td><td>[PASSWORD]</td>
+    </tr>        
+</table>
+<p>Best wishes,<br />the team from [PORTALNAME]</p>    
+

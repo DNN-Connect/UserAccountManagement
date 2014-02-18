@@ -1,0 +1,16 @@
+
+<p>Dear [DISPLAYNAME],</p>
+<p>here are your account details for the <strong>[PORTALNAME]</strong> website.</p>
+<table>
+    <tr>
+        <td>Website URL</td><td><a href="http://[PORTALURL]">[PORTALURL]</a></td>
+    </tr>
+    <tr>
+        <td>Your Username:</td><td>[USERNAME]</td>
+    </tr>     
+</table>
+<br />
+<p>In case you have never logged on to the website before or you don't remember your password, please use this link to set / reset your password:</p>
+<p>[RESETLINK]</p>
+<p>Best wishes,<br />the team from [PORTALNAME]</p>    
+
