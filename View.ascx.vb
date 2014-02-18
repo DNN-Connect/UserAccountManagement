@@ -8,6 +8,7 @@ Imports DotNetNuke.Entities.Profile
 Imports DotNetNuke.Web.UI.WebControls
 Imports DotNetNuke.Entities.Portals
 Imports DotNetNuke.Common.Lists
+Imports DotNetNuke.Framework.JavaScriptLibraries
 
 Namespace Connect.Modules.UserManagement.AccountManagement
 
@@ -27,7 +28,8 @@ Namespace Connect.Modules.UserManagement.AccountManagement
 
             ProcessQuerystring() 'watch out for querystring actions
 
-            DotNetNuke.Framework.jQuery.RequestDnnPluginsRegistration()
+            JavaScript.RequestRegistration(CommonJs.DnnPlugins)
+
             InitializeForm()
 
             ProcessFormTemplate(plhUser, GetTemplate(ModuleTheme, Constants.TemplateName_AccountForm, CurrentLocale, False), User)

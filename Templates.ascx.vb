@@ -6,6 +6,7 @@ Imports Telerik.Web.UI
 Imports DotNetNuke.Security.Roles
 Imports DotNetNuke.Entities.Profile
 Imports DotNetNuke.UI.Skins.Controls
+Imports DotNetNuke.Framework.JavaScriptLibraries
 
 Namespace Connect.Modules.UserManagement.AccountManagement
 
@@ -15,7 +16,7 @@ Namespace Connect.Modules.UserManagement.AccountManagement
 
         Private Sub Page_Init(sender As Object, e As System.EventArgs) Handles Me.Init
 
-            DotNetNuke.Framework.jQuery.RequestDnnPluginsRegistration()
+            JavaScript.RequestRegistration(CommonJs.DnnPlugins)
 
         End Sub
 

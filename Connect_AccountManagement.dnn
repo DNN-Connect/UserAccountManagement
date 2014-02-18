@@ -1,6 +1,6 @@
 <dotnetnuke type="Package" version="5.0">
   <packages>
-    <package name="Connect AccountManagement" type="Module" version="01.00.01">
+    <package name="Connect AccountManagement" type="Module" version="01.01.00">
       <friendlyName>Connect: AccountManagement</friendlyName>
       <description>A community module that handles account management in DNN</description>
       <iconFile>Images/icon_extensions.gif</iconFile>
@@ -14,7 +14,7 @@
       <releaseNotes src="ReleaseNotes.txt" />
 
       <dependencies>
-        <dependency type="CoreVersion">07.01.00</dependency>
+        <dependency type="CoreVersion">07.02.01</dependency>
       </dependencies>
 
       <components>
