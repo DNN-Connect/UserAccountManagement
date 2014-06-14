@@ -161,6 +161,7 @@
     <Content Include="Reports.ascx" />
     <Content Include="Templates.ascx" />
     <Content Include="Connect_AccountManagement.dnn" />
+    <Content Include="Providers\DataProviders\SqlDataProvider\01.02.00.SqlDataProvider" />
     <None Include="Providers\DataProviders\SqlDataProvider\01.00.00.SqlDataProvider" />
     <None Include="Providers\DataProviders\SqlDataProvider\Uninstall.SqlDataProvider" />
   </ItemGroup>

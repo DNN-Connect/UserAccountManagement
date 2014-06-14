@@ -42,6 +42,9 @@ Namespace Connect.Modules.UserManagement.AccountManagement
 
             If Not Page.IsPostBack Then
 
+                'make sure txtSearch is empty on non-postback requests
+                txtSearch.Text = ""
+
                 BindRoles()
                 BindSearchColOptions()
                 PersonalizeOptions()
@@ -294,6 +297,19 @@ Namespace Connect.Modules.UserManagement.AccountManagement
                     dataBoundItem("col_EffectiveDate").Text = effectiveDate.ToShortDateString
                 End If
 
+                Dim btnApprove As ImageButton = CType(dataBoundItem("statusCol").FindControl("btnApproveUserRole"), ImageButton)
+                btnApprove.ImageUrl = ResolveUrl("~/images/grant.gif")
+                Dim currentRoleId As Integer = CType(btnApprove.CommandArgument, Integer)
+                Dim roleController As New RoleController
+                Dim userRoles As IList = roleController.GetUserRoles(PortalId, User.Username, "")
+                For Each userRole As UserRoleInfo In userRoles
+                    If userRole.RoleID = currentRoleId Then
+                        If userRole.Status = RoleStatus.Approved Then
+                            btnApprove.Visible = False
+                        End If
+                    End If
+                Next
+
                 Dim btn As ImageButton = CType(dataBoundItem("removeCol").FindControl("btnDeleteUserRole"), ImageButton)
                 btn.ImageUrl = ResolveUrl("~/images/delete.gif")
 
@@ -365,6 +381,27 @@ Namespace Connect.Modules.UserManagement.AccountManagement
             pnlRoleChange_Step2.Visible = True
             btnNotifyRole.CommandArgument = "remove"
             btnNotifyRoleSkip.CommandArgument = "remove"
+
+        End Sub
+
+        Protected Sub btnApproveUserRole_Click(ByVal sender As Object, ByVal e As System.Web.UI.ImageClickEventArgs)
+
+            Dim roleId As Integer = Convert.ToInt32(CType(sender, ImageButton).CommandArgument)
+            Dim roleController As New RoleController
+            Dim role As RoleInfo = roleController.GetRole(roleId, PortalId)
+
+            roleController.UpdateUserRole(PortalId, User.UserID, roleId, RoleStatus.Approved, False, False)
+
+            DataCache.RemoveCache("DNNWERK_USERLIST_ROLEID" & roleId.ToString)
+
+            Dim strRole As String = roleController.GetRole(roleId, PortalId).RoleName
+            lblRolesNote.Text = Localization.GetString("lblNotificationNote_Roles", LocalResourceFile)
+            BindRoleAddNotification(role.RoleName, Date.Now, Null.NullDate)
+
+            pnlRoleChange_Step1.Visible = False
+            pnlRoleChange_Step2.Visible = True
+            btnNotifyRole.CommandArgument = "add"
+            btnNotifyRoleSkip.CommandArgument = "add"
 
         End Sub
 
@@ -528,7 +565,7 @@ Namespace Connect.Modules.UserManagement.AccountManagement
 
             If txtSearch.Text.Length > 0 Then
 
-                Session("Connect_UserSearchTerm") = txtSearch.Text
+                'Session("Connect_UserSearchTerm") = txtSearch.Text
 
                 SaveSearchOptions()
                 pnlGrid.Visible = True
@@ -2063,9 +2100,9 @@ Namespace Connect.Modules.UserManagement.AccountManagement
 
             Else
 
-                If Not Session("Connect_UserSearchTerm") Is Nothing Then
-                    txtSearch.Text = CType(Session("Connect_UserSearchTerm"), String)
-                End If
+                'If Not Session("Connect_UserSearchTerm") Is Nothing Then
+                '    txtSearch.Text = CType(Session("Connect_UserSearchTerm"), String)
+                'End If
 
                 If txtSearch.Text.Length = 0 Then
                     grdUsers.MasterTableView.NoMasterRecordsText = "<p style='padding:10px;'>" & Localization.GetString("NoUsersFoundInRole", LocalResourceFile) & "</p>"
@@ -2134,14 +2171,24 @@ Namespace Connect.Modules.UserManagement.AccountManagement
 
                     ds = New DataSet
 
-                    Dim strCols As String = ""
-                    For Each item As ListItem In chkSearchCols.Items
-                        If item.Selected = True Then
-                            strCols += item.Value & ","
-                        End If
-                    Next
 
-                    dr = DotNetNuke.Data.DataProvider.Instance().ExecuteReader("Connect_GetUserList", intRole, PortalId, DotNetNuke.Data.DataProvider.Instance().GetNull(strSearch), strCols, blnShowDeleted)
+                    If intRole = PortalSettings.RegisteredRoleId Or intRole = -2 Then
+
+                        Dim strCols As String = ""
+                        For Each item As ListItem In chkSearchCols.Items
+                            If item.Selected = True Then
+                                strCols += item.Value & ","
+                            End If
+                        Next
+
+                        dr = DotNetNuke.Data.DataProvider.Instance().ExecuteReader("Connect_Accounts_GetUsers", intRole, PortalId, DotNetNuke.Data.DataProvider.Instance().GetNull(strSearch), strCols, blnShowDeleted)
+
+                    Else
+
+                        dr = DotNetNuke.Data.DataProvider.Instance().ExecuteReader("Connect_Accounts_GetRoleMembers", intRole, PortalId)
+
+                    End If
+
                     Dim dt As New DataTable
                     dt.Load(dr)
                     ds.Tables.Add(dt)

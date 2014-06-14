@@ -62,7 +62,7 @@
 
                 <div id="dvGrid">
                     
-                    <dnn:dnngrid id="grdUsers" runat="server">
+                    <dnn:dnngrid id="grdUsers" runat="server" ScreenRowNumber="2000">
                         <MasterTableView AutoGenerateColumns="false" DataKeyNames="UserId" AllowSorting="true">
                             <Columns>
                                 <dnn:dnnGridBoundColumn DataField="UserId" HeaderText="UserID" Visible="false"></dnn:dnnGridBoundColumn>
@@ -324,6 +324,12 @@
                                         <dnn:dnnGridBoundColumn HeaderText="RoleName" DataField="RoleName" UniqueName="col_RoleName"></dnn:dnnGridBoundColumn>
                                         <dnn:dnnGridBoundColumn HeaderText="EffectiveDate" DataField="EffectiveDate" UniqueName="col_EffectiveDate"></dnn:dnnGridBoundColumn>
                                         <dnn:dnnGridBoundColumn HeaderText="ExpiryDate" DataField="ExpiryDate" UniqueName="col_ExpiryDate"></dnn:dnnGridBoundColumn>
+                                        <dnn:dnnGridTemplateColumn UniqueName="statusCol">
+                                            <ItemTemplate>
+                                                <asp:Literal id="lblStatus" runat="server" Text='<%# Databinder.Eval(Container.DataItem, "Status") %>'></asp:Literal>
+                                                <asp:ImageButton ID="btnApproveUserRole" runat="server" OnClick="btnApproveUserRole_Click" CommandArgument='<%# Databinder.Eval(Container.DataItem, "RoleId") %>' />
+                                            </ItemTemplate>
+                                        </dnn:dnnGridTemplateColumn>
                                         <dnn:dnnGridTemplateColumn UniqueName="removeCol">
                                             <ItemTemplate>
                                                 <asp:ImageButton ID="btnDeleteUserRole" runat="server" OnClick="btnDeleteUserRole_Click" CommandArgument='<%# Databinder.Eval(Container.DataItem, "RoleId") %>' />
