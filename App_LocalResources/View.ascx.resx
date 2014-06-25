@@ -202,7 +202,7 @@
     <value>Grid</value>
   </data>
   <data name="lblPreferencesTab.Text" xml:space="preserve">
-    <value>Preferences</value>
+    <value>My Preferences</value>
   </data>
   <data name="cmdAuthorizeAccount.Text" xml:space="preserve">
     <value>Approve Account</value>
@@ -473,5 +473,92 @@
   </data>
   <data name="ClickToSet.Text" xml:space="preserve">
     <value>Click here to set your password</value>
+  </data>
+  <data name="CreatedOnDate.Header" xml:space="preserve">
+    <value>In Role since</value>
+  </data>
+  <data name="lblCancelNotificationText.Text" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="lblDontSendNotificationText.Text" xml:space="preserve">
+    <value>Skip Notification</value>
+  </data>
+  <data name="lblRoleApprovalNote.Text" xml:space="preserve">
+    <value>This will &lt;strong&gt;approve&lt;/strong&gt; the role membership of the selected account. Would you like to notify the user about that change? You can change the notification content in the next step.</value>
+  </data>
+  <data name="lblRoleApprovalTitle.Text" xml:space="preserve">
+    <value>Approval of Role Membership</value>
+  </data>
+  <data name="lblSendNotificationText.Text" xml:space="preserve">
+    <value>Send Notification</value>
+  </data>
+  <data name="RemoveFromRole.Text" xml:space="preserve">
+    <value>Remove from Role</value>
+  </data>
+  <data name="RoleStatusApproved.Text" xml:space="preserve">
+    <value>approved</value>
+  </data>
+  <data name="RoleStatusNoStatus.Text" xml:space="preserve">
+    <value>disabled</value>
+  </data>
+  <data name="RoleStatusPending.Text" xml:space="preserve">
+    <value>pending</value>
+  </data>
+  <data name="RoleStatusUnknown.Text" xml:space="preserve">
+    <value>unknown</value>
+  </data>
+  <data name="Status.Header" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="cmdRestoreAccount.Text" xml:space="preserve">
+    <value>Restore Account</value>
+  </data>
+  <data name="lblDeleteAccountNote.Text" xml:space="preserve">
+    <value>This will move the acount into to the recycle bin. Are you sure?</value>
+  </data>
+  <data name="lblDeleteAccountTitle.Text" xml:space="preserve">
+    <value>Delete Account</value>
+  </data>
+  <data name="lblDeleteCancel.Text" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="lblDeleteYes.Text" xml:space="preserve">
+    <value>Yes, delete account</value>
+  </data>
+  <data name="lblHardDeleteAccountNote.Text" xml:space="preserve">
+    <value>This will remove the account completely from your database. This action cannot be undone! Are you sure?</value>
+  </data>
+  <data name="lblHardDeleteAccountTitle.Text" xml:space="preserve">
+    <value>Account Removal</value>
+  </data>
+  <data name="lblHardDeleteCancel.Text" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="lblHardDeleteYes.Text" xml:space="preserve">
+    <value>Yes, delete this account</value>
+  </data>
+  <data name="lblRemoveAccountNote.Text" xml:space="preserve">
+    <value>This will remove the account from the selected role. Are you sure?</value>
+  </data>
+  <data name="lblRemoveAccountTitle.Text" xml:space="preserve">
+    <value>Remove from Role</value>
+  </data>
+  <data name="lblRemoveCancel.Text" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="lblRemoveYes.Text" xml:space="preserve">
+    <value>Yes, remove from role</value>
+  </data>
+  <data name="lblRolePendingNote.Text" xml:space="preserve">
+    <value>This will set the role membership of the selected account to &lt;strong&gt;pending&lt;/strong&gt;. Would you like to notify the user about the change? You can change the notification content in the next step.</value>
+  </data>
+  <data name="lblRolePendingTitle.Text" xml:space="preserve">
+    <value>Pending Notification</value>
+  </data>
+  <data name="SetAccountApproved.Text" xml:space="preserve">
+    <value>Set approved</value>
+  </data>
+  <data name="SetAccountPending.Text" xml:space="preserve">
+    <value>Set pending</value>
   </data>
 </root>

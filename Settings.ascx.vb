@@ -98,6 +98,7 @@ Namespace Connect.Modules.UserManagement.AccountManagement
             chkAllowedRoles.DataSource = roles
             chkAllowedRoles.DataBind()
             chkAllowedRoles.Items.Add(New ListItem(Localization.GetString("DeletedAccounts", LocalResourceFile), "-2"))
+            chkAllowedRoles.Items.Add(New ListItem(Localization.GetString("AllRoles", LocalResourceFile), "all"))
 
         End Sub
 
@@ -106,7 +107,6 @@ Namespace Connect.Modules.UserManagement.AccountManagement
                 item.Text = Localization.GetString("tab" & item.Value, LocalResourceFile)
             Next
         End Sub
-
 
 #End Region
 

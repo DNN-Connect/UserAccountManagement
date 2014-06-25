@@ -168,4 +168,10 @@
   <data name="tabsites.Text" xml:space="preserve">
     <value>Sites</value>
   </data>
+  <data name="AllRoles.Text" xml:space="preserve">
+    <value>All Roles</value>
+  </data>
+  <data name="lblAdditionalControls.Help" xml:space="preserve">
+    <value>Enter additonal controls to show in the editing interface. An example for one additonal control is as follows: &lt;strong&gt;My Data, /Desktopmodules/MyModule/MyControl.ascx&lt;/strong&gt; where &lt;strong&gt;My Data&lt;/strong&gt; is the tab name and the second part after the comma is the path to an existing control.</value>
+  </data>
 </root>

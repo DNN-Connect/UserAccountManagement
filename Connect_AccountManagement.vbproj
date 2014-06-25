@@ -172,6 +172,7 @@
     <Content Include="Settings.ascx" />
     <Content Include="Templates\Default\Email.Account.Created.txt" />
     <Content Include="Templates\Default\Email.Account.Data.txt" />
+    <Content Include="Templates\Default\Email.RoleStatusChanged.txt" />
     <Content Include="Templates\Default\Email.AddedToRole.txt" />
     <Content Include="Templates\Default\Email.Password.Reset.txt" />
     <Content Include="Templates\Default\Email.RemovedFromRole.txt" />

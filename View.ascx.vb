@@ -26,9 +26,19 @@ Namespace Connect.Modules.UserManagement.AccountManagement
 
         Protected Sub Page_Init(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Init
 
+
+            If Request.QueryString("RoleId") Is Nothing Then
+                If Me.PreSelectRole <> Null.NullInteger Then
+                    Response.Redirect(NavigateURL(TabId, "", "RoleId=" & Me.PreSelectRole.ToString))
+                Else
+                    Response.Redirect(NavigateURL(TabId, "", "RoleId=" & Me.PortalSettings.RegisteredRoleId.ToString.ToString))
+                End If
+            End If
+
             ProcessQuerystring() 'watch out for querystring actions
 
             JavaScript.RequestRegistration(CommonJs.DnnPlugins)
+            JavaScript.RequestRegistration(CommonJs.jQueryUI)
 
             InitializeForm()
 
@@ -66,6 +76,10 @@ Namespace Connect.Modules.UserManagement.AccountManagement
 
         End Sub
 
+        Private Sub grdUsers_PreRender(sender As Object, e As EventArgs) Handles grdUsers.PreRender
+            grdUsers.ClientSettings.Scrolling.AllowScroll = False
+        End Sub
+
         Private Sub btnReport_Click(sender As Object, e As EventArgs) Handles btnReport.Click
 
             _IsReportResult = True
@@ -95,147 +109,67 @@ Namespace Connect.Modules.UserManagement.AccountManagement
             BindUsers()
         End Sub
 
+        Public Function GetStatusText(strStatus As Object) As String
+            Select Case strStatus.ToString
+                Case "1"
+                    Return Localization.GetString("RoleStatusApproved", LocalResourceFile)
+                Case "0"
+                    Return Localization.GetString("RoleStatusNoStatus", LocalResourceFile)
+                Case "-1"
+                    Return Localization.GetString("RoleStatusPending", LocalResourceFile)
+            End Select
+            Return Localization.GetString("RoleStatusUnknown", LocalResourceFile)
+        End Function
+
         Protected Sub grdUsers_ItemDataBound(ByVal sender As Object, ByVal e As Telerik.Web.UI.GridItemEventArgs) Handles grdUsers.ItemDataBound
             If e.Item.ItemType = GridItemType.AlternatingItem Or e.Item.ItemType = GridItemType.Item Then
 
                 Try
 
                     Dim dataBoundItem As GridDataItem = e.Item
-
-
-                    'Dim objUser As UserInfo = CType(e.Item.DataItem, UserInfo)
                     Dim row As DataRowView = CType(e.Item.DataItem, DataRowView)
                     Dim intUser As String = Convert.ToInt32(row("UserID"))
+                    Dim intRole As Integer = Convert.ToInt32(ctlRoles.SelectedNode.Value)
 
-                    Dim ctlMenu As DnnMenu = CType(e.Item.FindControl("ctlActionMenu"), DnnMenu)
-                    If Not ctlMenu Is Nothing Then
-
-                        'build action menu for useraccounts 
-                        Dim rootItem As RadMenuItem = ctlMenu.Items(0)
-                        rootItem.Text = Localization.GetString("Actions", LocalResourceFile)
-
-                        If ctlRoles.SelectedNode Is Nothing Then 'reports mode
-
-                            Dim itemEdit As New DnnMenuItem(Localization.GetString("EditAccount", LocalResourceFile))
-                            itemEdit.Attributes.Add("cmd", "edit")
-                            itemEdit.Value = intUser.ToString
-                            itemEdit.ImageUrl = "~/images/edit.gif"
-                            'itemEdit.NavigateUrl = NavigateURL(TabId, "", "uid=" & row("UserID"), "RoleId=" & PortalSettings.RegisteredRoleId.ToString)
-                            itemEdit.NavigateUrl = NavigateURL(TabId, "", "uid=" & row("UserID"), "ReportsResult=true")
-                            itemEdit.Attributes.Add("usn", row("Username"))
-                            itemEdit.Attributes.Add("pid", row("PortalId"))
-                            itemEdit.Attributes.Add("mid", ModuleId)
-                            rootItem.Items.Add(itemEdit)
-
-
-                            If AllowDelete Then
-
-                                If intUser <> PortalSettings.AdministratorId Then
-                                    Dim itemDelete As New DnnMenuItem(Localization.GetString("DeleteAccount", LocalResourceFile))
-                                    itemDelete.Attributes.Add("cmd", "delete")
-                                    itemDelete.Attributes.Add("usn", row("Username"))
-                                    itemDelete.Attributes.Add("pid", row("PortalId"))
-                                    itemDelete.Attributes.Add("mid", ModuleId)
-                                    itemDelete.Value = intUser.ToString
-                                    itemDelete.ImageUrl = "~/images/action_delete.gif"
-                                    itemDelete.NavigateUrl = NavigateURL(TabId, "", "uid=" & row("UserID"), "Action=Delete")
-                                    rootItem.Items.Add(itemDelete)
-                                End If
-
-                            End If
-
-
-                            If UserInfo.IsInRole(PortalSettings.AdministratorRoleName) AndAlso MembershipProvider.Instance().PasswordRetrievalEnabled Then
-                                Dim itemImp As New DnnMenuItem(Localization.GetString("ImpersonateAccount", LocalResourceFile))
-                                itemImp.Attributes.Add("cmd", "impersonate")
-                                itemImp.Attributes.Add("usn", row("Username"))
-                                itemImp.Attributes.Add("pid", row("PortalId"))
-                                itemImp.Attributes.Add("mid", ModuleId)
-                                itemImp.Value = intUser.ToString
-                                itemImp.ImageUrl = "~/images/icon_hostusers_16px.gif"
-                                itemImp.NavigateUrl = NavigateURL(TabId, "", "uid=" & row("UserID"), "Action=Impersonate")
-                                rootItem.Items.Add(itemImp)
-                            End If
-
-
-                        Else 'role filter mode
-
-                            If (Not ctlRoles.SelectedNode Is Nothing AndAlso ctlRoles.SelectedNode.Value = "-2") Then 'recycle bin mode
-
-
-                                Dim itemRecyle As New DnnMenuItem(Localization.GetString("RestoreAccount", LocalResourceFile))
-                                itemRecyle.Attributes.Add("cmd", "restore")
-                                itemRecyle.Value = intUser.ToString
-                                itemRecyle.ImageUrl = "~/images/restore.gif"
-                                itemRecyle.Attributes.Add("usn", row("Username"))
-                                itemRecyle.Attributes.Add("pid", row("PortalId"))
-                                itemRecyle.Attributes.Add("mid", ModuleId)
-                                itemRecyle.NavigateUrl = NavigateURL(TabId, "", "uid=" & row("UserID"), "Action=Restore")
-                                rootItem.Items.Add(itemRecyle)
-
-
-                                If AllowHardDelete Then
-                                    If intUser <> PortalSettings.AdministratorId Then
-                                        Dim itemDelete As New DnnMenuItem(Localization.GetString("HardDeleteAccount", LocalResourceFile))
-                                        itemDelete.Attributes.Add("cmd", "harddelete")
-                                        itemDelete.Attributes.Add("usn", row("Username"))
-                                        itemDelete.Attributes.Add("pid", row("PortalId"))
-                                        itemDelete.Attributes.Add("mid", ModuleId)
-                                        itemDelete.Value = intUser.ToString
-                                        itemDelete.ImageUrl = "~/images/action_delete.gif"
-                                        itemDelete.NavigateUrl = NavigateURL(TabId, "", "uid=" & row("UserID"), "Action=HardDelete")
-                                        rootItem.Items.Add(itemDelete)
-                                    End If
-                                End If
-
-
-
-                            Else
-
-                                Dim itemEdit As New DnnMenuItem(Localization.GetString("EditAccount", LocalResourceFile))
-                                itemEdit.Attributes.Add("cmd", "edit")
-                                itemEdit.Value = intUser.ToString
-                                itemEdit.ImageUrl = "~/images/edit.gif"
-                                itemEdit.NavigateUrl = NavigateURL(TabId, "", "uid=" & row("UserID"), "RoleId=" & ctlRoles.SelectedNode.Value)
-                                itemEdit.Attributes.Add("usn", row("Username"))
-                                itemEdit.Attributes.Add("pid", row("PortalId"))
-                                itemEdit.Attributes.Add("mid", ModuleId)
-                                rootItem.Items.Add(itemEdit)
-
-
-                                If AllowDelete Then
-                                    If intUser <> PortalSettings.AdministratorId Then
-                                        Dim itemDelete As New DnnMenuItem(Localization.GetString("DeleteAccount", LocalResourceFile))
-                                        itemDelete.Attributes.Add("cmd", "delete")
-                                        itemDelete.Attributes.Add("usn", row("Username"))
-                                        itemDelete.Attributes.Add("pid", row("PortalId"))
-                                        itemDelete.Attributes.Add("mid", ModuleId)
-                                        itemDelete.Value = intUser.ToString
-                                        itemDelete.ImageUrl = "~/images/action_delete.gif"
-                                        itemDelete.NavigateUrl = NavigateURL(TabId, "", "uid=" & row("UserID"), "Action=Delete", "RoleId=" & ctlRoles.SelectedNode.Value)
-                                        rootItem.Items.Add(itemDelete)
-                                    End If
-                                End If
-
-
-                                If UserInfo.IsInRole(PortalSettings.AdministratorRoleName) AndAlso MembershipProvider.Instance().PasswordRetrievalEnabled Then
-                                    Dim itemImp As New DnnMenuItem(Localization.GetString("ImpersonateAccount", LocalResourceFile))
-                                    itemImp.Attributes.Add("cmd", "impersonate")
-                                    itemImp.Attributes.Add("usn", row("Username"))
-                                    itemImp.Attributes.Add("pid", row("PortalId"))
-                                    itemImp.Attributes.Add("mid", ModuleId)
-                                    itemImp.Value = intUser.ToString
-                                    itemImp.ImageUrl = "~/images/icon_hostusers_16px.gif"
-                                    itemImp.NavigateUrl = NavigateURL(TabId, "", "uid=" & row("UserID"), "Action=Impersonate")
-                                    rootItem.Items.Add(itemImp)
-                                End If
-
-                            End If
-
+                    Dim btnHardDelete As HtmlGenericControl = CType(e.Item.FindControl("btnHardDelete"), HtmlGenericControl)
+                    If Not btnHardDelete Is Nothing Then
+                        btnHardDelete.Visible = False
+                        If intRole = -2 Then
+                            btnHardDelete.Visible = True
                         End If
-
                     End If
 
+                    Dim btnRemove As HtmlGenericControl = CType(e.Item.FindControl("btnRemove"), HtmlGenericControl)
+                    If Not btnRemove Is Nothing Then
+                        btnRemove.Visible = False
+                        If intRole <> -2 AndAlso intRole <> PortalSettings.RegisteredRoleId Then
+                            btnRemove.Visible = True
+                        End If
+                    End If
+
+                    Dim btnSetStatus As HtmlGenericControl = CType(e.Item.FindControl("btnSetStatus"), HtmlGenericControl)
+                    If Not btnSetStatus Is Nothing Then
+                        btnSetStatus.Visible = False
+                        If intRole <> -2 AndAlso intRole <> PortalSettings.RegisteredRoleId Then
+                            btnSetStatus.Visible = True
+                        End If
+                    End If
+
+                    Dim btnSetDeleted As HtmlGenericControl = CType(e.Item.FindControl("btnSetDeleted"), HtmlGenericControl)
+                    If Not btnSetDeleted Is Nothing Then
+                        btnSetDeleted.Visible = False
+                        If AllowDelete AndAlso intUser <> PortalSettings.AdministratorId AndAlso intUser <> UserInfo.UserID AndAlso (Not ctlRoles.SelectedNode Is Nothing AndAlso ctlRoles.SelectedNode.Value <> "-2") Then
+                            btnSetDeleted.Visible = True
+                        End If
+                    End If
+
+                    Dim btnRestore As HtmlGenericControl = CType(e.Item.FindControl("btnRestore"), HtmlGenericControl)
+                    If Not btnRestore Is Nothing Then
+                        btnRestore.Visible = False
+                        If (Not ctlRoles.SelectedNode Is Nothing AndAlso ctlRoles.SelectedNode.Value = "-2") Then
+                            btnRestore.Visible = True
+                        End If
+                    End If
 
                 Catch ex As Exception
 
@@ -348,7 +282,7 @@ Namespace Connect.Modules.UserManagement.AccountManagement
 
                 roleController.AddUserRole(PortalId, User.UserID, roleId, effectiveDate, expiryDate)
                 lblRolesNote.Text = Localization.GetString("lblNotificationNote_Roles", LocalResourceFile)
-                BindRoleAddNotification(drpRoles.SelectedItem.Text, effectiveDate, expiryDate)
+                BindRoleMembershipChangedNotification(drpRoles.SelectedItem.Text, Constants.TemplateName_EmailAddedToRole, effectiveDate, expiryDate)
 
                 DataCache.RemoveCache("DNNWERK_USERLIST_ROLEID" & roleId.ToString)
 
@@ -375,7 +309,7 @@ Namespace Connect.Modules.UserManagement.AccountManagement
 
             Dim strRole As String = roleController.GetRole(roleId, PortalId).RoleName
             lblRolesNote.Text = Localization.GetString("lblNotificationNote_Roles", LocalResourceFile)
-            BindRoleRemoveNotification(strRole)
+            BindRoleMembershipChangedNotification(role.RoleName, Constants.TemplateName_EmailRemovedFromRole, Null.NullDate, Null.NullDate)
 
             pnlRoleChange_Step1.Visible = False
             pnlRoleChange_Step2.Visible = True
@@ -396,12 +330,12 @@ Namespace Connect.Modules.UserManagement.AccountManagement
 
             Dim strRole As String = roleController.GetRole(roleId, PortalId).RoleName
             lblRolesNote.Text = Localization.GetString("lblNotificationNote_Roles", LocalResourceFile)
-            BindRoleAddNotification(role.RoleName, Date.Now, Null.NullDate)
+            BindRoleMembershipChangedNotification(role.RoleName, Constants.TemplateName_EmailRoleStatusChanged, Date.Now, Null.NullDate)
 
             pnlRoleChange_Step1.Visible = False
             pnlRoleChange_Step2.Visible = True
-            btnNotifyRole.CommandArgument = "add"
-            btnNotifyRoleSkip.CommandArgument = "add"
+            btnNotifyRole.CommandArgument = "approve"
+            btnNotifyRoleSkip.CommandArgument = "approve"
 
         End Sub
 
@@ -515,27 +449,90 @@ Namespace Connect.Modules.UserManagement.AccountManagement
             BindUser(oUser.UserID)
         End Sub
 
+        Private Sub cmdRestoreAccount_Click(sender As Object, e As EventArgs) Handles cmdRestoreAccount.Click
+
+            If Request.IsAuthenticated = False Then
+                Exit Sub
+            End If
+
+            Dim TargetUserId As Integer = Null.NullInteger
+            If Request.QueryString("uid") Is Nothing Then
+                Exit Sub
+            Else
+                If IsNumeric(Request.QueryString("uid")) Then
+                    TargetUserId = Convert.ToInt32(Request.QueryString("uid"))
+                End If
+            End If
+
+            If TargetUserId = Null.NullInteger Then
+                Exit Sub
+            End If
+
+            Dim TargetRoleId As Integer = Null.NullInteger
+            If Request.QueryString("RoleId") Is Nothing Then
+                Exit Sub
+            Else
+                If IsNumeric(Request.QueryString("RoleId")) Then
+                    TargetRoleId = Convert.ToInt32(Request.QueryString("RoleId"))
+                End If
+            End If
+
+            Dim oUser As UserInfo = UserController.GetUserById(PortalId, TargetUserId)
+
+            If oUser Is Nothing Then
+                Exit Sub
+            End If
+
+            UserController.RestoreUser(oUser)
+            ClearCache()
+
+            Response.Redirect(NavigateURL(TabId, "", "uid=" & oUser.UserID.ToString, "RoleId=" & TargetRoleId.ToString, "Action=Edit"))
+
+        End Sub
+
         Private Sub cmdDeleteAccount_Click(sender As Object, e As EventArgs) Handles cmdDeleteAccount.Click
 
-            Dim intUser As Integer = User.UserID
-            Dim oUser As UserInfo = User
+            If Request.IsAuthenticated = False Then
+                Exit Sub
+            End If
 
-            UserController.DeleteUser(oUser, False, False)
+            Dim TargetUserId As Integer = Null.NullInteger
+            If Request.QueryString("uid") Is Nothing Then
+                Exit Sub
+            Else
+                If IsNumeric(Request.QueryString("uid")) Then
+                    TargetUserId = Convert.ToInt32(Request.QueryString("uid"))
+                End If
+            End If
 
-            Dim intRole As Integer = Null.NullInteger
+            If TargetUserId = Null.NullInteger Then
+                Exit Sub
+            End If
 
-            If IsNumeric(ctlRoles.SelectedNode.Value) Then
-                Dim roleid As Integer = Convert.ToInt32(ctlRoles.SelectedNode.Value)
-                intRole = roleid
+            Dim TargetRoleId As Integer = Null.NullInteger
+            If Request.QueryString("RoleId") Is Nothing Then
+                Exit Sub
+            Else
+                If IsNumeric(Request.QueryString("RoleId")) Then
+                    TargetRoleId = Convert.ToInt32(Request.QueryString("RoleId"))
+                End If
+            End If
+
+            Dim oUser As UserInfo = UserController.GetUserById(PortalId, TargetUserId)
+
+            If oUser Is Nothing Then
+                Exit Sub
+            End If
+
+            If oUser.IsDeleted Then
+                UserController.RemoveUser(oUser)
+            Else
+                UserController.DeleteUser(oUser, False, False)
             End If
 
             ClearCache()
 
-            If intRole <> Null.NullInteger Then
-                Response.Redirect(NavigateURL(TabId, "", "RoleId=" & intRole.ToString))
-            Else
-                Response.Redirect(NavigateURL(TabId, ""))
-            End If
+            Response.Redirect(NavigateURL(TabId, "", "RoleId=" & TargetRoleId.ToString))
 
         End Sub
 
@@ -577,6 +574,10 @@ Namespace Connect.Modules.UserManagement.AccountManagement
 
         End Sub
 
+        Private Sub cmdCancelCreate_Click(sender As Object, e As EventArgs) Handles cmdCancelCreate.Click
+            Response.Redirect(NavigateURL(TabId, "", "RoleId=" & Request.QueryString("RoleId")))
+        End Sub
+
 #End Region
 
 #Region "Account E-Mail Event handlers"
@@ -610,7 +611,6 @@ Namespace Connect.Modules.UserManagement.AccountManagement
 #End Region
 
 #Region "Password Update Event Handlers"
-
 
         Private Sub cmdResetPasswordLink_Click(sender As Object, e As EventArgs) Handles cmdResetPasswordLink.Click
 
@@ -801,9 +801,105 @@ Namespace Connect.Modules.UserManagement.AccountManagement
                 Exit Sub
             End If
 
+            Dim TargetRoleId As Integer = Null.NullInteger
+            If Request.QueryString("RoleId") Is Nothing Then
+                Exit Sub
+            Else
+                If IsNumeric(Request.QueryString("RoleId")) Then
+                    TargetRoleId = Convert.ToInt32(Request.QueryString("RoleId"))
+                End If
+            End If
+
             If Not Request.QueryString("Action") Is Nothing Then
                 Select Case Request.QueryString("Action").ToLower
+                    Case "approve"
+
+                        Dim oUser As UserInfo = UserController.GetUserById(PortalId, TargetUserId)
+                        If oUser Is Nothing Then
+                            Exit Sub
+                        End If
+
+                        Dim roleController As New RoleController
+                        Dim role As RoleInfo = roleController.GetRole(TargetRoleId, PortalId)
+
+                        roleController.UpdateUserRole(PortalId, User.UserID, TargetRoleId, RoleStatus.Approved, False, False)
+
+                        DataCache.RemoveCache("DNNWERK_USERLIST_ROLEID" & TargetRoleId.ToString)
+
+                        If Not Request.QueryString("Notify") Is Nothing Then
+                            If Request.QueryString("Notify") = "1" Then
+                                Dim strRole As String = roleController.GetRole(TargetRoleId, PortalId).RoleName
+                                lblRolesNote.Text = Localization.GetString("lblNotificationNote_Roles", LocalResourceFile)
+                                BindRoleMembershipChangedNotification(role.RoleName, Constants.TemplateName_EmailRoleStatusChanged, Date.Now, Null.NullDate)
+
+                                pnlRoleChange_Step1.Visible = False
+                                pnlRoleChange_Step2.Visible = True
+                                btnNotifyRole.CommandArgument = "approve"
+                                btnNotifyRoleSkip.CommandArgument = "approve"
+                            Else
+                                Response.Redirect(NavigateURL(TabId, "", "RoleId=" & TargetRoleId.ToString))
+                            End If
+                        Else
+                            Response.Redirect(NavigateURL(TabId, "", "RoleId=" & TargetRoleId.ToString))
+                        End If
+
+                    Case "pending"
+
+                        Dim oUser As UserInfo = UserController.GetUserById(PortalId, TargetUserId)
+                        If oUser Is Nothing Then
+                            Exit Sub
+                        End If
+
+                        Dim roleController As New RoleController
+                        Dim role As RoleInfo = roleController.GetRole(TargetRoleId, PortalId)
+
+                        roleController.UpdateUserRole(PortalId, User.UserID, TargetRoleId, RoleStatus.Pending, False, False)
+
+                        DataCache.RemoveCache("DNNWERK_USERLIST_ROLEID" & TargetRoleId.ToString)
+
+                        If Not Request.QueryString("Notify") Is Nothing Then
+                            If Request.QueryString("Notify") = "1" Then
+                                Dim strRole As String = roleController.GetRole(TargetRoleId, PortalId).RoleName
+                                lblRolesNote.Text = Localization.GetString("lblNotificationNote_Roles", LocalResourceFile)
+                                BindRoleMembershipChangedNotification(role.RoleName, Constants.TemplateName_EmailRoleStatusChanged, Null.NullDate, Null.NullDate)
+
+                                pnlRoleChange_Step1.Visible = False
+                                pnlRoleChange_Step2.Visible = True
+                                btnNotifyRole.CommandArgument = "pending"
+                                btnNotifyRoleSkip.CommandArgument = "pending"
+                            Else
+                                Response.Redirect(NavigateURL(TabId, "", "RoleId=" & TargetRoleId.ToString))
+                            End If
+                        Else
+                            Response.Redirect(NavigateURL(TabId, "", "RoleId=" & TargetRoleId.ToString))
+                        End If
+
+                    Case "remove"
+
+                        Dim oUser As UserInfo = UserController.GetUserById(PortalId, TargetUserId)
+
+                        If oUser Is Nothing Then
+                            Exit Sub
+                        End If
+
+                        If oUser.IsSuperUser Then
+                            Exit Sub
+                        End If
+
+                        If oUser.UserID = PortalSettings.AdministratorId Then
+                            Exit Sub
+                        End If
+
+                        Dim rc As New RoleController
+                        Dim role As RoleInfo = rc.GetRole(TargetRoleId, PortalId)
+
+                        RoleController.DeleteUserRole(oUser, role, PortalSettings, False)
+                        ClearCache()
+
+                        Response.Redirect(NavigateURL(TabId, "", "RoleId=" & TargetRoleId.ToString))
+
                     Case "delete"
+
 
                         If AllowDelete Then
 
@@ -823,20 +919,8 @@ Namespace Connect.Modules.UserManagement.AccountManagement
 
                             UserController.DeleteUser(oUser, False, False)
 
-                            Dim intRole As Integer = Null.NullInteger
-                            If Not Request.QueryString("RoleId") Is Nothing Then
-                                If IsNumeric(Request.QueryString("RoleId")) Then
-                                    intRole = Convert.ToInt32(Request.QueryString("RoleId"))
-                                End If
-                            End If
-
                             ClearCache()
-
-                            If intRole <> Null.NullInteger Then
-                                Response.Redirect(NavigateURL(TabId, "", "RoleId=" & intRole.ToString))
-                            Else
-                                Response.Redirect(NavigateURL(TabId, ""))
-                            End If
+                            Response.Redirect(NavigateURL(TabId, "", "RoleId=" & TargetRoleId.ToString))
 
                         End If
 
@@ -849,7 +933,6 @@ Namespace Connect.Modules.UserManagement.AccountManagement
                         End If
 
                         UserController.RemoveUser(oUser)
-
                         ClearCache()
 
                         Response.Redirect(NavigateURL(TabId, "", "RoleId=-2"))
@@ -863,8 +946,9 @@ Namespace Connect.Modules.UserManagement.AccountManagement
                         End If
 
                         UserController.RestoreUser(oUser)
+                        ClearCache()
 
-                        Response.Redirect(NavigateURL(TabId))
+                        Response.Redirect(NavigateURL(TabId, "", "uid=" & oUser.UserID.ToString, "RoleId=" & PortalSettings.RegisteredRoleId.ToString, "Action=Edit"))
 
                     Case "impersonate"
 
@@ -1550,12 +1634,58 @@ Namespace Connect.Modules.UserManagement.AccountManagement
 
                 cmdAuthorizeAccount.Visible = (objUser.Membership.Approved = False)
                 cmdDeleteAccount.Visible = (objUser.UserID <> PortalSettings.AdministratorId AndAlso AllowDelete AndAlso (objUser.IsSuperUser = False))
+                cmdRestoreAccount.Visible = (objUser.IsDeleted = True)
+
+                If objUser.IsDeleted Then
+                    cmdDeleteAccount.Text = Localization.GetString("HardDeleteAccount", LocalResourceFile)
+                Else
+                    cmdDeleteAccount.Text = Localization.GetString("DeleteAccount", LocalResourceFile)
+                End If
+
+                If objUser.IsDeleted Then cmdUpdateAccount.Visible = False
+                If objUser.IsDeleted Then cmdForcePasswordChange.Visible = False
 
                 If UserInfo.IsSuperUser Then
                     BindUserSites(UserId)
                 End If
 
             End If
+
+        End Sub
+
+        Private Sub BindRoleMembershipChangedNotification(ByVal strRole As String, TemplateName As String, ByVal EffectiveDate As Date, ByVal ExpiryDate As Date)
+
+            Dim Locale As String = CurrentLocale
+
+            If Not String.IsNullOrEmpty(User.Profile.PreferredLocale) Then
+                Locale = User.Profile.PreferredLocale
+            End If
+
+            Dim strTemplate As String = GetTemplate(Me.ModuleTheme, TemplateName, Locale, False)
+            strTemplate = strTemplate.Replace("[FIRSTNAME]", User.FirstName)
+            strTemplate = strTemplate.Replace("[LASTNAME]", User.LastName)
+            strTemplate = strTemplate.Replace("[DISPLAYNAME]", User.DisplayName)
+            strTemplate = strTemplate.Replace("[PORTALNAME]", PortalSettings.PortalName)
+            strTemplate = strTemplate.Replace("[PORTALURL]", PortalSettings.PortalAlias.HTTPAlias)
+            strTemplate = strTemplate.Replace("[USERNAME]", User.Username)
+            strTemplate = strTemplate.Replace("[PASSWORD]", Localization.GetString("HiddenPassword", LocalResourceFile))
+            strTemplate = strTemplate.Replace("[ROLE]", strRole)
+            strTemplate = strTemplate.Replace("[RECIPIENTUSERID]", User.UserID.ToString)
+            strTemplate = strTemplate.Replace("[USERID]", User.UserID.ToString)
+
+            If EffectiveDate <> Null.NullDate Then
+                strTemplate = strTemplate.Replace("[EFFECTIVEDATE]", EffectiveDate.ToShortDateString)
+            Else
+                strTemplate = strTemplate.Replace("[EFFECTIVEDATE]", Date.Now.ToShortDateString)
+            End If
+
+            If ExpiryDate <> Null.NullDate Then
+                strTemplate = strTemplate.Replace("[EXPIRYDATE]", ExpiryDate.ToShortDateString)
+            Else
+                strTemplate = strTemplate.Replace("[EXPIRYDATE]", "-")
+            End If
+
+            txtNotifyRoleBody.Content = strTemplate
 
         End Sub
 
@@ -1580,31 +1710,6 @@ Namespace Connect.Modules.UserManagement.AccountManagement
             Next
 
             chkUserSites.Items(0).Enabled = False
-
-        End Sub
-
-        Private Sub BindRoleRemoveNotification(ByVal strRole As String)
-
-            Dim Locale As String = CurrentLocale
-
-            If Not String.IsNullOrEmpty(User.Profile.PreferredLocale) Then
-                Locale = User.Profile.PreferredLocale
-            End If
-
-            Dim strTemplate As String = GetTemplate(Me.ModuleTheme, Constants.TemplateName_EmailRemovedFromRole, Locale, False)
-
-            strTemplate = strTemplate.Replace("[FIRSTNAME]", User.FirstName)
-            strTemplate = strTemplate.Replace("[LASTNAME]", User.LastName)
-            strTemplate = strTemplate.Replace("[DISPLAYNAME]", User.DisplayName)
-            strTemplate = strTemplate.Replace("[PORTALNAME]", PortalSettings.PortalName)
-            strTemplate = strTemplate.Replace("[PORTALURL]", PortalSettings.PortalAlias.HTTPAlias)
-            strTemplate = strTemplate.Replace("[USERNAME]", User.Username)
-            strTemplate = strTemplate.Replace("[PASSWORD]", Localization.GetString("HiddenPassword", LocalResourceFile))
-            strTemplate = strTemplate.Replace("[ROLE]", strRole)
-            strTemplate = strTemplate.Replace("[RECIPIENTUSERID]", User.UserID.ToString)
-            strTemplate = strTemplate.Replace("[USERID]", User.UserID.ToString)
-
-            txtNotifyRoleBody.Content = strTemplate
 
         End Sub
 
@@ -1633,44 +1738,6 @@ Namespace Connect.Modules.UserManagement.AccountManagement
             strTemplate = strTemplate.Replace("[USERID]", User.UserID.ToString)
 
             txtNotifyUserBody.Content = strTemplate
-
-        End Sub
-
-        Private Sub BindRoleAddNotification(ByVal strRole As String, ByVal EffectiveDate As Date, ByVal ExpiryDate As Date)
-
-            Dim Locale As String = CurrentLocale
-
-            If Not String.IsNullOrEmpty(User.Profile.PreferredLocale) Then
-                Locale = User.Profile.PreferredLocale
-            End If
-
-            Dim strTemplate As String = GetTemplate(Me.ModuleTheme, Constants.TemplateName_EmailAddedToRole, Locale, False)
-
-            strTemplate = strTemplate.Replace("[FIRSTNAME]", User.FirstName)
-            strTemplate = strTemplate.Replace("[LASTNAME]", User.LastName)
-            strTemplate = strTemplate.Replace("[DISPLAYNAME]", User.DisplayName)
-            strTemplate = strTemplate.Replace("[PORTALNAME]", PortalSettings.PortalName)
-            strTemplate = strTemplate.Replace("[PORTALURL]", PortalSettings.PortalAlias.HTTPAlias)
-            strTemplate = strTemplate.Replace("[USERNAME]", User.Username)
-            strTemplate = strTemplate.Replace("[PASSWORD]", Localization.GetString("HiddenPassword", LocalResourceFile))
-            strTemplate = strTemplate.Replace("[ROLE]", strRole)
-
-            strTemplate = strTemplate.Replace("[RECIPIENTUSERID]", User.UserID.ToString)
-            strTemplate = strTemplate.Replace("[USERID]", User.UserID.ToString)
-
-            If EffectiveDate <> Null.NullDate Then
-                strTemplate = strTemplate.Replace("[EFFECTIVEDATE]", EffectiveDate.ToShortDateString)
-            Else
-                strTemplate = strTemplate.Replace("[EFFECTIVEDATE]", Date.Now.ToShortDateString)
-            End If
-
-            If ExpiryDate <> Null.NullDate Then
-                strTemplate = strTemplate.Replace("[EXPIRYDATE]", ExpiryDate.ToShortDateString)
-            Else
-                strTemplate = strTemplate.Replace("[EXPIRYDATE]", "-")
-            End If
-
-            txtNotifyRoleBody.Content = strTemplate
 
         End Sub
 
@@ -1739,6 +1806,54 @@ Namespace Connect.Modules.UserManagement.AccountManagement
                     pnlSitesTab.Visible = True
                 End If
             Next
+
+            If AdditionalControls.Length > 0 Then
+
+                Dim strTabname As String = ""
+                Dim strControl As String = ""
+
+                For Each objControl As String In AdditionalControls
+
+                    Try
+                        strTabname = objControl.Split(Char.Parse(","))(0)
+                        strControl = objControl.Split(Char.Parse(","))(1)
+                    Catch
+                    End Try
+
+
+                    If strTabname.Length > 0 AndAlso strControl.Length > 0 Then
+
+                        Dim relUrl As String = ResolveUrl("~" & strControl)
+                        Dim path As String = Server.MapPath(relUrl)
+                        If System.IO.File.Exists(path) AndAlso path.EndsWith(".ascx") Then
+
+                            'ok, we've got a tabname and a valid control to load
+                            Dim objModule As PortalModuleBase = CType(Me.LoadControl(relUrl), PortalModuleBase)
+                            objModule.ModuleConfiguration = Me.ModuleConfiguration
+                            objModule.ID = System.IO.Path.GetFileNameWithoutExtension(relUrl)
+
+
+                            Dim strTabLiteral As String = "<li id=""" & strTabname.Replace(" ", "") & """>"
+
+                            Dim objPanel As New Panel
+                            objPanel.ID = "pnl_" & objModule.ModuleId.ToString
+                            objPanel.Controls.Add(objModule)
+                            plhAdditonalControls.Controls.Add(objPanel)
+
+                            strTabLiteral += "<a href=""#" & objPanel.ClientID & """>"
+                            strTabLiteral += strTabname
+                            strTabLiteral += "</a></li>"
+
+                            plhAdditionalTabs.Controls.Add(New LiteralControl(strTabLiteral))
+
+                        End If
+
+                    End If
+
+
+                Next
+            End If
+
 
             If MembershipProvider.Instance().RequiresQuestionAndAnswer Then
                 tabPassword.Visible = False
@@ -1842,7 +1957,7 @@ Namespace Connect.Modules.UserManagement.AccountManagement
                 End If
             Next
 
-            Dim strGridCols As String = "UserId,DisplayName,Username,Email,Country,CreatedDate,"
+            Dim strGridCols As String = "UserId,DisplayName,Username,Email,Country,CreatedDate"
             Dim gridcols As Object = DotNetNuke.Services.Personalization.Personalization.GetProfile("dnnWerk_Users_ColOptions", "GridCols_" & UserId.ToString)
             If Not gridcols Is Nothing Then
                 If gridcols.ToString.Length > 0 Then
@@ -1877,6 +1992,11 @@ Namespace Connect.Modules.UserManagement.AccountManagement
                     Dim strCol As String = strGridCol
                     Try
                         grdUsers.Columns.FindByDataField(strCol).Visible = True
+
+                        If strCol.ToLower = "dreateddate" Then
+                            grdUsers.Columns.FindByDataField(strCol).Visible = (ctlRoles.SelectedNode.Value = PortalSettings.RegisteredRoleId.ToString)
+                        End If
+
                     Catch
                     End Try
 
@@ -1889,6 +2009,10 @@ Namespace Connect.Modules.UserManagement.AccountManagement
                 grdUsers.AllowPaging = True
                 grdUsers.PageSize = Convert.ToInt32(drpPageSize.SelectedItem.Value)
             End If
+
+            grdUsers.Columns.FindByDataField("CreatedDate").Visible = (ctlRoles.SelectedNode.Value = PortalSettings.RegisteredRoleId.ToString)
+            grdUsers.Columns.FindByDataField("CreatedOnDate").Visible = (ctlRoles.SelectedNode.Value <> PortalSettings.RegisteredRoleId.ToString)
+            grdUsers.Columns.FindByDataField("Status").Visible = (ctlRoles.SelectedNode.Value <> PortalSettings.RegisteredRoleId.ToString)
 
         End Sub
 
@@ -1950,7 +2074,7 @@ Namespace Connect.Modules.UserManagement.AccountManagement
                     For Each objRole As RoleInfo In roles
                         If objRole.RoleGroupID = objGroup.RoleGroupID Then
 
-                            If (Not AllowedRoles Is Nothing AndAlso Array.IndexOf(AllowedRoles, objRole.RoleID.ToString) > -1) OrElse (AllowedRoles Is Nothing) Then
+                            If (Not AllowedRoles Is Nothing AndAlso (Array.IndexOf(AllowedRoles, objRole.RoleID.ToString) > -1 Or Array.IndexOf(AllowedRoles, "all") > -1)) OrElse (AllowedRoles Is Nothing) Then
 
                                 Dim rolenode As New DnnTreeNode()
                                 rolenode.Text = objRole.RoleName
@@ -1986,7 +2110,7 @@ Namespace Connect.Modules.UserManagement.AccountManagement
                 For Each objRole As RoleInfo In roles
                     If objRole.RoleGroupID = Null.NullInteger Then
 
-                        If (Not AllowedRoles Is Nothing AndAlso Array.IndexOf(AllowedRoles, objRole.RoleID.ToString) > -1) OrElse (AllowedRoles Is Nothing) Then
+                        If (Not AllowedRoles Is Nothing AndAlso (Array.IndexOf(AllowedRoles, objRole.RoleID.ToString) > -1 Or Array.IndexOf(AllowedRoles, "all") > -1)) OrElse (AllowedRoles Is Nothing) Then
 
                             Dim rolenode As New DnnTreeNode()
                             rolenode.Text = objRole.RoleName
@@ -2013,7 +2137,7 @@ Namespace Connect.Modules.UserManagement.AccountManagement
             Else
                 For Each objRole As RoleInfo In roles
 
-                    If (Not AllowedRoles Is Nothing AndAlso Array.IndexOf(AllowedRoles, objRole.RoleID.ToString) > -1) OrElse (AllowedRoles Is Nothing) Then
+                    If (Not AllowedRoles Is Nothing AndAlso (Array.IndexOf(AllowedRoles, objRole.RoleID.ToString) > -1 Or Array.IndexOf(AllowedRoles, "all") > -1)) OrElse (AllowedRoles Is Nothing) Then
 
                         Dim rolenode As New DnnTreeNode()
                         rolenode.Text = objRole.RoleName
@@ -2033,11 +2157,10 @@ Namespace Connect.Modules.UserManagement.AccountManagement
 
                     End If
 
-
                 Next
             End If
 
-            If (Not AllowedRoles Is Nothing AndAlso Array.IndexOf(AllowedRoles, "-2") > -1) OrElse (AllowedRoles Is Nothing) Then
+            If (Not AllowedRoles Is Nothing AndAlso (Array.IndexOf(AllowedRoles, "-2") > -1 Or Array.IndexOf(AllowedRoles, "all") > -1)) OrElse (AllowedRoles Is Nothing) Then
                 Dim binnode As New DnnTreeNode()
                 binnode.Text = "Deleted Users"
                 binnode.Value = "-2"
@@ -2170,7 +2293,7 @@ Namespace Connect.Modules.UserManagement.AccountManagement
                 If ds Is Nothing Then
 
                     ds = New DataSet
-
+                    Dim dt As New DataTable
 
                     If intRole = PortalSettings.RegisteredRoleId Or intRole = -2 Then
 
@@ -2182,15 +2305,17 @@ Namespace Connect.Modules.UserManagement.AccountManagement
                         Next
 
                         dr = DotNetNuke.Data.DataProvider.Instance().ExecuteReader("Connect_Accounts_GetUsers", intRole, PortalId, DotNetNuke.Data.DataProvider.Instance().GetNull(strSearch), strCols, blnShowDeleted)
+                        dt.Load(dr)
+
+
 
                     Else
 
                         dr = DotNetNuke.Data.DataProvider.Instance().ExecuteReader("Connect_Accounts_GetRoleMembers", intRole, PortalId)
+                        dt.Load(dr)
 
                     End If
 
-                    Dim dt As New DataTable
-                    dt.Load(dr)
                     ds.Tables.Add(dt)
 
 
@@ -2310,10 +2435,6 @@ Namespace Connect.Modules.UserManagement.AccountManagement
         End Property
 
 #End Region
-
-        Private Sub grdUsers_PreRender(sender As Object, e As EventArgs) Handles grdUsers.PreRender
-            grdUsers.ClientSettings.Scrolling.AllowScroll = False
-        End Sub
 
     End Class
 

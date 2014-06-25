@@ -9,6 +9,18 @@
 	<h3>Release Notes</h3>
 	
 	<p class="Owner">
+		<b>Version 01.02.00</b><br /><br />
+	</p>
+	<p>Extended Token Support</p>	
+	<h4>Changes</h4>
+	<ul>
+		<li>Change: When browsing a given role from within the tree, the grid now shows more details about the role membership, e.g. "In Role Since" column now shows the effectove date of the role membership and "status" shows the status of the role membership.</li>
+		<li>New: You can now change the status of a role membership right from the grid</li>
+		<li>New: You can now remove accounts from a given role right from the grid</li>
+		<li>Change: Excluded host accounts from the result</li>
+	</ul>
+
+	<p class="Owner">
 		<b>Version 01.00.01</b><br /><br />
 	</p>
 	<p>Service release. Mainly focused on better support for password management in newer dnn installations where password retrieval is disabled.</p>	

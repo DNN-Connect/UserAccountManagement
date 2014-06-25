@@ -1,0 +1,22 @@
+
+<p>Dear [DISPLAYNAME],</p>
+<p>the status of a role membership on the <strong>[PORTALNAME]</strong> website has changed.</p>
+<table>
+    <tr>
+        <td>Website URL:</td><td><a href="http://[PORTALURL]">[PORTALURL]</a></td>
+    </tr>
+    <tr>
+        <td>Role:</td><td>[ROLE]</td>
+    </tr>  
+	<tr>
+		<td>Status:</td><td>[Status]</td>
+	</tr>         
+    <tr>
+        <td>Your Username:</td><td>[USERNAME]</td>
+    </tr>
+    <tr>
+        <td>Your Password:</td><td>[PASSWORD]</td>
+    </tr>        
+</table>
+<p>Best wishes,<br />the team from [PORTALNAME]</p>    
+

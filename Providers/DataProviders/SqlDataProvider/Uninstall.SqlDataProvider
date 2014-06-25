@@ -1,4 +1,12 @@
 ﻿
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}Connect_Accounts_GetUsers]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    drop procedure {databaseOwner}[{objectQualifier}Connect_Accounts_GetUsers]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}Connect_Accounts_GetRoleMembers]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    drop procedure {databaseOwner}[{objectQualifier}Connect_Accounts_GetRoleMembers]
+GO
+
 if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}Connect_Users_ListByPortal]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
     drop procedure {databaseOwner}[{objectQualifier}Connect_Users_ListByPortal]
 GO

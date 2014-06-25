@@ -30,7 +30,9 @@ SELECT DISTINCT
 	(Select Top 1 [PropertyValue] From {databaseOwner}[{objectQualifier}UserProfile] Inner Join {databaseOwner}[{objectQualifier}ProfilePropertyDefinition] On {databaseOwner}[{objectQualifier}ProfilePropertyDefinition].[PropertyDefinitionID] = {databaseOwner}[{objectQualifier}UserProfile].[PropertyDefinitionID] Where {databaseOwner}[{objectQualifier}ProfilePropertyDefinition].[PropertyName] = 'Country' and {databaseOwner}[{objectQualifier}UserProfile].[UserID] = U.[UserID]) as [Country],
 	(Select Top 1 [PropertyValue] From {databaseOwner}[{objectQualifier}UserProfile] Inner Join {databaseOwner}[{objectQualifier}ProfilePropertyDefinition] On {databaseOwner}[{objectQualifier}ProfilePropertyDefinition].[PropertyDefinitionID] = {databaseOwner}[{objectQualifier}UserProfile].[PropertyDefinitionID] Where {databaseOwner}[{objectQualifier}ProfilePropertyDefinition].[PropertyName] = 'Telephone' and {databaseOwner}[{objectQualifier}UserProfile].[UserID] = U.[UserID]) as [Telephone],
 	(Select Top 1 [PropertyValue] From {databaseOwner}[{objectQualifier}UserProfile] Inner Join {databaseOwner}[{objectQualifier}ProfilePropertyDefinition] On {databaseOwner}[{objectQualifier}ProfilePropertyDefinition].[PropertyDefinitionID] = {databaseOwner}[{objectQualifier}UserProfile].[PropertyDefinitionID] Where {databaseOwner}[{objectQualifier}ProfilePropertyDefinition].[PropertyName] = 'Cell' and {databaseOwner}[{objectQualifier}UserProfile].[UserID] = U.[UserID]) as [Cell],
-	(Select Top 1 [PropertyValue] From {databaseOwner}[{objectQualifier}UserProfile] Inner Join {databaseOwner}[{objectQualifier}ProfilePropertyDefinition] On {databaseOwner}[{objectQualifier}ProfilePropertyDefinition].[PropertyDefinitionID] = {databaseOwner}[{objectQualifier}UserProfile].[PropertyDefinitionID] Where {databaseOwner}[{objectQualifier}ProfilePropertyDefinition].[PropertyName] = 'PreferredLocale' and {databaseOwner}[{objectQualifier}UserProfile].[UserID] = U.[UserID]) as [PreferredLocale]
+	(Select Top 1 [PropertyValue] From {databaseOwner}[{objectQualifier}UserProfile] Inner Join {databaseOwner}[{objectQualifier}ProfilePropertyDefinition] On {databaseOwner}[{objectQualifier}ProfilePropertyDefinition].[PropertyDefinitionID] = {databaseOwner}[{objectQualifier}UserProfile].[PropertyDefinitionID] Where {databaseOwner}[{objectQualifier}ProfilePropertyDefinition].[PropertyName] = 'PreferredLocale' and {databaseOwner}[{objectQualifier}UserProfile].[UserID] = U.[UserID]) as [PreferredLocale],
+	'' as Status,
+	'' as RoleId
 FROM 
 	{databaseOwner}[{objectQualifier}Users] U 
 	INNER JOIN {databaseOwner}[{objectQualifier}UserPortals] UP on UP.[UserId] = U.[UserID]
@@ -65,6 +67,8 @@ AND
 	or 
 		(@ShowDeleted = 1)
 	)
+AND
+	U.[IsSuperUser] = 0
 Order By
 	UP.[CreatedDate] desc
 GO
@@ -90,19 +94,22 @@ SELECT DISTINCT
 	(Select Top 1 [PropertyValue] From {databaseOwner}[{objectQualifier}UserProfile] Inner Join {databaseOwner}[{objectQualifier}ProfilePropertyDefinition] On {databaseOwner}[{objectQualifier}ProfilePropertyDefinition].[PropertyDefinitionID] = {databaseOwner}[{objectQualifier}UserProfile].[PropertyDefinitionID] Where {databaseOwner}[{objectQualifier}ProfilePropertyDefinition].[PropertyName] = 'Cell' and {databaseOwner}[{objectQualifier}UserProfile].[UserID] = U.[UserID]) as [Cell],
 	(Select Top 1 [PropertyValue] From {databaseOwner}[{objectQualifier}UserProfile] Inner Join {databaseOwner}[{objectQualifier}ProfilePropertyDefinition] On {databaseOwner}[{objectQualifier}ProfilePropertyDefinition].[PropertyDefinitionID] = {databaseOwner}[{objectQualifier}UserProfile].[PropertyDefinitionID] Where {databaseOwner}[{objectQualifier}ProfilePropertyDefinition].[PropertyName] = 'PreferredLocale' and {databaseOwner}[{objectQualifier}UserProfile].[UserID] = U.[UserID]) as [PreferredLocale],
 	UR.[Status],
-	UR.[CreatedOnDate]
+	UR.[CreatedOnDate],
+	UR.[RoleId]
 FROM 
-	{databaseOwner}[{objectQualifier}Users] U 
+	{databaseOwner}[{objectQualifier}UserRoles] UR 
+	INNER JOIN {databaseOwner}[{objectQualifier}Users] U on U.[UserId] = UR.[UserId]
 	INNER JOIN {databaseOwner}[{objectQualifier}UserPortals] UP on UP.[UserId] = U.[UserID]
 	INNER JOIN {databaseOwner}[{objectQualifier}UserProfile] P on p.[UserID] = U.[UserID]
 	INNER JOIN {databaseOwner}[{objectQualifier}ProfilePropertyDefinition] PD on PD.[PropertyDefinitionID] = p.[PropertyDefinitionID]
-	INNER JOIN {databaseOwner}[{objectQualifier}UserRoles] UR on UR.[UserId] = U.[UserId]
 WHERE 
 	UP.[PortalId] = @PortalId
 AND
 	UP.[IsDeleted] = 0
 AND
-	(U.[UserID] in(Select [UserId] from {databaseOwner}[{objectQualifier}UserRoles] where [RoleID] = @RoleId)) 
+	UR.[RoleId] = @RoleId
+AND
+	U.[IsSuperUser] = 0
 Order By
 	UR.[CreatedOnDate] desc
 GO

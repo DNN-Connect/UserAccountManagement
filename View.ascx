@@ -77,18 +77,41 @@
                                 <dnn:dnnGridBoundColumn DataField="Telephone" HeaderText="Telephone" Visible="false"></dnn:dnnGridBoundColumn>
                                 <dnn:dnnGridBoundColumn DataField="Cell" HeaderText="Cell" Visible="false"></dnn:dnnGridBoundColumn>
                                 <dnn:dnnGridBoundColumn DataField="PreferredLocale" HeaderText="PreferredLocale" Visible="false"></dnn:dnnGridBoundColumn>
+                                <dnn:dnnGridBoundColumn DataField="CreatedOnDate" HeaderText="CreatedOnDate" DataFormatString="{0:dd.MM.yyyy}" Visible="false"></dnn:dnnGridBoundColumn>                         
                                 <dnn:dnnGridBoundColumn DataField="CreatedDate" HeaderText="Created" DataFormatString="{0:dd.MM.yyyy}" Visible="false"></dnn:dnnGridBoundColumn>                         
+                                <dnn:dnnGridTemplateColumn HeaderText="Status" DataField="Status">
+                                    <ItemTemplate>
+                                        <ul class="connect-gridactions dnnClear">
+                                            <li runat="server" id="btnSetStatus">
+                                                <a href="#" class='connect-gridbutton <%# IIf(Databinder.Eval(Container.DataItem, "Status") = "-1", "cmdApprove", "cmdPending") %>' data-uid='<%# Databinder.Eval(Container.DataItem, "UserId") %>' data-action='<%# IIf(Databinder.Eval(Container.DataItem, "Status") = "-1", "approve", "pending") %>' data-roleid='<%# Request.QueryString("RoleId")%>' title='<%# IIf(DataBinder.Eval(Container.DataItem, "Status") = "-1", Localization.GetString("SetAccountApproved", LocalResourceFile), Localization.GetString("SetAccountPending", LocalResourceFile))%>'><i class='<%# IIf(DataBinder.Eval(Container.DataItem, "Status") = "-1", "connectaccounts-hourglass1", "connectaccounts-check30")%>'></i></a>
+                                            </li>
+                                        </ul>
+                                    </ItemTemplate>
+                                </dnn:dnnGridTemplateColumn>                        
                                 <dnn:dnnGridTemplateColumn HeaderText="Actions">
                                     <ItemTemplate>
-                                        <dnn:dnnMenu ID="ctlActionMenu" runat="server" ClickToOpen="true" EnableOverlay="false">
-                                            <Items>
-                                                <dnn:dnnMenuItem Text="Actions" ImageUrl="~/images/expand.gif" PostBack="false"> 
-                                                </dnn:dnnMenuItem>
-                                            </Items>
-                                        </dnn:dnnMenu>                               
-                                
+                                        
+                                        <ul class="connect-gridactions dnnClear">                                            
+                                            <li runat="server" id="btnEdit">
+                                                <a href="#" class="connect-gridbutton cmdEdit" data-uid='<%# Databinder.Eval(Container.DataItem, "UserId") %>' data-action='edit' data-roleid='<%# Request.QueryString("RoleId")%>' title='<%# Localization.GetString("EditAccount", LocalResourceFile)%>'><i class="connectaccounts-pencil43"></i></a>
+                                            </li>
+                                            <li runat="server" id="btnRemove">
+                                                <a href="#" class="connect-gridbutton cmdRemove" data-uid='<%# Databinder.Eval(Container.DataItem, "UserId") %>' data-action='remove' data-roleid='<%# Request.QueryString("RoleId")%>' title='<%# Localization.GetString("RemoveFromRole", LocalResourceFile)%>'><i class="connectaccounts-delete30"></i></a>
+                                            </li>
+                                            <li runat="server" id="btnSetDeleted">
+                                                <a href="#" class="connect-gridbutton cmdDelete" data-uid='<%# Databinder.Eval(Container.DataItem, "UserId") %>' data-action='delete' data-roleid='<%# Request.QueryString("RoleId")%>' title='<%# Localization.GetString("DeleteAccount", LocalResourceFile)%>'><i class="connectaccounts-delete48"></i></a>
+                                            </li>
+                                            <li runat="server" id="btnRestore">
+                                                <a href="#" class="connect-gridbutton cmdRestore" data-uid='<%# Databinder.Eval(Container.DataItem, "UserId") %>' data-action='restore' data-roleid='<%# Request.QueryString("RoleId")%>' title='<%# Localization.GetString("RestoreAccount", LocalResourceFile)%>'><i class="connectaccounts-undo9"></i></a>
+                                            </li>
+                                            <li runat="server" id="btnHardDelete">
+                                                <a href="#" class="connect-gridbutton cmdHardDelete" data-uid='<%# Databinder.Eval(Container.DataItem, "UserId") %>' data-action='harddelete' data-roleid='<%# Request.QueryString("RoleId")%>' title='<%# Localization.GetString("HardDeleteAccount", LocalResourceFile)%>'><i class="connectaccounts-delete48"></i></a>
+                                            </li>
+                                        </ul>        
+                                                                                                      
                                     </ItemTemplate>
                                 </dnn:dnnGridTemplateColumn>
+                                
                             </Columns>
                         </MasterTableView>
                         <ClientSettings AllowColumnsReorder="false" EnableRowHoverStyle="false" Selecting-AllowRowSelect="false">
@@ -163,6 +186,7 @@
                     <li id="tabRoles" runat="server"><a href="#dvRoles"><asp:Label id="lblRolesTab" runat="server" resourcekey="lblRolesTab" /></a></li>
                     <li id="tabEmail" runat="server"><a href="#dvEmail"><asp:Label id="lblEmailTab" runat="server" resourcekey="lblEmailTab" /></a></li>
                     <li id="tabSites" runat="server"><a href="#dvSites"><asp:Label id="lblSitesTab" runat="server" resourcekey="lblSitesTab" /></a></li>
+                    <asp:PlaceHolder ID="plhAdditionalTabs" runat="server"></asp:PlaceHolder>
                 </ul>
 
                 <div id="dvAccount" class="dnnClear">
@@ -228,7 +252,8 @@
                         <li><asp:LinkButton ID="cmdUnlockAccount" runat="server" CssClass="dnnSecondaryAction" resourcekey="cmdUnlockAccount"></asp:LinkButton></li>
                         <li><asp:LinkButton ID="cmdAuthorizeAccount" runat="server" CssClass="dnnSecondaryAction" resourcekey="cmdAuthorizeAccount"></asp:LinkButton></li>
                         <li><asp:LinkButton ID="cmdForcePasswordChange" runat="server" CssClass="dnnSecondaryAction" resourcekey="cmdForcePasswordChange"></asp:LinkButton></li>                        
-                        <li><asp:LinkButton ID="cmdDeleteAccount" runat="server" CssClass="dnnSecondaryAction" resourcekey="cmdDeleteAccount"></asp:LinkButton></li>
+                        <li><asp:LinkButton ID="cmdDeleteAccount" runat="server" CssClass="dnnSecondaryAction"></asp:LinkButton></li>
+                        <li><asp:LinkButton ID="cmdRestoreAccount" runat="server" CssClass="dnnPrimaryAction" resourcekey="cmdRestoreAccount"></asp:LinkButton></li>
                     </ul>
 
                     </asp:Panel>
@@ -400,6 +425,8 @@
                     </asp:Panel>
                 </div>
 
+                <asp:PlaceHolder ID="plhAdditonalControls" runat="server"></asp:PlaceHolder>
+
             </div>
 
         </asp:Panel>
@@ -422,13 +449,275 @@
                      
 </div>
 
+<div class="ConnectRoleMembershipApproval dnnDialog dnnClear" title='<%= Localization.GetString("lblRoleApprovalTitle", LocalResourceFile)%>'>
+    <p><%= Localization.GetString("lblRoleApprovalNote", LocalResourceFile)%></p>
+</div>
+
+<div class="ConnectRoleMembershipPending dnnDialog dnnClear" title='<%= Localization.GetString("lblRolePendingTitle", LocalResourceFile)%>'>
+    <p><%= Localization.GetString("lblRolePendingNote", LocalResourceFile)%></p>
+</div>
+
+<div class="ConnectDeleteAccount dnnDialog dnnClear" title='<%= Localization.GetString("lblDeleteAccountTitle", LocalResourceFile)%>'>
+    <p><%= Localization.GetString("lblDeleteAccountNote", LocalResourceFile)%></p>
+</div>
+
+<div class="ConnectRemoveAccount dnnDialog dnnClear" title='<%= Localization.GetString("lblRemoveAccountTitle", LocalResourceFile)%>'>
+    <p><%= Localization.GetString("lblRemoveAccountNote", LocalResourceFile)%></p>
+</div>
+
+<div class="ConnectHardDeleteAccount dnnDialog dnnClear" title='<%= Localization.GetString("lblHardDeleteAccountTitle", LocalResourceFile)%>'>
+    <p><%= Localization.GetString("lblHardDeleteAccountNote", LocalResourceFile)%></p>
+</div>
+
 <script language="javascript" type="text/javascript">
+
+    var lblSendNotificationText = '<%= Localization.GetString("lblSendNotificationText", LocalResourceFile) %>';
+    var lblDontSendNotificationText = '<%= Localization.GetString("lblDontSendNotificationText", LocalResourceFile) %>';
+    var lblCancelNotificationText = '<%= Localization.GetString("lblCancelNotificationText", LocalResourceFile) %>';
+    var lblDeleteYes = '<%= Localization.GetString("lblDeleteYes", LocalResourceFile)%>';
+    var lblDeleteCancel = '<%= Localization.GetString("lblDeleteCancel", LocalResourceFile) %>';
+
+
+    $(".ConnectRoleMembershipApproval").dialog({
+        autoOpen: false,
+        height: 300,
+        width: 550,
+        modal: true,
+        buttons: [ 
+            { 
+                text: lblSendNotificationText, class: 'dnnPrimaryAction', click: function () {
+                    $(this).dialog("close");
+                    var uid = $(this).dialog("option", "uid");
+                    var action = $(this).dialog("option", "action");
+                    var roleid = <%= Request.QueryString("RoleId") %>;
+                    var url = '<%= NavigateUrl(TabId, "", "uid=' + uid + '", "RoleId=' + roleid + '", "Action=' + action + '", "Notify=1") %>#dvRoles';
+                    window.location.href = url;
+                }
+            },
+            {
+                text: lblDontSendNotificationText, class: 'dnnSecondaryAction', click: function () {
+                    $(this).dialog("close");
+                    var uid = $(this).dialog("option", "uid");
+                    var action = $(this).dialog("option", "action");
+                    var roleid = <%= Request.QueryString("RoleId") %>;
+                    var url = '<%= NavigateUrl(TabId, "", "uid=' + uid + '", "RoleId=' + roleid + '", "Action=' + action + '", "Notify=0") %>';
+                    window.location.href = url;
+                }
+            },
+            {
+                text: lblCancelNotificationText, class: 'dnnSecondaryAction', click: function () {
+                    $(this).dialog("close");
+                }
+            }
+        ],
+        close: function () {
+            $(this).dialog("close");
+        }
+    });
+
+    $(".ConnectRoleMembershipPending").dialog({
+        autoOpen: false,
+        height: 300,
+        width: 550,
+        modal: true,
+        buttons: [ 
+            { 
+                text: lblSendNotificationText, class: 'dnnPrimaryAction', click: function () {
+                    $(this).dialog("close");
+                    var uid = $(this).dialog("option", "uid");
+                    var action = $(this).dialog("option", "action");
+                    var roleid = <%= Request.QueryString("RoleId") %>;
+                    var url = '<%= NavigateUrl(TabId, "", "uid=' + uid + '", "RoleId=' + roleid + '", "Action=' + action + '", "Notify=1") %>#dvRoles';
+                    window.location.href = url;
+                }
+            },
+            {
+                text: lblDontSendNotificationText, class: 'dnnSecondaryAction', click: function () {
+                    $(this).dialog("close");
+                    var uid = $(this).dialog("option", "uid");
+                    var action = $(this).dialog("option", "action");
+                    var roleid = <%= Request.QueryString("RoleId") %>;
+                    var url = '<%= NavigateUrl(TabId, "", "uid=' + uid + '", "RoleId=' + roleid + '", "Action=' + action + '", "Notify=0") %>';
+                    window.location.href = url;
+                }
+            },
+            {
+                text: lblCancelNotificationText, class: 'dnnSecondaryAction', click: function () {
+                    $(this).dialog("close");
+                }
+            }
+        ],
+        close: function () {
+            $(this).dialog("close");
+        }
+    });
+
+    $(".ConnectDeleteAccount").dialog({
+        autoOpen: false,
+        height: 300,
+        width: 550,
+        modal: true,
+        buttons: [ 
+            { 
+                text: lblDeleteYes, class: 'dnnPrimaryAction', click: function () {
+                    $(this).dialog("close");
+                    var uid = $(this).dialog("option", "uid");
+                    var action = $(this).dialog("option", "action");
+                    var roleid = <%= Request.QueryString("RoleId") %>;
+                    var url = '<%= NavigateUrl(TabId, "", "uid=' + uid + '", "RoleId=' + roleid + '", "Action=' + action + '")%>';
+                    window.location.href = url;
+                }
+            },
+            {
+                text: lblDeleteCancel, class: 'dnnSecondaryAction', click: function () {
+                    $(this).dialog("close");
+                }
+            }
+        ],
+        close: function () {
+            $(this).dialog("close");
+        }
+    });
+
+    var lblRemoveYes = '<%= Localization.GetString("lblRemoveYes", LocalResourceFile)%>';
+    var lblRemoveCancel = '<%= Localization.GetString("lblRemoveCancel", LocalResourceFile)%>';
+
+    $(".ConnectRemoveAccount").dialog({
+        autoOpen: false,
+        height: 300,
+        width: 550,
+        modal: true,
+        buttons: [ 
+            { 
+                text: lblRemoveYes, class: 'dnnPrimaryAction', click: function () {
+                    $(this).dialog("close");
+                    var uid = $(this).dialog("option", "uid");
+                    var action = $(this).dialog("option", "action");
+                    var roleid = <%= Request.QueryString("RoleId") %>;
+                    var url = '<%= NavigateUrl(TabId, "", "uid=' + uid + '", "RoleId=' + roleid + '", "Action=' + action + '")%>';
+                    window.location.href = url;
+                }
+            },
+            {
+                text: lblRemoveCancel, class: 'dnnSecondaryAction', click: function () {
+                    $(this).dialog("close");
+                }
+            }
+        ],
+        close: function () {
+            $(this).dialog("close");
+        }
+    });
+
+    var lblHardDeleteYes = '<%= Localization.GetString("lblHardDeleteYes", LocalResourceFile)%>';
+    var lblHardDeleteCancel = '<%= Localization.GetString("lblHardDeleteCancel", LocalResourceFile)%>';
+
+    $(".ConnectHardDeleteAccount").dialog({
+        autoOpen: false,
+        height: 300,
+        width: 550,
+        modal: true,
+        buttons: [ 
+            { 
+                text: lblHardDeleteYes, class: 'dnnPrimaryAction', click: function () {
+                    $(this).dialog("close");
+                    var uid = $(this).dialog("option", "uid");
+                    var action = $(this).dialog("option", "action");
+                    var roleid = <%= Request.QueryString("RoleId") %>;
+                    var url = '<%= NavigateUrl(TabId, "", "uid=' + uid + '", "RoleId=' + roleid + '", "Action=' + action + '")%>';
+                    window.location.href = url;
+                }
+            },
+            {
+                text: lblHardDeleteCancel, class: 'dnnSecondaryAction', click: function () {
+                    $(this).dialog("close");
+                }
+            }
+        ],
+        close: function () {
+            $(this).dialog("close");
+        }
+    });
+
     /*globals jQuery, window, Sys */
     (function ($, Sys) {
 
         function setupFormSettings() {
             $('#ConnectGridContainer').dnnTabs();
-            $('#ConnectUserContainer').dnnTabs();            
+            $('#ConnectUserContainer').dnnTabs();
+
+            $('.cmdApprove').click(function () {
+                var uidVal = $(this).data("uid");
+                var actionVal = $(this).data("action");
+                var roleidVal = $(this).data("roleid");
+                $(".ConnectRoleMembershipApproval").dialog("option", "action", actionVal);
+                $(".ConnectRoleMembershipApproval").dialog("option", "uid", uidVal);
+                $(".ConnectRoleMembershipApproval").dialog("option", "roleid", roleidVal);
+                $(".ConnectRoleMembershipApproval").dialog("option", "dialogClass", "dnnFormPopup");
+                $(".ConnectRoleMembershipApproval").dialog("open");
+            });
+
+            $('.cmdPending').click(function () {
+                var uidVal = $(this).data("uid");
+                var actionVal = $(this).data("action");
+                var roleidVal = $(this).data("roleid");
+                $(".ConnectRoleMembershipPending").dialog("option", "action", actionVal);
+                $(".ConnectRoleMembershipPending").dialog("option", "uid", uidVal);
+                $(".ConnectRoleMembershipPending").dialog("option", "roleid", roleidVal);
+                $(".ConnectRoleMembershipPending").dialog("option", "dialogClass", "dnnFormPopup");
+                $(".ConnectRoleMembershipPending").dialog("open");
+            });
+
+            $('.cmdDelete').click(function () {
+                var uidVal = $(this).data("uid");
+                var actionVal = $(this).data("action");
+                var roleidVal = $(this).data("roleid");
+                $(".ConnectDeleteAccount").dialog("option", "action", actionVal);
+                $(".ConnectDeleteAccount").dialog("option", "uid", uidVal);
+                $(".ConnectDeleteAccount").dialog("option", "roleid", roleidVal);
+                $(".ConnectDeleteAccount").dialog("option", "dialogClass", "dnnFormPopup");
+                $(".ConnectDeleteAccount").dialog("open");
+            });
+
+            $('.cmdRemove').click(function () {
+                var uidVal = $(this).data("uid");
+                var actionVal = $(this).data("action");
+                var roleidVal = $(this).data("roleid");
+                $(".ConnectRemoveAccount").dialog("option", "action", actionVal);
+                $(".ConnectRemoveAccount").dialog("option", "uid", uidVal);
+                $(".ConnectRemoveAccount").dialog("option", "roleid", roleidVal);
+                $(".ConnectRemoveAccount").dialog("option", "dialogClass", "dnnFormPopup");
+                $(".ConnectRemoveAccount").dialog("open");
+            });
+
+            $('.cmdHardDelete').click(function () {
+                var uidVal = $(this).data("uid");
+                var actionVal = $(this).data("action");
+                var roleidVal = $(this).data("roleid");
+                $(".ConnectHardDeleteAccount").dialog("option", "action", actionVal);
+                $(".ConnectHardDeleteAccount").dialog("option", "uid", uidVal);
+                $(".ConnectHardDeleteAccount").dialog("option", "roleid", roleidVal);
+                $(".ConnectHardDeleteAccount").dialog("option", "dialogClass", "dnnFormPopup");
+                $(".ConnectHardDeleteAccount").dialog("open");
+            });
+
+            $('.cmdEdit').click(function () {
+                var uidVal = $(this).data("uid");
+                var actionVal = $(this).data("action");
+                var roleidVal = $(this).data("roleid");
+                var url = '<%= NavigateUrl(TabId, "", "uid=' + uidVal + '", "RoleId=' + roleidVal + '", "Action=' + actionVal + '")%>';
+                window.location.href = url;
+            });
+
+            $('.cmdRestore').click(function () {
+                var uidVal = $(this).data("uid");
+                var actionVal = $(this).data("action");
+                var roleidVal = $(this).data("roleid");
+                var url = '<%= NavigateUrl(TabId, "", "uid=' + uidVal + '", "RoleId=' + roleidVal + '", "Action=' + actionVal + '")%>';
+                window.location.href = url;
+            });
+
+
         }
 
         $(document).ready(function () {

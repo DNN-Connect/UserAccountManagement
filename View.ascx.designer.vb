@@ -420,6 +420,15 @@ Namespace Connect.Modules.UserManagement.AccountManagement
         Protected WithEvents lblSitesTab As Global.System.Web.UI.WebControls.Label
 
         '''<summary>
+        '''plhAdditionalTabs control.
+        '''</summary>
+        '''<remarks>
+        '''Auto-generated field.
+        '''To modify move field declaration from designer file to code-behind file.
+        '''</remarks>
+        Protected WithEvents plhAdditionalTabs As Global.System.Web.UI.WebControls.PlaceHolder
+
+        '''<summary>
         '''pnlAccountTab control.
         '''</summary>
         '''<remarks>
@@ -652,6 +661,15 @@ Namespace Connect.Modules.UserManagement.AccountManagement
         '''To modify move field declaration from designer file to code-behind file.
         '''</remarks>
         Protected WithEvents cmdDeleteAccount As Global.System.Web.UI.WebControls.LinkButton
+
+        '''<summary>
+        '''cmdRestoreAccount control.
+        '''</summary>
+        '''<remarks>
+        '''Auto-generated field.
+        '''To modify move field declaration from designer file to code-behind file.
+        '''</remarks>
+        Protected WithEvents cmdRestoreAccount As Global.System.Web.UI.WebControls.LinkButton
 
         '''<summary>
         '''pnlPasswordTab control.
@@ -1021,6 +1039,15 @@ Namespace Connect.Modules.UserManagement.AccountManagement
         '''To modify move field declaration from designer file to code-behind file.
         '''</remarks>
         Protected WithEvents cmdUpdateSites As Global.System.Web.UI.WebControls.LinkButton
+
+        '''<summary>
+        '''plhAdditonalControls control.
+        '''</summary>
+        '''<remarks>
+        '''Auto-generated field.
+        '''To modify move field declaration from designer file to code-behind file.
+        '''</remarks>
+        Protected WithEvents plhAdditonalControls As Global.System.Web.UI.WebControls.PlaceHolder
 
         '''<summary>
         '''pnlCreate control.
