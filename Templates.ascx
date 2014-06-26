@@ -34,6 +34,7 @@
         <li><a href="#dvProfileFormTemplate"><asp:Label id="lblProfileFormTemplate" runat="server" resourcekey="lblProfileFormTemplate" /></a></li>
         <li><a href="#dvEmailAddedToRole"><asp:Label id="lblEmailAddedToRole" runat="server" resourcekey="lblEmailAddedToRole" /></a></li>
         <li><a href="#dvEmailRemovedFromRole"><asp:Label id="lblEmailRemovedFromRole" runat="server" resourcekey="lblEmailRemovedFromRole" /></a></li>
+        <li><a href="#dvEmailRoleStatusChanged"><asp:Label id="lblRoleStatusChanged" runat="server" resourcekey="lblRoleStatusChanged" /></a></li>
         <li><a href="#dvEmailPasswordReset"><asp:Label id="lblEmailPasswordReset" runat="server" resourcekey="lblEmailPasswordReset" /></a></li>
         <li><a href="#dvEmailAccountData"><asp:Label id="lblEmailAccountData" runat="server" resourcekey="lblEmailAccountData" /></a></li>
         <li><a href="#dvEmailAccountCreated"><asp:Label id="lblEmailAccountCreated" runat="server" resourcekey="lblEmailAccountCreated" /></a></li>
@@ -59,6 +60,10 @@
         <asp:TextBox ID="txtEmailRemovedFromRole" runat="server" TextMode="MultiLine" rows="20"></asp:TextBox>
     </div>
 
+    <div class="dnnFormItem dnnClear" id="dvEmailRoleStatusChanged">
+        <asp:TextBox ID="txtEmailRoleStatusChanged" runat="server" TextMode="MultiLine" rows="20"></asp:TextBox>
+    </div>
+
     <div class="dnnFormItem dnnClear" id="dvEmailPasswordReset">
         <asp:TextBox ID="txtEmailPasswordReset" runat="server" TextMode="MultiLine" rows="20"></asp:TextBox>
     </div>
@@ -74,7 +79,8 @@
     
 
     <ul class="dnnActions">
-        <li><asp:LinkButton ID="cmdUpdateSettings" runat="server" CssClass="dnnPrimaryAction"></asp:LinkButton></li>
+        <li><asp:LinkButton ID="cmdUpdate" runat="server" CssClass="dnnPrimaryAction"></asp:LinkButton></li>
+        <li><asp:LinkButton ID="cmdUpdateExit" runat="server" CssClass="dnnPrimaryAction"></asp:LinkButton></li>
         <li><asp:LinkButton ID="cmdCancel" runat="server" CssClass="dnnSecondaryAction"></asp:LinkButton></li>
     </ul>
 

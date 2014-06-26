@@ -6,247 +6,7 @@ Connect.Modules.AccountManagement
 </name>
 </assembly>
 <members>
-<member name="F:Connect.Modules.UserManagement.AccountManagement.Reports.rptReports">
-	<summary>
-rptReports control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:Connect.Modules.UserManagement.AccountManagement.Reports.cmdNewReport">
-	<summary>
-cmdNewReport control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:Connect.Modules.UserManagement.AccountManagement.Reports.cmdBack">
-	<summary>
-cmdBack control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:Connect.Modules.UserManagement.AccountManagement.Reports.pnlReportForm">
-	<summary>
-pnlReportForm control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:Connect.Modules.UserManagement.AccountManagement.Reports.plReportName">
-	<summary>
-plReportName control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:Connect.Modules.UserManagement.AccountManagement.Reports.txtReportName">
-	<summary>
-txtReportName control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:Connect.Modules.UserManagement.AccountManagement.Reports.plReportSql">
-	<summary>
-plReportSql control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:Connect.Modules.UserManagement.AccountManagement.Reports.txtReportSql">
-	<summary>
-txtReportSql control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:Connect.Modules.UserManagement.AccountManagement.Reports.cmdAddReport">
-	<summary>
-cmdAddReport control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:Connect.Modules.UserManagement.AccountManagement.Reports.cmdUpdateReport">
-	<summary>
-cmdUpdateReport control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:Connect.Modules.UserManagement.AccountManagement.Reports.cmdDeleteReport">
-	<summary>
-cmdDeleteReport control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:Connect.Modules.UserManagement.AccountManagement.Reports.cmdCancelReport">
-	<summary>
-cmdCancelReport control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:Connect.Modules.UserManagement.AccountManagement.Settings.lblAllowReports">
-	<summary>
-lblAllowReports control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:Connect.Modules.UserManagement.AccountManagement.Settings.chkAllowReports">
-	<summary>
-chkAllowReports control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:Connect.Modules.UserManagement.AccountManagement.Settings.lblAllowCreate">
-	<summary>
-lblAllowCreate control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:Connect.Modules.UserManagement.AccountManagement.Settings.chkAllowCreate">
-	<summary>
-chkAllowCreate control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:Connect.Modules.UserManagement.AccountManagement.Settings.lblAllowDelete">
-	<summary>
-lblAllowDelete control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:Connect.Modules.UserManagement.AccountManagement.Settings.chkAllowDelete">
-	<summary>
-chkAllowDelete control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:Connect.Modules.UserManagement.AccountManagement.Settings.lblAllowHardDelete">
-	<summary>
-lblAllowHardDelete control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:Connect.Modules.UserManagement.AccountManagement.Settings.chkAllowHardDelete">
-	<summary>
-chkAllowHardDelete control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:Connect.Modules.UserManagement.AccountManagement.Settings.lblAllowExport">
-	<summary>
-lblAllowExport control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:Connect.Modules.UserManagement.AccountManagement.Settings.chkAllowExport">
-	<summary>
-chkAllowExport control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:Connect.Modules.UserManagement.AccountManagement.Settings.lblAllowedRoles">
-	<summary>
-lblAllowedRoles control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:Connect.Modules.UserManagement.AccountManagement.Settings.chkAllowedRoles">
-	<summary>
-chkAllowedRoles control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:Connect.Modules.UserManagement.AccountManagement.Settings.lblPreselectRole">
-	<summary>
-lblPreselectRole control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:Connect.Modules.UserManagement.AccountManagement.Settings.drpPreselectRole">
-	<summary>
-drpPreselectRole control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:Connect.Modules.UserManagement.AccountManagement.Settings.lblUserTabs">
-	<summary>
-lblUserTabs control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:Connect.Modules.UserManagement.AccountManagement.Settings.chkUserTabs">
-	<summary>
-chkUserTabs control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:Connect.Modules.UserManagement.AccountManagement.Settings.lblAdditionalControls">
-	<summary>
-lblAdditionalControls control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:Connect.Modules.UserManagement.AccountManagement.Settings.txtAditionalControls">
-	<summary>
-txtAditionalControls control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:Connect.Modules.UserManagement.AccountManagement.Templates.plTheme">
+<member name="F:Connect.Modules.UserManagement.AccountManagement.Templates.plTheme">
 	<summary>
 plTheme control.
 </summary>
@@ -489,6 +249,246 @@ To modify move field declaration from designer file to code-behind file.
 </member><member name="F:Connect.Modules.UserManagement.AccountManagement.Templates.cmdCancel">
 	<summary>
 cmdCancel control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Connect.Modules.UserManagement.AccountManagement.Reports.rptReports">
+	<summary>
+rptReports control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Connect.Modules.UserManagement.AccountManagement.Reports.cmdNewReport">
+	<summary>
+cmdNewReport control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Connect.Modules.UserManagement.AccountManagement.Reports.cmdBack">
+	<summary>
+cmdBack control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Connect.Modules.UserManagement.AccountManagement.Reports.pnlReportForm">
+	<summary>
+pnlReportForm control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Connect.Modules.UserManagement.AccountManagement.Reports.plReportName">
+	<summary>
+plReportName control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Connect.Modules.UserManagement.AccountManagement.Reports.txtReportName">
+	<summary>
+txtReportName control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Connect.Modules.UserManagement.AccountManagement.Reports.plReportSql">
+	<summary>
+plReportSql control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Connect.Modules.UserManagement.AccountManagement.Reports.txtReportSql">
+	<summary>
+txtReportSql control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Connect.Modules.UserManagement.AccountManagement.Reports.cmdAddReport">
+	<summary>
+cmdAddReport control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Connect.Modules.UserManagement.AccountManagement.Reports.cmdUpdateReport">
+	<summary>
+cmdUpdateReport control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Connect.Modules.UserManagement.AccountManagement.Reports.cmdDeleteReport">
+	<summary>
+cmdDeleteReport control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Connect.Modules.UserManagement.AccountManagement.Reports.cmdCancelReport">
+	<summary>
+cmdCancelReport control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Connect.Modules.UserManagement.AccountManagement.Settings.lblAllowReports">
+	<summary>
+lblAllowReports control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Connect.Modules.UserManagement.AccountManagement.Settings.chkAllowReports">
+	<summary>
+chkAllowReports control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Connect.Modules.UserManagement.AccountManagement.Settings.lblAllowCreate">
+	<summary>
+lblAllowCreate control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Connect.Modules.UserManagement.AccountManagement.Settings.chkAllowCreate">
+	<summary>
+chkAllowCreate control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Connect.Modules.UserManagement.AccountManagement.Settings.lblAllowDelete">
+	<summary>
+lblAllowDelete control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Connect.Modules.UserManagement.AccountManagement.Settings.chkAllowDelete">
+	<summary>
+chkAllowDelete control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Connect.Modules.UserManagement.AccountManagement.Settings.lblAllowHardDelete">
+	<summary>
+lblAllowHardDelete control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Connect.Modules.UserManagement.AccountManagement.Settings.chkAllowHardDelete">
+	<summary>
+chkAllowHardDelete control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Connect.Modules.UserManagement.AccountManagement.Settings.lblAllowExport">
+	<summary>
+lblAllowExport control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Connect.Modules.UserManagement.AccountManagement.Settings.chkAllowExport">
+	<summary>
+chkAllowExport control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Connect.Modules.UserManagement.AccountManagement.Settings.lblAllowedRoles">
+	<summary>
+lblAllowedRoles control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Connect.Modules.UserManagement.AccountManagement.Settings.chkAllowedRoles">
+	<summary>
+chkAllowedRoles control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Connect.Modules.UserManagement.AccountManagement.Settings.lblPreselectRole">
+	<summary>
+lblPreselectRole control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Connect.Modules.UserManagement.AccountManagement.Settings.drpPreselectRole">
+	<summary>
+drpPreselectRole control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Connect.Modules.UserManagement.AccountManagement.Settings.lblUserTabs">
+	<summary>
+lblUserTabs control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Connect.Modules.UserManagement.AccountManagement.Settings.chkUserTabs">
+	<summary>
+chkUserTabs control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Connect.Modules.UserManagement.AccountManagement.Settings.lblAdditionalControls">
+	<summary>
+lblAdditionalControls control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Connect.Modules.UserManagement.AccountManagement.Settings.txtAditionalControls">
+	<summary>
+txtAditionalControls control.
 </summary>
 	<remarks>
 Auto-generated field.
@@ -854,6 +854,14 @@ lblSitesTab control.
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
+</member><member name="F:Connect.Modules.UserManagement.AccountManagement.View.plhAdditionalTabs">
+	<summary>
+plhAdditionalTabs control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
 </member><member name="F:Connect.Modules.UserManagement.AccountManagement.View.pnlAccountTab">
 	<summary>
 pnlAccountTab control.
@@ -1057,6 +1065,14 @@ To modify move field declaration from designer file to code-behind file.
 </member><member name="F:Connect.Modules.UserManagement.AccountManagement.View.cmdDeleteAccount">
 	<summary>
 cmdDeleteAccount control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Connect.Modules.UserManagement.AccountManagement.View.cmdRestoreAccount">
+	<summary>
+cmdRestoreAccount control.
 </summary>
 	<remarks>
 Auto-generated field.
@@ -1385,6 +1401,14 @@ To modify move field declaration from designer file to code-behind file.
 </member><member name="F:Connect.Modules.UserManagement.AccountManagement.View.cmdUpdateSites">
 	<summary>
 cmdUpdateSites control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Connect.Modules.UserManagement.AccountManagement.View.plhAdditonalControls">
+	<summary>
+plhAdditonalControls control.
 </summary>
 	<remarks>
 Auto-generated field.

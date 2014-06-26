@@ -37,6 +37,10 @@
       <InstallInclude Include="**\*.html" />
       <InstallInclude Include="**\*.htm" />
       <InstallInclude Include="**\*.resx" />
+      <InstallInclude Include="**\*.ttf" />
+      <InstallInclude Include="**\*.woff" />
+      <InstallInclude Include="**\*.svg" />
+      <InstallInclude Include="**\*.eot" />
       <InstallInclude Include="**\*.aspx" />
       <InstallInclude Include="**\*.js" />
       <InstallInclude Include="**\*.txt"  Exclude="**\obj\**;**\_ReSharper*\**;" />

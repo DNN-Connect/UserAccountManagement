@@ -132,9 +132,6 @@
   <data name="cmdDeleteSelected.Text" xml:space="preserve">
     <value>Delete Selected</value>
   </data>
-  <data name="cmdUpdateSettings.Text" xml:space="preserve">
-    <value>Save Templates and Exit</value>
-  </data>
   <data name="lblConfirmDelete.Text" xml:space="preserve">
     <value>This will delete the selected theme. Are you sure?</value>
   </data>
@@ -206,5 +203,14 @@
   </data>
   <data name="lblCreateFormTemplate.Text" xml:space="preserve">
     <value>Create Account</value>
+  </data>
+  <data name="cmdUpdate.Text" xml:space="preserve">
+    <value>Save Templates</value>
+  </data>
+  <data name="cmdUpdateExit.Text" xml:space="preserve">
+    <value>Save Templates and Exit</value>
+  </data>
+  <data name="lblRoleStatusChanged.Text" xml:space="preserve">
+    <value>E-Mail RoleStatus Changed</value>
   </data>
 </root>

@@ -46,7 +46,7 @@ Namespace Connect.Modules.UserManagement.AccountManagement
             BindSelectedTheme()
         End Sub
 
-        Private Sub cmdUpdateSettings_Click(sender As Object, e As System.EventArgs) Handles cmdUpdateSettings.Click
+        Private Sub cmdUpdate_Click(sender As Object, e As System.EventArgs) Handles cmdUpdate.Click
 
             Dim blnSucess As Boolean = False
 
@@ -55,6 +55,20 @@ Namespace Connect.Modules.UserManagement.AccountManagement
             If blnSucess Then
                 UpdateSettings()
             End If
+
+        End Sub
+
+        Private Sub cmdUpdateExit_Click(sender As Object, e As System.EventArgs) Handles cmdUpdateExit.Click
+
+            Dim blnSucess As Boolean = False
+
+            SaveTemplates(blnSucess)
+
+            If blnSucess Then
+                UpdateSettings()
+            End If
+
+            Response.Redirect(NavigateURL(TabId))
 
         End Sub
 
@@ -97,7 +111,8 @@ Namespace Connect.Modules.UserManagement.AccountManagement
         Private Sub LocalizeForm()
 
             cmdCancel.Text = Localization.GetString("cmdCancel", LocalResourceFile)
-            cmdUpdateSettings.Text = Localization.GetString("cmdUpdateSettings", LocalResourceFile)
+            cmdUpdate.Text = Localization.GetString("cmdUpdate", LocalResourceFile)
+            cmdUpdateExit.Text = Localization.GetString("cmdUpdateExit", LocalResourceFile)
             cmdCopySelected.Text = Localization.GetString("cmdCopySelected", LocalResourceFile)
             cmdDeleteSelected.Text = Localization.GetString("cmdDeleteSelected", LocalResourceFile)
 
@@ -159,6 +174,9 @@ Namespace Connect.Modules.UserManagement.AccountManagement
                 If file.EndsWith(Constants.TemplateName_EmailRemovedFromRole) Then
                     txtEmailRemovedFromRole.Text = GetTemplate(drpThemes.SelectedItem.Value, Constants.TemplateName_EmailRemovedFromRole, drpLocales.SelectedValue, True)
                 End If
+                If file.EndsWith(Constants.TemplateName_EmailRoleStatusChanged) Then
+                    txtEmailRoleStatusChanged.Text = GetTemplate(drpThemes.SelectedItem.Value, Constants.TemplateName_EmailRoleStatusChanged, drpLocales.SelectedValue, True)
+                End If
                 If file.EndsWith(Constants.TemplateName_EmailPasswordReset) Then
                     txtEmailPasswordReset.Text = GetTemplate(drpThemes.SelectedItem.Value, Constants.TemplateName_EmailPasswordReset, drpLocales.SelectedValue, True)
                 End If
@@ -198,6 +216,9 @@ Namespace Connect.Modules.UserManagement.AccountManagement
             End If
             If TemplateName = Constants.TemplateName_EmailRemovedFromRole Then
                 sw.Write(txtEmailRemovedFromRole.Text)
+            End If
+            If TemplateName = Constants.TemplateName_EmailRoleStatusChanged Then
+                sw.Write(txtEmailRoleStatusChanged.Text)
             End If
             If TemplateName = Constants.TemplateName_EmailPasswordReset Then
                 sw.Write(txtEmailPasswordReset.Text)
@@ -279,6 +300,9 @@ Namespace Connect.Modules.UserManagement.AccountManagement
                     End If
                     If file.EndsWith(Constants.TemplateName_EmailRemovedFromRole) Then
                         SaveTemplate(drpThemes.SelectedValue, Constants.TemplateName_EmailRemovedFromRole, drpLocales.SelectedValue)
+                    End If
+                    If file.EndsWith(Constants.TemplateName_EmailRoleStatusChanged) Then
+                        SaveTemplate(drpThemes.SelectedValue, Constants.TemplateName_EmailRoleStatusChanged, drpLocales.SelectedValue)
                     End If
                     If file.EndsWith(Constants.TemplateName_EmailPasswordReset) Then
                         SaveTemplate(drpThemes.SelectedValue, Constants.TemplateName_EmailPasswordReset, drpLocales.SelectedValue)

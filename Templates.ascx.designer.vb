@@ -177,6 +177,15 @@ Namespace Connect.Modules.UserManagement.AccountManagement
         Protected WithEvents lblEmailRemovedFromRole As Global.System.Web.UI.WebControls.Label
 
         '''<summary>
+        '''lblRoleStatusChanged control.
+        '''</summary>
+        '''<remarks>
+        '''Auto-generated field.
+        '''To modify move field declaration from designer file to code-behind file.
+        '''</remarks>
+        Protected WithEvents lblRoleStatusChanged As Global.System.Web.UI.WebControls.Label
+
+        '''<summary>
         '''lblEmailPasswordReset control.
         '''</summary>
         '''<remarks>
@@ -249,6 +258,15 @@ Namespace Connect.Modules.UserManagement.AccountManagement
         Protected WithEvents txtEmailRemovedFromRole As Global.System.Web.UI.WebControls.TextBox
 
         '''<summary>
+        '''txtEmailRoleStatusChanged control.
+        '''</summary>
+        '''<remarks>
+        '''Auto-generated field.
+        '''To modify move field declaration from designer file to code-behind file.
+        '''</remarks>
+        Protected WithEvents txtEmailRoleStatusChanged As Global.System.Web.UI.WebControls.TextBox
+
+        '''<summary>
         '''txtEmailPasswordReset control.
         '''</summary>
         '''<remarks>
@@ -276,13 +294,22 @@ Namespace Connect.Modules.UserManagement.AccountManagement
         Protected WithEvents txtEmailAccountCreated As Global.System.Web.UI.WebControls.TextBox
 
         '''<summary>
-        '''cmdUpdateSettings control.
+        '''cmdUpdate control.
         '''</summary>
         '''<remarks>
         '''Auto-generated field.
         '''To modify move field declaration from designer file to code-behind file.
         '''</remarks>
-        Protected WithEvents cmdUpdateSettings As Global.System.Web.UI.WebControls.LinkButton
+        Protected WithEvents cmdUpdate As Global.System.Web.UI.WebControls.LinkButton
+
+        '''<summary>
+        '''cmdUpdateExit control.
+        '''</summary>
+        '''<remarks>
+        '''Auto-generated field.
+        '''To modify move field declaration from designer file to code-behind file.
+        '''</remarks>
+        Protected WithEvents cmdUpdateExit As Global.System.Web.UI.WebControls.LinkButton
 
         '''<summary>
         '''cmdCancel control.
