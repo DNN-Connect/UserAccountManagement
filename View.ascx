@@ -62,9 +62,10 @@
 
                 <div id="dvGrid">
                     
-                    <dnn:dnngrid id="grdUsers" runat="server" ScreenRowNumber="2000">
+                    <dnn:dnngrid id="grdUsers" runat="server" ScreenRowNumber="2000" AllowMultiRowSelection="True">
                         <MasterTableView AutoGenerateColumns="false" DataKeyNames="UserId" AllowSorting="true">
                             <Columns>
+                                <dnn:dnnGridClientSelectColumn Visible="true"></dnn:dnnGridClientSelectColumn>
                                 <dnn:dnnGridBoundColumn DataField="UserId" HeaderText="UserID" Visible="false"></dnn:dnnGridBoundColumn>
                                 <dnn:dnnGridBoundColumn DataField="DisplayName" HeaderText="DisplayName" Visible="false"></dnn:dnnGridBoundColumn>
                                 <dnn:dnnGridBoundColumn DataField="FirstName" HeaderText="FirstName" Visible="false"></dnn:dnnGridBoundColumn>
@@ -114,9 +115,15 @@
                                 
                             </Columns>
                         </MasterTableView>
-                        <ClientSettings AllowColumnsReorder="false" EnableRowHoverStyle="false" Selecting-AllowRowSelect="false">
+                        <ClientSettings AllowColumnsReorder="false" EnableRowHoverStyle="false" Selecting-AllowRowSelect="true">
+                             
                         </ClientSettings>
-                    </dnn:dnngrid> 
+                    </dnn:dnngrid>
+                    
+                    <ul class="dnnActions dnnClear">
+                        <li><asp:LinkButton ID="cmdBulkDelete" runat="server" CssClass="dnnSecondaryAction"></asp:LinkButton></li>
+                        <li><asp:LinkButton ID="cmdBulkRemove" runat="server" CssClass="dnnSecondaryAction"></asp:LinkButton></li>
+                    </ul> 
 
                 </div>
 

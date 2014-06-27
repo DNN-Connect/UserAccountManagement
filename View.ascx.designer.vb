@@ -231,6 +231,24 @@ Namespace Connect.Modules.UserManagement.AccountManagement
         Protected WithEvents grdUsers As Global.DotNetNuke.Web.UI.WebControls.DnnGrid
 
         '''<summary>
+        '''cmdBulkDelete control.
+        '''</summary>
+        '''<remarks>
+        '''Auto-generated field.
+        '''To modify move field declaration from designer file to code-behind file.
+        '''</remarks>
+        Protected WithEvents cmdBulkDelete As Global.System.Web.UI.WebControls.LinkButton
+
+        '''<summary>
+        '''cmdBulkRemove control.
+        '''</summary>
+        '''<remarks>
+        '''Auto-generated field.
+        '''To modify move field declaration from designer file to code-behind file.
+        '''</remarks>
+        Protected WithEvents cmdBulkRemove As Global.System.Web.UI.WebControls.LinkButton
+
+        '''<summary>
         '''lblSearchOptions control.
         '''</summary>
         '''<remarks>

@@ -578,6 +578,77 @@ Namespace Connect.Modules.UserManagement.AccountManagement
             Response.Redirect(NavigateURL(TabId, "", "RoleId=" & Request.QueryString("RoleId")))
         End Sub
 
+        Private Sub cmdBulkDelete_Click(sender As Object, e As EventArgs) Handles cmdBulkDelete.Click
+
+            If AllowDelete Then
+
+                For i As Integer = 0 To grdUsers.SelectedItems.Count - 1
+
+                    Dim intUser As Integer = Null.NullInteger
+
+                    Try
+
+                        Dim selecteditem As GridItem = grdUsers.SelectedItems(i)
+                        Dim selectedvalue As String = selecteditem.OwnerTableView.DataKeyValues(selecteditem.ItemIndex)("UserId")
+                        intUser = Convert.ToInt32(selectedvalue)
+
+                        If intUser <> Null.NullInteger Then
+
+                            Dim oUser As UserInfo = UserController.GetUserById(PortalId, intUser)
+
+                            If Not oUser Is Nothing AndAlso Not oUser.IsSuperUser AndAlso Not oUser.UserID = PortalSettings.AdministratorId Then
+                                UserController.DeleteUser(oUser, False, False)
+                            End If
+
+                        End If
+                    Catch
+                    End Try
+
+                Next
+
+                ClearCache()
+                grdUsers.Rebind()
+
+            End If
+
+        End Sub
+
+        Private Sub cmdBulkRemove_Click(sender As Object, e As EventArgs) Handles cmdBulkRemove.Click
+
+            Dim rc As New RoleController
+            Dim intRole As Integer = Convert.ToInt32(Request.QueryString("RoleId"))
+            Dim role As RoleInfo = rc.GetRole(intRole, PortalId)
+
+            For i As Integer = 0 To grdUsers.SelectedItems.Count - 1
+
+                Dim intUser As Integer = Null.NullInteger
+
+                Try
+
+                    Dim selecteditem As GridItem = grdUsers.SelectedItems(i)
+                    Dim selectedvalue As String = selecteditem.OwnerTableView.DataKeyValues(selecteditem.ItemIndex)("UserId")
+                    intUser = Convert.ToInt32(selectedvalue)
+
+                    If intUser <> Null.NullInteger Then
+
+                        Dim oUser As UserInfo = UserController.GetUserById(PortalId, intUser)
+
+                        If Not oUser Is Nothing AndAlso Not oUser.IsSuperUser AndAlso Not (oUser.UserID = PortalSettings.AdministratorId And intRole = PortalSettings.AdministratorRoleId) Then
+                            RoleController.DeleteUserRole(oUser, role, PortalSettings, False)
+                        End If
+
+                    End If
+
+                Catch
+                End Try
+
+            Next
+
+            ClearCache()
+            grdUsers.Rebind()
+
+        End Sub
+
 #End Region
 
 #Region "Account E-Mail Event handlers"
@@ -1743,6 +1814,9 @@ Namespace Connect.Modules.UserManagement.AccountManagement
 
         Private Sub InitializeForm()
 
+            cmdBulkDelete.Text = Localization.GetString("cmdBulkDelete", LocalResourceFile)
+            cmdBulkRemove.Text = Localization.GetString("cmdBulkRemove", LocalResourceFile)
+
             Dim reports As New List(Of UserReportInfo)
             Dim ctrlReports As New UserReportsController
             reports = UserReportsController.GetReports(PortalId)
@@ -2199,6 +2273,14 @@ Namespace Connect.Modules.UserManagement.AccountManagement
                 ctlRoles.FindNodeByValue(SelectedRole).ExpandParentNodes()
             Catch
             End Try
+
+            If Convert.ToInt32(SelectedRole) = PortalSettings.RegisteredRoleId Then
+                cmdBulkRemove.Visible = False
+            End If
+            If Convert.ToInt32(SelectedRole) = -2 Then
+                cmdBulkRemove.Visible = False
+                cmdBulkDelete.Visible = False
+            End If
 
         End Sub
 
