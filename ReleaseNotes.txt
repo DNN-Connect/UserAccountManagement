@@ -9,6 +9,14 @@
 	<h3>Release Notes</h3>
 	
 	<p class="Owner">
+		<b>Version 01.02.02</b><br /><br />
+	</p>
+	<p>Minor Release</p>	
+	<ul>
+		<li>Moved license from BSD to GPLv2</li>
+	</ul>
+
+	<p class="Owner">
 		<b>Version 01.02.01</b><br /><br />
 	</p>
 	<p>Minor Release</p>	
