@@ -12,6 +12,16 @@
 	</div>
 		
 	<div class="dnnFormItem dnnClear">
+		[DNNLBL:PROFILE:Unit:HideRequired]
+		[CTL:PROFILE:Unit]
+	</div>
+
+	<div class="dnnFormItem dnnClear">
+		[DNNLBL:PROFILE:Street:HideRequired]
+		[CTL:PROFILE:Street]
+	</div>
+
+	<div class="dnnFormItem dnnClear">
 		[DNNLBL:PROFILE:Postalcode:HideRequired]
 		[CTL:PROFILE:Postalcode]
 	</div>
@@ -19,6 +29,41 @@
 	<div class="dnnFormItem dnnClear">
 		[DNNLBL:PROFILE:City:HideRequired]
 		[CTL:PROFILE:City]
+	</div>
+
+	<div class="dnnFormItem dnnClear">
+		[DNNLBL:PROFILE:Region:HideRequired]
+		[CTL:PROFILE:Region]
+	</div>
+
+	<div class="dnnFormItem dnnClear">
+		[DNNLBL:PROFILE:Country:HideRequired]
+		[CTL:PROFILE:Country]
+	</div>
+
+	<div class="dnnFormItem dnnClear">
+		[DNNLBL:PROFILE:Telephone:HideRequired]
+		[CTL:PROFILE:Telephone]
+	</div>
+
+	<div class="dnnFormItem dnnClear">
+		[DNNLBL:PROFILE:Cell:HideRequired]
+		[CTL:PROFILE:Cell]
+	</div>
+
+	<div class="dnnFormItem dnnClear">
+		[DNNLBL:PROFILE:Fax:HideRequired]
+		[CTL:PROFILE:Fax]
+	</div>
+
+	<div class="dnnFormItem dnnClear">
+		[DNNLBL:PROFILE:Website:HideRequired]
+		[CTL:PROFILE:Website]
+	</div>
+
+	<div class="dnnFormItem dnnClear">
+		[DNNLBL:PROFILE:Biography:HideRequired]
+		[CTL:PROFILE:Biography]
 	</div>
 
 </div>
