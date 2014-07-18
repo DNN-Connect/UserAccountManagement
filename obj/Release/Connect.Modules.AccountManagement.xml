@@ -150,6 +150,14 @@ lblEmailRemovedFromRole control.
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
+</member><member name="F:Connect.Modules.UserManagement.AccountManagement.Templates.lblRoleStatusChanged">
+	<summary>
+lblRoleStatusChanged control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
 </member><member name="F:Connect.Modules.UserManagement.AccountManagement.Templates.lblEmailPasswordReset">
 	<summary>
 lblEmailPasswordReset control.
@@ -214,6 +222,14 @@ txtEmailRemovedFromRole control.
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
+</member><member name="F:Connect.Modules.UserManagement.AccountManagement.Templates.txtEmailRoleStatusChanged">
+	<summary>
+txtEmailRoleStatusChanged control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
 </member><member name="F:Connect.Modules.UserManagement.AccountManagement.Templates.txtEmailPasswordReset">
 	<summary>
 txtEmailPasswordReset control.
@@ -238,9 +254,17 @@ txtEmailAccountCreated control.
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
-</member><member name="F:Connect.Modules.UserManagement.AccountManagement.Templates.cmdUpdateSettings">
+</member><member name="F:Connect.Modules.UserManagement.AccountManagement.Templates.cmdUpdate">
 	<summary>
-cmdUpdateSettings control.
+cmdUpdate control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Connect.Modules.UserManagement.AccountManagement.Templates.cmdUpdateExit">
+	<summary>
+cmdUpdateExit control.
 </summary>
 	<remarks>
 Auto-generated field.
@@ -681,6 +705,22 @@ To modify move field declaration from designer file to code-behind file.
 </member><member name="F:Connect.Modules.UserManagement.AccountManagement.View.grdUsers">
 	<summary>
 grdUsers control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Connect.Modules.UserManagement.AccountManagement.View.cmdBulkDelete">
+	<summary>
+cmdBulkDelete control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Connect.Modules.UserManagement.AccountManagement.View.cmdBulkRemove">
+	<summary>
+cmdBulkRemove control.
 </summary>
 	<remarks>
 Auto-generated field.

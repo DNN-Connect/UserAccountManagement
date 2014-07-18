@@ -1576,7 +1576,7 @@ Namespace Connect.Modules.UserManagement.AccountManagement
             Dim blnUpdateDisplayname As Boolean = False
             Dim blnUpdateEmail As Boolean = False
 
-            Dim txtUsername As RadTextBox = CType(FindControlRecursive(plhUser, plhUser.ID & "_" & Constants.ControlId_Username), RadTextBox)
+            Dim txtUsername As TextBox = CType(FindControlRecursive(plhUser, plhUser.ID & "_" & Constants.ControlId_Username), TextBox)
             blnUpdateUsername = (Not txtUsername Is Nothing)
 
             If blnUpdateUsername Then
@@ -1588,7 +1588,7 @@ Namespace Connect.Modules.UserManagement.AccountManagement
                 End If
             End If
 
-            Dim txtEmail As RadTextBox = CType(FindControlRecursive(plhUser, plhUser.ID & "_" & Constants.ControlId_Email), RadTextBox)
+            Dim txtEmail As TextBox = CType(FindControlRecursive(plhUser, plhUser.ID & "_" & Constants.ControlId_Email), TextBox)
             blnUpdateEmail = (Not txtEmail Is Nothing)
 
             If blnUpdateEmail Then
@@ -1600,7 +1600,7 @@ Namespace Connect.Modules.UserManagement.AccountManagement
                 End If
             End If
 
-            Dim txtDisplayName As RadTextBox = CType(FindControlRecursive(plhUser, plhUser.ID & "_" & Constants.ControlId_Displayname), RadTextBox)
+            Dim txtDisplayName As TextBox = CType(FindControlRecursive(plhUser, plhUser.ID & "_" & Constants.ControlId_Displayname), TextBox)
             blnUpdateDisplayname = (Not txtDisplayName Is Nothing)
 
             If blnUpdateDisplayname Then
