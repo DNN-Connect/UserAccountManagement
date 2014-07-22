@@ -57,5 +57,5 @@ GO
 ALTER TABLE {databaseOwner}{objectQualifier}Connect_UsersReports Drop Constraint FK_{objectQualifier}Connect_UsersReports_{objectQualifier}Portals
 GO
 
-DROP TABLE {databaseOwner}[{objectQualifier}Connect_UsersReports
+DROP TABLE {databaseOwner}[{objectQualifier}Connect_UsersReports]
 GO

@@ -3,7 +3,7 @@
     <package name="Connect AccountManagement" type="Module" version="01.02.02">
       <friendlyName>Connect: AccountManagement</friendlyName>
       <description>A community module that handles account management in DNN</description>
-      <iconFile>Images/icon_extensions.gif</iconFile>
+      <iconFile>Desktopmodules/Connect/AccountManagement/Images/icnModule.png</iconFile>
       <owner>
         <name>Philipp Becker</name>
         <organization>DNN-Connect</organization>
