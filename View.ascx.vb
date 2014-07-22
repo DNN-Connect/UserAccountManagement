@@ -1664,7 +1664,7 @@ Namespace Connect.Modules.UserManagement.AccountManagement
             UserController.UpdateUser(PortalId, oUser)
 
             Dim propertiesCollection As New ProfilePropertyDefinitionCollection
-            UpdateProfileProperties(plhProfile, oUser, propertiesCollection, GetPropertiesFromTempate(GetTemplate(ModuleTheme, Constants.TemplateName_AccountForm, CurrentLocale, False)))
+            UpdateProfileProperties(plhProfile, oUser, propertiesCollection, GetPropertiesFromTempate(GetTemplate(ModuleTheme, Constants.TemplateName_ProfileForm, CurrentLocale, False)))
             oUser = ProfileController.UpdateUserProfile(oUser, propertiesCollection)
 
             lblProfileNote.Text = Localization.GetString("ProfileUpdated", LocalResourceFile)
