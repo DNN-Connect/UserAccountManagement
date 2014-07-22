@@ -9,17 +9,19 @@
 	<h3>Release Notes</h3>
 	
 	<p class="Owner">
-		<b>Version 01.02.02</b><br /><br />
+		<b>Version 01.02.02</b>
 	</p>
 	<p>Minor Release</p>	
 	<ul>
 		<li>Moved license from BSD to GPLv2</li>
-		<li>Fix: Error with referenced RadTextBox (see https://github.com/DNN-Connect/UserAccountManagement/issues/7 )</li>
+		<li>FIX: Error with referenced RadTextBox (see https://github.com/DNN-Connect/UserAccountManagement/issues/7 )</li>
 		<li>Enhancement: Extend default template (see https://github.com/DNN-Connect/UserAccountManagement/issues/2 )</li>
+		<li>FIX to uninstall script (https://github.com/DNN-Connect/UserAccountManagement/issues/9)</li>
+		<li>FIX to profile update not working correctly (https://github.com/DNN-Connect/UserAccountManagement/issues/8)</li>
 	</ul>
 
 	<p class="Owner">
-		<b>Version 01.02.01</b><br /><br />
+		<b>Version 01.02.01</b>
 	</p>
 	<p>Minor Release</p>	
 	<ul>
@@ -28,7 +30,7 @@
 	</ul>
 
 	<p class="Owner">
-		<b>Version 01.02.00</b><br /><br />
+		<b>Version 01.02.00</b>
 	</p>
 	<p>Extended Token Support & Fixes</p>	
 	<h4>Changes</h4>
@@ -42,7 +44,7 @@
 	</ul>
 
 	<p class="Owner">
-		<b>Version 01.00.01</b><br /><br />
+		<b>Version 01.00.01</b>
 	</p>
 	<p>Service release. Mainly focused on better support for password management in newer dnn installations where password retrieval is disabled.</p>	
 	<h4>Changes</h4>
@@ -52,7 +54,7 @@
 	</ul>
 
 	<p class="Owner">
-		<b>Version 01.00.00</b><br /><br />
+		<b>Version 01.00.00</b>
 	</p>
 	<p>Initial release of Account registration, login and update module. The formly module dnnWerk.Users has been separated into dedocated modules for registering and updating account. The main task for this release was to extract the actual modules from the original package. I do have improved the feature set in various ways though:</p>
 	
