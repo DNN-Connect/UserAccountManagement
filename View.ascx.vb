@@ -2304,7 +2304,9 @@ Namespace Connect.Modules.UserManagement.AccountManagement
                 cmdBulkRemove.Visible = False
                 cmdBulkDelete.Visible = False
             End If
-
+            If Not AllowDelete Then
+                cmdBulkDelete.Visible = False
+            End If
         End Sub
 
         Private Sub BindUsers()
