@@ -2105,9 +2105,11 @@ Namespace Connect.Modules.UserManagement.AccountManagement
                 grdUsers.PageSize = Convert.ToInt32(drpPageSize.SelectedItem.Value)
             End If
 
-            grdUsers.Columns.FindByDataField("CreatedDate").Visible = (ctlRoles.SelectedNode.Value = PortalSettings.RegisteredRoleId.ToString)
-            grdUsers.Columns.FindByDataField("CreatedOnDate").Visible = (ctlRoles.SelectedNode.Value <> PortalSettings.RegisteredRoleId.ToString)
-            grdUsers.Columns.FindByDataField("Status").Visible = (ctlRoles.SelectedNode.Value <> PortalSettings.RegisteredRoleId.ToString)
+            If Not ctlRoles.SelectedNode Is Nothing Then
+                grdUsers.Columns.FindByDataField("CreatedDate").Visible = (ctlRoles.SelectedNode.Value = PortalSettings.RegisteredRoleId.ToString)
+                grdUsers.Columns.FindByDataField("CreatedOnDate").Visible = (ctlRoles.SelectedNode.Value <> PortalSettings.RegisteredRoleId.ToString)
+                grdUsers.Columns.FindByDataField("Status").Visible = (ctlRoles.SelectedNode.Value <> PortalSettings.RegisteredRoleId.ToString)
+            End If
 
         End Sub
 
