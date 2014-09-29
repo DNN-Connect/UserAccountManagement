@@ -709,18 +709,18 @@
             });
 
             $('.cmdEdit').click(function () {
-                var uidVal = $(this).data("uid");
-                var actionVal = $(this).data("action");
-                var roleidVal = $(this).data("roleid");
-                var url = '<%= NavigateUrl(TabId, "", "uid=' + uidVal + '", "RoleId=' + roleidVal + '", "Action=' + actionVal + '")%>';
+                var uidval = $(this).data("uid");
+                var actionval = $(this).data("action");
+                var roleidval = $(this).data("roleid");
+                var url = '<%= NavigateUrl(TabId, "", "uid=' + uidval + '", "RoleId=' + roleidval + '", "Action=' + actionval + '")%>';
                 window.location.href = url;
             });
 
             $('.cmdRestore').click(function () {
-                var uidVal = $(this).data("uid");
-                var actionVal = $(this).data("action");
-                var roleidVal = $(this).data("roleid");
-                var url = '<%= NavigateUrl(TabId, "", "uid=' + uidVal + '", "RoleId=' + roleidVal + '", "Action=' + actionVal + '")%>';
+                var uidval = $(this).data("uid");
+                var actionval = $(this).data("action");
+                var roleidval = $(this).data("roleid");
+                var url = '<%= NavigateUrl(TabId, "", "uid=' + uidval + '", "RoleId=' + roleidval + '", "Action=' + actionval + '")%>';
                 window.location.href = url;
             });
 
