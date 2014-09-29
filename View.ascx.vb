@@ -50,9 +50,11 @@ Namespace Connect.Modules.UserManagement.AccountManagement
 
             If Request.QueryString("RoleId") Is Nothing Then
                 If Me.PreSelectRole <> Null.NullInteger Then
-                    Response.Redirect(NavigateURL(TabId, "", "RoleId=" & Me.PreSelectRole.ToString))
+                    Response.Redirect(NavigateURL(TabId, "", "RoleId=" & Me.PreSelectRole.ToString), False)
+                    Context.ApplicationInstance.CompleteRequest()
                 Else
-                    Response.Redirect(NavigateURL(TabId, "", "RoleId=" & Me.PortalSettings.RegisteredRoleId.ToString.ToString))
+                    Response.Redirect(NavigateURL(TabId, "", "RoleId=" & Me.PortalSettings.RegisteredRoleId.ToString.ToString), False)
+                    Context.ApplicationInstance.CompleteRequest()
                 End If
             End If
 
@@ -205,9 +207,11 @@ Namespace Connect.Modules.UserManagement.AccountManagement
             SaveSearchOptions()
 
             If Not Request.QueryString("RoleId") Is Nothing Then
-                Response.Redirect(NavigateURL(TabId, "", "RoleId=" & Request.QueryString("RoleId")))
+                Response.Redirect(NavigateURL(TabId, "", "RoleId=" & Request.QueryString("RoleId")), False)
+                Context.ApplicationInstance.CompleteRequest()
             Else
-                Response.Redirect(NavigateURL(TabId))
+                Response.Redirect(NavigateURL(TabId), False)
+                Context.ApplicationInstance.CompleteRequest()
             End If
 
         End Sub
@@ -220,7 +224,8 @@ Namespace Connect.Modules.UserManagement.AccountManagement
                 url = NavigateURL(TabId, "", "RoleId=" & Request.QueryString("RoleId"))
             End If
 
-            Response.Redirect(url)
+            Response.Redirect(url, False)
+            Context.ApplicationInstance.CompleteRequest()
 
         End Sub
 
@@ -507,7 +512,8 @@ Namespace Connect.Modules.UserManagement.AccountManagement
             UserController.RestoreUser(oUser)
             ClearCache()
 
-            Response.Redirect(NavigateURL(TabId, "", "uid=" & oUser.UserID.ToString, "RoleId=" & TargetRoleId.ToString, "Action=Edit"))
+            Response.Redirect(NavigateURL(TabId, "", "uid=" & oUser.UserID.ToString, "RoleId=" & TargetRoleId.ToString, "Action=Edit"), False)
+            Context.ApplicationInstance.CompleteRequest()
 
         End Sub
 
@@ -553,7 +559,8 @@ Namespace Connect.Modules.UserManagement.AccountManagement
 
             ClearCache()
 
-            Response.Redirect(NavigateURL(TabId, "", "RoleId=" & TargetRoleId.ToString))
+            Response.Redirect(NavigateURL(TabId, "", "RoleId=" & TargetRoleId.ToString), False)
+            Context.ApplicationInstance.CompleteRequest()
 
         End Sub
 
@@ -596,7 +603,8 @@ Namespace Connect.Modules.UserManagement.AccountManagement
         End Sub
 
         Private Sub cmdCancelCreate_Click(sender As Object, e As EventArgs) Handles cmdCancelCreate.Click
-            Response.Redirect(NavigateURL(TabId, "", "RoleId=" & Request.QueryString("RoleId")))
+            Response.Redirect(NavigateURL(TabId, "", "RoleId=" & Request.QueryString("RoleId")), False)
+            Context.ApplicationInstance.CompleteRequest()
         End Sub
 
         Private Sub cmdBulkDelete_Click(sender As Object, e As EventArgs) Handles cmdBulkDelete.Click
@@ -929,10 +937,12 @@ Namespace Connect.Modules.UserManagement.AccountManagement
                                 btnNotifyRole.CommandArgument = "approve"
                                 btnNotifyRoleSkip.CommandArgument = "approve"
                             Else
-                                Response.Redirect(NavigateURL(TabId, "", "RoleId=" & TargetRoleId.ToString))
+                                Response.Redirect(NavigateURL(TabId, "", "RoleId=" & TargetRoleId.ToString), False)
+                                Context.ApplicationInstance.CompleteRequest()
                             End If
                         Else
-                            Response.Redirect(NavigateURL(TabId, "", "RoleId=" & TargetRoleId.ToString))
+                            Response.Redirect(NavigateURL(TabId, "", "RoleId=" & TargetRoleId.ToString), False)
+                            Context.ApplicationInstance.CompleteRequest()
                         End If
 
                     Case "pending"
@@ -960,10 +970,12 @@ Namespace Connect.Modules.UserManagement.AccountManagement
                                 btnNotifyRole.CommandArgument = "pending"
                                 btnNotifyRoleSkip.CommandArgument = "pending"
                             Else
-                                Response.Redirect(NavigateURL(TabId, "", "RoleId=" & TargetRoleId.ToString))
+                                Response.Redirect(NavigateURL(TabId, "", "RoleId=" & TargetRoleId.ToString), False)
+                                Context.ApplicationInstance.CompleteRequest()
                             End If
                         Else
-                            Response.Redirect(NavigateURL(TabId, "", "RoleId=" & TargetRoleId.ToString))
+                            Response.Redirect(NavigateURL(TabId, "", "RoleId=" & TargetRoleId.ToString), False)
+                            Context.ApplicationInstance.CompleteRequest()
                         End If
 
                     Case "remove"
@@ -988,7 +1000,8 @@ Namespace Connect.Modules.UserManagement.AccountManagement
                         RoleController.DeleteUserRole(oUser, role, PortalSettings, False)
                         ClearCache()
 
-                        Response.Redirect(NavigateURL(TabId, "", "RoleId=" & TargetRoleId.ToString))
+                        Response.Redirect(NavigateURL(TabId, "", "RoleId=" & TargetRoleId.ToString), False)
+                        Context.ApplicationInstance.CompleteRequest()
 
                     Case "delete"
 
@@ -1012,7 +1025,8 @@ Namespace Connect.Modules.UserManagement.AccountManagement
                             UserController.DeleteUser(oUser, False, False)
 
                             ClearCache()
-                            Response.Redirect(NavigateURL(TabId, "", "RoleId=" & TargetRoleId.ToString))
+                            Response.Redirect(NavigateURL(TabId, "", "RoleId=" & TargetRoleId.ToString), False)
+                            Context.ApplicationInstance.CompleteRequest()
 
                         End If
 
@@ -1027,7 +1041,8 @@ Namespace Connect.Modules.UserManagement.AccountManagement
                         UserController.RemoveUser(oUser)
                         ClearCache()
 
-                        Response.Redirect(NavigateURL(TabId, "", "RoleId=-2"))
+                        Response.Redirect(NavigateURL(TabId, "", "RoleId=-2"), False)
+                        Context.ApplicationInstance.CompleteRequest()
 
                     Case "restore"
 
@@ -1040,7 +1055,8 @@ Namespace Connect.Modules.UserManagement.AccountManagement
                         UserController.RestoreUser(oUser)
                         ClearCache()
 
-                        Response.Redirect(NavigateURL(TabId, "", "uid=" & oUser.UserID.ToString, "RoleId=" & PortalSettings.RegisteredRoleId.ToString, "Action=Edit"))
+                        Response.Redirect(NavigateURL(TabId, "", "uid=" & oUser.UserID.ToString, "RoleId=" & PortalSettings.RegisteredRoleId.ToString, "Action=Edit"), False)
+                        Context.ApplicationInstance.CompleteRequest()
 
                     Case "impersonate"
 
@@ -1077,7 +1093,8 @@ Namespace Connect.Modules.UserManagement.AccountManagement
                 UserController.UserLogin(PortalSettings.PortalId, objUser.Username, password, "", PortalSettings.PortalName, Request.UserHostAddress, status, False)
 
 
-                Response.Redirect(NavigateURL(PortalSettings.HomeTabId))
+                Response.Redirect(NavigateURL(PortalSettings.HomeTabId), False)
+                Context.ApplicationInstance.CompleteRequest()
 
             End If
 
@@ -1334,7 +1351,8 @@ Namespace Connect.Modules.UserManagement.AccountManagement
             ClearCache()
             UserController.ResetPasswordToken(User, 1440)
 
-            Response.Redirect(url)
+            Response.Redirect(url, False)
+            Context.ApplicationInstance.CompleteRequest()
 
         End Sub
 
