@@ -159,3 +159,4 @@ obj/Release/Connect_AccountManagement.vbproj.FileListAbsolute.txt
 *.zip
 *.dll
 Resources.zip
+Resources.zip.manifest
