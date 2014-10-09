@@ -2383,7 +2383,7 @@ Namespace Connect.Modules.UserManagement.AccountManagement
                     Try
                         ctlRoles.FindNodeByValue(PortalSettings.RegisteredRoleId.ToString).Selected = True
                         'make sure bulk remove is not visible here!
-                         cmdBulkRemove.Visible = False
+                        cmdBulkRemove.Visible = False
                     Catch
                     End Try
                 End If
