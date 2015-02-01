@@ -1,0 +1,10 @@
+﻿
+if not exists (select 1 from {databaseOwner}[{objectQualifier}Lists] where ListName='DataType' and Value='CheckboxList')
+begin
+	INSERT INTO {databaseOwner}[{objectQualifier}Lists] ([ListName],[Value],[Text],
+		[ParentID],[Level],[SortOrder],[DefinitionID],[PortalID],[SystemList])
+	VALUES('DataType','CheckboxList','Connect.Libraries.UserManagement.CheckboxListEditControl, Connect.Libraries.UserManagement',
+		0,0,0,-1,-1,1)
+end
+GO
+
