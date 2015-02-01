@@ -45,7 +45,8 @@
          <asp:ListItem Text="Password" Value="password"></asp:ListItem>
          <asp:ListItem Text="Profile" Value="profile"></asp:ListItem>
          <asp:ListItem Text="Roles" Value="roles"></asp:ListItem>
-         <asp:ListItem Text="E-Mail" Value="email"></asp:ListItem>         
+         <asp:ListItem Text="E-Mail" Value="email"></asp:ListItem>
+         <asp:ListItem Text="Message" Value="message"></asp:ListItem>
          <asp:ListItem Text="Sites" Value="sites"></asp:ListItem>
      </asp:CheckBoxList> 
 </div>

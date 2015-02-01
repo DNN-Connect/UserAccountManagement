@@ -192,6 +192,7 @@
                     <li id="tabProfile" runat="server"><a href="#dvProfile"><asp:Label id="lblProfileTab" runat="server" resourcekey="lblProfileTab" /></a></li>
                     <li id="tabRoles" runat="server"><a href="#dvRoles"><asp:Label id="lblRolesTab" runat="server" resourcekey="lblRolesTab" /></a></li>
                     <li id="tabEmail" runat="server"><a href="#dvEmail"><asp:Label id="lblEmailTab" runat="server" resourcekey="lblEmailTab" /></a></li>
+                    <li id="tabMessage" runat="server"><a href="#dvMessage"><asp:Label id="lblMessageTab" runat="server" resourcekey="lblMessageTab" /></a></li>
                     <li id="tabSites" runat="server"><a href="#dvSites"><asp:Label id="lblSitesTab" runat="server" resourcekey="lblSitesTab" /></a></li>
                     <asp:PlaceHolder ID="plhAdditionalTabs" runat="server"></asp:PlaceHolder>
                 </ul>
@@ -407,9 +408,30 @@
                             <dnn:dnnEditor ID="txtNotifyUserBody" runat="server" Width="600px" Height="275px"></dnn:dnnEditor>
                         </div>
                             
-                            
                         <ul class="dnnActions">
                             <li><asp:Button ID="btnNotifyUser" runat="server" Visible="true" CssClass="dnnPrimaryAction" /></li>
+                        </ul>
+
+                    </asp:Panel>
+                </div>
+                               
+                <div id="dvMessage" class="dnnClear">
+                    <asp:Panel ID="pnlMessageTab" runat="server">
+                    
+                        <p class="connect_note"><asp:Literal ID="lblMessageNote" runat="server"></asp:Literal></p>
+
+                        <div style="padding-bottom:10px;">
+                            <asp:Label ID="lblMessageSubject" runat="server" resourcekey="lblMessageSubject"></asp:Label><br />
+                            <asp:TextBox ID="txtMessageSubject" runat="server" Width="600px"></asp:TextBox>
+                        </div> 
+                                                    
+                        <div style="padding-top:20px;padding-bottom:20px;">
+                            <asp:Label ID="lblMessageBody" runat="server" resourcekey="lblMessageBody"></asp:Label><br />
+                            <asp:TextBox ID="txtMessageBody" runat="server" Width="600px" TextMode="MultiLine" Rows="5"></asp:TextBox>
+                        </div>
+                            
+                        <ul class="dnnActions">
+                            <li><asp:Button ID="btnSendMessage" runat="server" Visible="true" resourcekey="btnSendMessage" CssClass="dnnPrimaryAction" /></li>
                         </ul>
 
                     </asp:Panel>

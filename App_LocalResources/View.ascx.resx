@@ -567,4 +567,25 @@
   <data name="cmdBulkRemove.Text" xml:space="preserve">
     <value>Remove selected from role</value>
   </data>
+  <data name="btnSendMessage.Text" xml:space="preserve">
+    <value>Send Message</value>
+  </data>
+  <data name="InternalMessageNotSent.Text" xml:space="preserve">
+    <value>The message could not be sent: {0}</value>
+  </data>
+  <data name="InternalMessageSent.Text" xml:space="preserve">
+    <value>Message sent sucessfully.</value>
+  </data>
+  <data name="lblMessageBody.Text" xml:space="preserve">
+    <value>Message:</value>
+  </data>
+  <data name="lblMessageNote.Text" xml:space="preserve">
+    <value>You may send an internal message to the user</value>
+  </data>
+  <data name="lblMessageSubject.Text" xml:space="preserve">
+    <value>Subject:</value>
+  </data>
+  <data name="lblMessageTab.Text" xml:space="preserve">
+    <value>Message</value>
+  </data>
 </root>

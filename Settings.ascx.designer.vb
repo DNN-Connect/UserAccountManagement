@@ -21,7 +21,7 @@ Namespace Connect.Modules.UserManagement.AccountManagement
         '''Auto-generated field.
         '''To modify move field declaration from designer file to code-behind file.
         '''</remarks>
-        Protected WithEvents lblAllowReports As Global.DotNetNuke.UI.UserControls.LabelControl
+        Protected WithEvents lblAllowReports As Global.System.Web.UI.UserControl
 
         '''<summary>
         '''chkAllowReports control.
@@ -39,7 +39,7 @@ Namespace Connect.Modules.UserManagement.AccountManagement
         '''Auto-generated field.
         '''To modify move field declaration from designer file to code-behind file.
         '''</remarks>
-        Protected WithEvents lblAllowCreate As Global.DotNetNuke.UI.UserControls.LabelControl
+        Protected WithEvents lblAllowCreate As Global.System.Web.UI.UserControl
 
         '''<summary>
         '''chkAllowCreate control.
@@ -57,7 +57,7 @@ Namespace Connect.Modules.UserManagement.AccountManagement
         '''Auto-generated field.
         '''To modify move field declaration from designer file to code-behind file.
         '''</remarks>
-        Protected WithEvents lblAllowDelete As Global.DotNetNuke.UI.UserControls.LabelControl
+        Protected WithEvents lblAllowDelete As Global.System.Web.UI.UserControl
 
         '''<summary>
         '''chkAllowDelete control.
@@ -75,7 +75,7 @@ Namespace Connect.Modules.UserManagement.AccountManagement
         '''Auto-generated field.
         '''To modify move field declaration from designer file to code-behind file.
         '''</remarks>
-        Protected WithEvents lblAllowHardDelete As Global.DotNetNuke.UI.UserControls.LabelControl
+        Protected WithEvents lblAllowHardDelete As Global.System.Web.UI.UserControl
 
         '''<summary>
         '''chkAllowHardDelete control.
@@ -93,7 +93,7 @@ Namespace Connect.Modules.UserManagement.AccountManagement
         '''Auto-generated field.
         '''To modify move field declaration from designer file to code-behind file.
         '''</remarks>
-        Protected WithEvents lblAllowExport As Global.DotNetNuke.UI.UserControls.LabelControl
+        Protected WithEvents lblAllowExport As Global.System.Web.UI.UserControl
 
         '''<summary>
         '''chkAllowExport control.
@@ -111,7 +111,7 @@ Namespace Connect.Modules.UserManagement.AccountManagement
         '''Auto-generated field.
         '''To modify move field declaration from designer file to code-behind file.
         '''</remarks>
-        Protected WithEvents lblAllowedRoles As Global.DotNetNuke.UI.UserControls.LabelControl
+        Protected WithEvents lblAllowedRoles As Global.System.Web.UI.UserControl
 
         '''<summary>
         '''chkAllowedRoles control.
@@ -129,7 +129,7 @@ Namespace Connect.Modules.UserManagement.AccountManagement
         '''Auto-generated field.
         '''To modify move field declaration from designer file to code-behind file.
         '''</remarks>
-        Protected WithEvents lblPreselectRole As Global.DotNetNuke.UI.UserControls.LabelControl
+        Protected WithEvents lblPreselectRole As Global.System.Web.UI.UserControl
 
         '''<summary>
         '''drpPreselectRole control.
@@ -147,7 +147,7 @@ Namespace Connect.Modules.UserManagement.AccountManagement
         '''Auto-generated field.
         '''To modify move field declaration from designer file to code-behind file.
         '''</remarks>
-        Protected WithEvents lblUserTabs As Global.DotNetNuke.UI.UserControls.LabelControl
+        Protected WithEvents lblUserTabs As Global.System.Web.UI.UserControl
 
         '''<summary>
         '''chkUserTabs control.
@@ -165,7 +165,7 @@ Namespace Connect.Modules.UserManagement.AccountManagement
         '''Auto-generated field.
         '''To modify move field declaration from designer file to code-behind file.
         '''</remarks>
-        Protected WithEvents lblAdditionalControls As Global.DotNetNuke.UI.UserControls.LabelControl
+        Protected WithEvents lblAdditionalControls As Global.System.Web.UI.UserControl
 
         '''<summary>
         '''txtAditionalControls control.

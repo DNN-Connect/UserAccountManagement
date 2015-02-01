@@ -420,6 +420,24 @@ Namespace Connect.Modules.UserManagement.AccountManagement
         Protected WithEvents lblEmailTab As Global.System.Web.UI.WebControls.Label
 
         '''<summary>
+        '''tabMessage control.
+        '''</summary>
+        '''<remarks>
+        '''Auto-generated field.
+        '''To modify move field declaration from designer file to code-behind file.
+        '''</remarks>
+        Protected WithEvents tabMessage As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+        '''<summary>
+        '''lblMessageTab control.
+        '''</summary>
+        '''<remarks>
+        '''Auto-generated field.
+        '''To modify move field declaration from designer file to code-behind file.
+        '''</remarks>
+        Protected WithEvents lblMessageTab As Global.System.Web.UI.WebControls.Label
+
+        '''<summary>
         '''tabSites control.
         '''</summary>
         '''<remarks>
@@ -741,7 +759,7 @@ Namespace Connect.Modules.UserManagement.AccountManagement
         '''Auto-generated field.
         '''To modify move field declaration from designer file to code-behind file.
         '''</remarks>
-        Protected WithEvents lblPassword1 As Global.DotNetNuke.UI.UserControls.LabelControl
+        Protected WithEvents lblPassword1 As Global.System.Web.UI.UserControl
 
         '''<summary>
         '''txtPassword1 control.
@@ -759,7 +777,7 @@ Namespace Connect.Modules.UserManagement.AccountManagement
         '''Auto-generated field.
         '''To modify move field declaration from designer file to code-behind file.
         '''</remarks>
-        Protected WithEvents lblPassword2 As Global.DotNetNuke.UI.UserControls.LabelControl
+        Protected WithEvents lblPassword2 As Global.System.Web.UI.UserControl
 
         '''<summary>
         '''txtPassword2 control.
@@ -1021,6 +1039,69 @@ Namespace Connect.Modules.UserManagement.AccountManagement
         '''To modify move field declaration from designer file to code-behind file.
         '''</remarks>
         Protected WithEvents btnNotifyUser As Global.System.Web.UI.WebControls.Button
+
+        '''<summary>
+        '''pnlMessageTab control.
+        '''</summary>
+        '''<remarks>
+        '''Auto-generated field.
+        '''To modify move field declaration from designer file to code-behind file.
+        '''</remarks>
+        Protected WithEvents pnlMessageTab As Global.System.Web.UI.WebControls.Panel
+
+        '''<summary>
+        '''lblMessageNote control.
+        '''</summary>
+        '''<remarks>
+        '''Auto-generated field.
+        '''To modify move field declaration from designer file to code-behind file.
+        '''</remarks>
+        Protected WithEvents lblMessageNote As Global.System.Web.UI.WebControls.Literal
+
+        '''<summary>
+        '''lblMessageSubject control.
+        '''</summary>
+        '''<remarks>
+        '''Auto-generated field.
+        '''To modify move field declaration from designer file to code-behind file.
+        '''</remarks>
+        Protected WithEvents lblMessageSubject As Global.System.Web.UI.WebControls.Label
+
+        '''<summary>
+        '''txtMessageSubject control.
+        '''</summary>
+        '''<remarks>
+        '''Auto-generated field.
+        '''To modify move field declaration from designer file to code-behind file.
+        '''</remarks>
+        Protected WithEvents txtMessageSubject As Global.System.Web.UI.WebControls.TextBox
+
+        '''<summary>
+        '''lblMessageBody control.
+        '''</summary>
+        '''<remarks>
+        '''Auto-generated field.
+        '''To modify move field declaration from designer file to code-behind file.
+        '''</remarks>
+        Protected WithEvents lblMessageBody As Global.System.Web.UI.WebControls.Label
+
+        '''<summary>
+        '''txtMessageBody control.
+        '''</summary>
+        '''<remarks>
+        '''Auto-generated field.
+        '''To modify move field declaration from designer file to code-behind file.
+        '''</remarks>
+        Protected WithEvents txtMessageBody As Global.System.Web.UI.WebControls.TextBox
+
+        '''<summary>
+        '''btnSendMessage control.
+        '''</summary>
+        '''<remarks>
+        '''Auto-generated field.
+        '''To modify move field declaration from designer file to code-behind file.
+        '''</remarks>
+        Protected WithEvents btnSendMessage As Global.System.Web.UI.WebControls.Button
 
         '''<summary>
         '''pnlSitesTab control.

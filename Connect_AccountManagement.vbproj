@@ -163,6 +163,7 @@
     <Content Include="Connect_AccountManagement.dnn" />
     <Content Include="Providers\DataProviders\SqlDataProvider\01.02.00.SqlDataProvider" />
     <None Include="Providers\DataProviders\SqlDataProvider\01.00.00.SqlDataProvider" />
+    <Content Include="Providers\DataProviders\SqlDataProvider\01.02.03.SqlDataProvider" />
     <None Include="Providers\DataProviders\SqlDataProvider\Uninstall.SqlDataProvider" />
   </ItemGroup>
   <ItemGroup>
@@ -202,7 +203,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>62597</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

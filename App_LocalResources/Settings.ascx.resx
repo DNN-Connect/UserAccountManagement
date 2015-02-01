@@ -174,4 +174,7 @@
   <data name="lblAdditionalControls.Help" xml:space="preserve">
     <value>Enter additonal controls to show in the editing interface. An example for one additonal control is as follows: &lt;strong&gt;My Data, /Desktopmodules/MyModule/MyControl.ascx&lt;/strong&gt; where &lt;strong&gt;My Data&lt;/strong&gt; is the tab name and the second part after the comma is the path to an existing control.</value>
   </data>
+  <data name="tabmessage.text" xml:space="preserve">
+    <value>Message</value>
+  </data>
 </root>

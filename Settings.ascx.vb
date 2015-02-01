@@ -22,8 +22,8 @@
 Imports DotNetNuke
 Imports DotNetNuke.Services.Exceptions
 
-
 Namespace Connect.Modules.UserManagement.AccountManagement
+
     Partial Class Settings
         Inherits Entities.Modules.ModuleSettingsBase
 

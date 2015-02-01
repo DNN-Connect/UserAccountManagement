@@ -710,6 +710,40 @@ Namespace Connect.Modules.UserManagement.AccountManagement
 
 #End Region
 
+#Region "Account Message Event handlers"
+
+        Private Sub btnSendMessage_Click(sender As Object, e As EventArgs) Handles btnSendMessage.Click
+
+            Dim strPassword As String = Localization.GetString("HiddenPassword", LocalResourceFile)
+            If MembershipProvider.Instance.PasswordRetrievalEnabled Then
+                strPassword = MembershipProvider.Instance().GetPassword(User, "")
+            End If
+
+            Dim strBody As String = txtMessageBody.Text.Replace(Localization.GetString("HiddenPassword", LocalResourceFile), strPassword)
+            Dim strSubject As String = txtMessageSubject.Text
+
+            Try
+
+                Dim users As New List(Of UserInfo)
+                users.Add(User)
+
+                Dim message As New DotNetNuke.Services.Social.Messaging.Message()
+                message.Subject = strSubject
+                message.Body = strBody
+
+                DotNetNuke.Services.Social.Messaging.MessagingController.Instance.SendMessage(message, Nothing, Users, Nothing)
+                lblMessageNote.Text = Localization.GetString("InternalMessageSent", LocalResourceFile)
+
+            Catch ex As Exception
+
+                lblMessageNote.Text = String.Format(Localization.GetString("InternalMessageNotSent", LocalResourceFile), ex.Message)
+
+            End Try
+
+        End Sub
+
+#End Region
+
 #Region "Password Update Event Handlers"
 
         Private Sub cmdResetPasswordLink_Click(sender As Object, e As EventArgs) Handles cmdResetPasswordLink.Click
@@ -1878,6 +1912,7 @@ Namespace Connect.Modules.UserManagement.AccountManagement
             lblProfileNote.Text = Localization.GetString("lblProfileNote", LocalResourceFile)
             lblRolesNote.Text = Localization.GetString("lblRolesNote", LocalResourceFile)
             lblEmailNote.Text = Localization.GetString("lblEmailNote", LocalResourceFile)
+            lblMessageNote.Text = Localization.GetString("lblMessageNote", LocalResourceFile)
             lblSitesNote.Text = Localization.GetString("lblSitesNote", LocalResourceFile)
 
             tabAccount.Visible = False
@@ -1890,6 +1925,8 @@ Namespace Connect.Modules.UserManagement.AccountManagement
             pnlRolesTab.Visible = False
             tabEmail.Visible = False
             pnlEmailTab.Visible = False
+            tabMessage.Visible = False
+            pnlMessageTab.Visible = False
             tabSites.Visible = False
             pnlSitesTab.Visible = False
 
@@ -1913,6 +1950,10 @@ Namespace Connect.Modules.UserManagement.AccountManagement
                 If strTab.ToLower = "email" Then
                     tabEmail.Visible = True
                     pnlEmailTab.Visible = True
+                End If
+                If strTab.ToLower = "message" Then
+                    tabMessage.Visible = True
+                    pnlMessageTab.Visible = True
                 End If
                 If strTab.ToLower = "sites" Then
                     tabSites.Visible = True
