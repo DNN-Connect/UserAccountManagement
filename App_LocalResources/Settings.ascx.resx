@@ -177,4 +177,10 @@
   <data name="tabmessage.text" xml:space="preserve">
     <value>Message</value>
   </data>
+  <data name="lblAllowSendEmails.Text" xml:space="preserve">
+    <value>Allow sending emails to all users</value>
+  </data>
+  <data name="lblAllowSendMessages.Text" xml:space="preserve">
+    <value>Allow sending messages to all users</value>
+  </data>
 </root>

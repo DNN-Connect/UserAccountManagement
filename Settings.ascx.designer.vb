@@ -105,6 +105,42 @@ Namespace Connect.Modules.UserManagement.AccountManagement
         Protected WithEvents chkAllowExport As Global.System.Web.UI.WebControls.CheckBox
 
         '''<summary>
+        '''lblAllowSendEmails control.
+        '''</summary>
+        '''<remarks>
+        '''Auto-generated field.
+        '''To modify move field declaration from designer file to code-behind file.
+        '''</remarks>
+        Protected WithEvents lblAllowSendEmails As Global.System.Web.UI.UserControl
+
+        '''<summary>
+        '''chkAllowSendEmails control.
+        '''</summary>
+        '''<remarks>
+        '''Auto-generated field.
+        '''To modify move field declaration from designer file to code-behind file.
+        '''</remarks>
+        Protected WithEvents chkAllowSendEmails As Global.System.Web.UI.WebControls.CheckBox
+
+        '''<summary>
+        '''lblAllowSendMessages control.
+        '''</summary>
+        '''<remarks>
+        '''Auto-generated field.
+        '''To modify move field declaration from designer file to code-behind file.
+        '''</remarks>
+        Protected WithEvents lblAllowSendMessages As Global.System.Web.UI.UserControl
+
+        '''<summary>
+        '''chkAllowSendMessages control.
+        '''</summary>
+        '''<remarks>
+        '''Auto-generated field.
+        '''To modify move field declaration from designer file to code-behind file.
+        '''</remarks>
+        Protected WithEvents chkAllowSendMessages As Global.System.Web.UI.WebControls.CheckBox
+
+        '''<summary>
         '''lblAllowedRoles control.
         '''</summary>
         '''<remarks>

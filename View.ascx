@@ -42,6 +42,14 @@
             <asp:Linkbutton ID="btnExport" runat="server" CssClass="dnnSecondaryAction" />
         </asp:Panel>
 
+        <asp:Panel ID="pnlEmailUsers" runat="server" CssClass="connect_btnContainer">
+            <a href="#" class="cmdEmailUsers dnnSecondaryAction"><%= Localization.GetString("btnEmailUsers", LocalResourceFile)%></a>
+        </asp:Panel>
+
+        <asp:Panel ID="pnlMessageUsers" runat="server" CssClass="connect_btnContainer">
+            <a href="#" class="cmdMessageUsers dnnSecondaryAction"><%= Localization.GetString("btnMessageUsers", LocalResourceFile)%></a>
+        </asp:Panel>
+
         <asp:Panel ID="pnlReport" runat="server" CssClass="connect_btnContainer">
             <div class="connect_drpContainer dnnFormItem"><asp:DropDownList ID="drpReports" runat="server"></asp:DropDownList></div>
             <asp:Linkbutton ID="btnReport" runat="server" Text="Run Report" CssClass="dnnSecondaryAction" />
@@ -478,6 +486,40 @@
                      
 </div>
 
+<div class="ConnectSendEmails dnnDialog dnnClear" style="display:none" title='<%= Localization.GetString("lblSendEmailsTitle", LocalResourceFile)%>'>
+    <p><%= Localization.GetString("lblEmailNotes", LocalResourceFile)%></p>
+
+    <div style="padding-bottom:10px;">
+        <dnn:dnnTextBox ID="txtEmailSubjectAll" runat="server" Width="600px" Height="25px"></dnn:dnnTextBox>
+    </div> 
+                                                    
+    <div style="padding-top:20px;padding-bottom:20px;">
+        <dnn:dnnEditor ID="txtEmailBodyAll" runat="server" Width="600px" Height="275px"></dnn:dnnEditor>
+    </div>
+                            
+    <ul class="dnnActions">
+        <li><asp:Button ID="btnSendEmails" runat="server" resourcekey="btnSendEmails" CssClass="dnnPrimaryAction" /></li>
+    </ul>
+</div>
+
+<div class="ConnectSendMessages dnnDialog dnnClear" style="display:none" title='<%= Localization.GetString("lblSendMessagesTitle", LocalResourceFile)%>'>
+    <p><%= Localization.GetString("lblMessageNotes", LocalResourceFile)%></p>
+
+    <div style="padding-bottom:10px;">
+        <asp:Label ID="Label1" runat="server" resourcekey="lblMessageSubject"></asp:Label><br />
+        <asp:TextBox ID="txtMessageSubjectAll" runat="server" Width="600px"></asp:TextBox>
+    </div> 
+                                                    
+    <div style="padding-top:20px;padding-bottom:20px;">
+        <asp:Label ID="Label2" runat="server" resourcekey="lblMessageBody"></asp:Label><br />
+        <asp:TextBox ID="txtMessageBodyAll" runat="server" Width="600px" TextMode="MultiLine" Rows="5"></asp:TextBox>
+    </div>
+                            
+    <ul class="dnnActions">
+        <li><asp:Button ID="btnSendMessages" runat="server" resourcekey="btnSendMessages" CssClass="dnnPrimaryAction" /></li>
+    </ul>
+</div>
+
 <div class="ConnectRoleMembershipApproval dnnDialog dnnClear" title='<%= Localization.GetString("lblRoleApprovalTitle", LocalResourceFile)%>'>
     <p><%= Localization.GetString("lblRoleApprovalNote", LocalResourceFile)%></p>
 </div>
@@ -505,7 +547,6 @@
     var lblCancelNotificationText = '<%= Localization.GetString("lblCancelNotificationText", LocalResourceFile) %>';
     var lblDeleteYes = '<%= Localization.GetString("lblDeleteYes", LocalResourceFile)%>';
     var lblDeleteCancel = '<%= Localization.GetString("lblDeleteCancel", LocalResourceFile) %>';
-
 
     $(".ConnectRoleMembershipApproval").dialog({
         autoOpen: false,
@@ -746,7 +787,15 @@
                 window.location.href = url;
             });
 
+            $('.cmdEmailUsers').click(function () {
+                $(".ConnectSendEmails").dialog({ modal: true, dialogClass: 'dnnFormPopup', width: 650});
+                $(".ConnectSendEmails").parent().appendTo(jQuery("form:first"));
+            });  
 
+            $('.cmdMessageUsers').click(function () {
+                $(".ConnectSendMessages").dialog({ modal: true, dialogClass: 'dnnFormPopup', width: 650});
+                $(".ConnectSendMessages").parent().appendTo(jQuery("form:first"));
+            });        
         }
 
         $(document).ready(function () {
