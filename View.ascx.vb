@@ -30,6 +30,7 @@ Imports DotNetNuke.Web.UI.WebControls
 Imports DotNetNuke.Entities.Portals
 Imports DotNetNuke.Common.Lists
 Imports DotNetNuke.Framework.JavaScriptLibraries
+Imports System.Linq
 
 Namespace Connect.Modules.UserManagement.AccountManagement
 
@@ -1681,7 +1682,7 @@ Namespace Connect.Modules.UserManagement.AccountManagement
             If Not DataCache.GetCache("PROPLIST_" & strListName) Is Nothing Then
                 entries = CType(DataCache.GetCache("PROPLIST_" & strListName), List(Of ListEntryInfo))
             Else
-                entries = lc.GetListEntryInfoItems(strListName, strValue)
+                entries = lc.GetListEntryInfoItems(strListName, strValue).ToList()
                 DataCache.SetCache("PROPLIST_" & strListName, entries)
             End If
 
