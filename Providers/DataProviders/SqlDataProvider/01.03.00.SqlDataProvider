@@ -46,8 +46,6 @@ WHERE
 AND
 	((UP.[IsDeleted] = 0 and @ShowDeleted = 0) or (UP.[IsDeleted] = 1 and @ShowDeleted = 1))
 AND
-	((U.[IsDeleted] = 0 and @ShowDeleted = 0) or (U.[IsDeleted] = 1 and @ShowDeleted = 1))
-AND
 	(
 		(
 			(P.[PropertyValue] Like '%' + @SearchText + '%' And (PatIndex('%' + Pd.[PropertyName] + ',%' , @SearchCols) > 0))
