@@ -21,7 +21,8 @@
 		<li>Fix: Module settings not saving correctly</li>
 		<li>New: Allow for showing last login date in grid</li>
 	</ul>
-	<p><a href="https://github.com/DNN-Connect/UserAccountManagement/issues?q=milestone%3A01.03.00+is%3Aclosed">Full change log</a></p>
+	<p><a href="https://github.com/DNN-Connect/UserAccountManagement/issues?q=milestone%3A01.03.00+is%3Aclosed" target="_blank">Full change log</a></p>
+	<p>Thanks to <a href="https://github.com/vmasanas" target="_blank">Vicenç Masanas</a> for contributing</p>
 
 	<p class="Owner">
 		<b>Version 01.02.02</b>
