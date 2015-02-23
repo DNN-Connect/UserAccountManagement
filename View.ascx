@@ -80,6 +80,7 @@
                                 <dnn:dnnGridBoundColumn DataField="PreferredLocale" HeaderText="PreferredLocale" Visible="false"></dnn:dnnGridBoundColumn>
                                 <dnn:dnnGridBoundColumn DataField="CreatedOnDate" HeaderText="CreatedOnDate" DataFormatString="{0:dd.MM.yyyy}" Visible="false"></dnn:dnnGridBoundColumn>                         
                                 <dnn:dnnGridBoundColumn DataField="CreatedDate" HeaderText="Created" DataFormatString="{0:dd.MM.yyyy}" Visible="false"></dnn:dnnGridBoundColumn>                         
+                                <dnn:dnnGridBoundColumn DataField="LastLoginDate" HeaderText="LastLoginDate" DataFormatString="{0:dd.MM.yyyy}" Visible="false"></dnn:dnnGridBoundColumn>                         
                                 <dnn:dnnGridTemplateColumn HeaderText="Status" DataField="Status">
                                     <ItemTemplate>
                                         <ul class="connect-gridactions dnnClear">
@@ -153,6 +154,7 @@
                             <asp:ListItem Value="Telephone"></asp:ListItem>
                             <asp:ListItem Value="Cell"></asp:ListItem>
                             <asp:ListItem Value="PreferredLocale"></asp:ListItem>
+                            <asp:ListItem Value="LastLoginDate"></asp:ListItem>
                         </asp:CheckBoxList>
 
                     </div>

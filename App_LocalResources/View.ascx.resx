@@ -567,4 +567,10 @@
   <data name="cmdBulkRemove.Text" xml:space="preserve">
     <value>Remove selected from role</value>
   </data>
+  <data name="LastLoginDate.Header" xml:space="preserve">
+    <value>Last Login</value>
+  </data>
+  <data name="LastLoginDate.Text" xml:space="preserve">
+    <value>Last login date</value>
+  </data>
 </root>

@@ -32,12 +32,15 @@ SELECT DISTINCT
 	(Select Top 1 [PropertyValue] From {databaseOwner}[{objectQualifier}UserProfile] Inner Join {databaseOwner}[{objectQualifier}ProfilePropertyDefinition] On {databaseOwner}[{objectQualifier}ProfilePropertyDefinition].[PropertyDefinitionID] = {databaseOwner}[{objectQualifier}UserProfile].[PropertyDefinitionID] Where {databaseOwner}[{objectQualifier}ProfilePropertyDefinition].[PropertyName] = 'Cell' and {databaseOwner}[{objectQualifier}UserProfile].[UserID] = U.[UserID]) as [Cell],
 	(Select Top 1 [PropertyValue] From {databaseOwner}[{objectQualifier}UserProfile] Inner Join {databaseOwner}[{objectQualifier}ProfilePropertyDefinition] On {databaseOwner}[{objectQualifier}ProfilePropertyDefinition].[PropertyDefinitionID] = {databaseOwner}[{objectQualifier}UserProfile].[PropertyDefinitionID] Where {databaseOwner}[{objectQualifier}ProfilePropertyDefinition].[PropertyName] = 'PreferredLocale' and {databaseOwner}[{objectQualifier}UserProfile].[UserID] = U.[UserID]) as [PreferredLocale],
 	'' as Status,
-	'' as RoleId
+	'' as RoleId,
+	AM.[LastLoginDate]
 FROM 
 	{databaseOwner}[{objectQualifier}Users] U 
 	INNER JOIN {databaseOwner}[{objectQualifier}UserPortals] UP on UP.[UserId] = U.[UserID]
 	INNER JOIN {databaseOwner}[{objectQualifier}UserProfile] P on p.[UserID] = U.[UserID]
 	INNER JOIN {databaseOwner}[{objectQualifier}ProfilePropertyDefinition] PD on PD.[PropertyDefinitionID] = p.[PropertyDefinitionID]
+	INNER JOIN {databaseOwner}[aspnet_Users] AU on AU.[UserName] = U.[UserName]
+	INNER JOIN {databaseOwner}[aspnet_Membership] AM on AM.[UserId] = AU.[UserId]
 WHERE 
 	UP.[PortalId] = @PortalId
 AND
@@ -97,13 +100,16 @@ SELECT DISTINCT
 	(Select Top 1 [PropertyValue] From {databaseOwner}[{objectQualifier}UserProfile] Inner Join {databaseOwner}[{objectQualifier}ProfilePropertyDefinition] On {databaseOwner}[{objectQualifier}ProfilePropertyDefinition].[PropertyDefinitionID] = {databaseOwner}[{objectQualifier}UserProfile].[PropertyDefinitionID] Where {databaseOwner}[{objectQualifier}ProfilePropertyDefinition].[PropertyName] = 'PreferredLocale' and {databaseOwner}[{objectQualifier}UserProfile].[UserID] = U.[UserID]) as [PreferredLocale],
 	UR.[Status],
 	UR.[CreatedOnDate],
-	UR.[RoleId]
+	UR.[RoleId],
+	AM.[LastLoginDate]
 FROM 
 	{databaseOwner}[{objectQualifier}UserRoles] UR 
 	INNER JOIN {databaseOwner}[{objectQualifier}Users] U on U.[UserId] = UR.[UserId]
 	INNER JOIN {databaseOwner}[{objectQualifier}UserPortals] UP on UP.[UserId] = U.[UserID]
 	INNER JOIN {databaseOwner}[{objectQualifier}UserProfile] P on p.[UserID] = U.[UserID]
 	INNER JOIN {databaseOwner}[{objectQualifier}ProfilePropertyDefinition] PD on PD.[PropertyDefinitionID] = p.[PropertyDefinitionID]
+	INNER JOIN {databaseOwner}[aspnet_Users] AU on AU.[UserName] = U.[UserName]
+	INNER JOIN {databaseOwner}[aspnet_Membership] AM on AM.[UserId] = AU.[UserId]
 WHERE 
 	UP.[PortalId] = @PortalId
 AND
