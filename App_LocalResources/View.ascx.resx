@@ -187,7 +187,7 @@
     <value>Username</value>
   </data>
   <data name="btnExport.Text" xml:space="preserve">
-    <value>Export Selection</value>
+    <value>Export Current View</value>
   </data>
   <data name="btnHardDelete.Text" xml:space="preserve">
     <value>Empty Bin</value>
