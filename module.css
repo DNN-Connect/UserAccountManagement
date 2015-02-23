@@ -23,11 +23,11 @@
 
 @font-face {
 	font-family: "Connectaccounts";
-	src: url("connectaccounts.eot");
-	src: url("connectaccounts.eot#iefix") format("embedded-opentype"),
-	url("connectaccounts.woff") format("woff"),
-	url("connectaccounts.ttf") format("truetype"),
-	url("connectaccounts.svg") format("svg");
+	src: url("resources/connectaccounts.eot");
+	src: url("resources/connectaccounts.eot#iefix") format("embedded-opentype"),
+	url("resources/connectaccounts.woff") format("woff"),
+	url("resources/connectaccounts.ttf") format("truetype"),
+	url("resources/connectaccounts.svg") format("svg");
 	font-weight: normal;
 	font-style: normal;
 }

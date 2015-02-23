@@ -159,12 +159,20 @@
     <None Include="BuildScripts\MSBuild.Community.Tasks.Targets" />
     <Content Include="Config\ToolsFile.xml" />
     <Content Include="Reports.ascx" />
+    <Content Include="Resources\connectaccounts.svg" />
+    <Content Include="Resources\flaticon.css" />
+    <Content Include="Resources\flaticon.html" />
     <Content Include="Templates.ascx" />
     <Content Include="Connect_AccountManagement.dnn" />
     <Content Include="Providers\DataProviders\SqlDataProvider\01.02.00.SqlDataProvider" />
+    <Content Include="License" />
     <None Include="Providers\DataProviders\SqlDataProvider\01.00.00.SqlDataProvider" />
     <Content Include="Providers\DataProviders\SqlDataProvider\01.03.00.SqlDataProvider" />
     <None Include="Providers\DataProviders\SqlDataProvider\Uninstall.SqlDataProvider" />
+    <Content Include="README.md" />
+    <Content Include="Resources\connectaccounts.eot" />
+    <Content Include="Resources\connectaccounts.ttf" />
+    <Content Include="Resources\connectaccounts.woff" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Documentation\Documentation.css" />
