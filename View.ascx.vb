@@ -30,6 +30,7 @@ Imports DotNetNuke.Web.UI.WebControls
 Imports DotNetNuke.Entities.Portals
 Imports DotNetNuke.Common.Lists
 Imports DotNetNuke.Framework.JavaScriptLibraries
+Imports System.Linq
 
 Namespace Connect.Modules.UserManagement.AccountManagement
 
@@ -684,28 +685,131 @@ Namespace Connect.Modules.UserManagement.AccountManagement
 
         Private Sub btnNotifyUser_Click(sender As Object, e As EventArgs) Handles btnNotifyUser.Click
 
+            Try
+                DotNetNuke.Services.Mail.Mail.SendEmail(PortalSettings.Email, User.Email, txtEmailSubjectAll.Text, txtEmailBodyAll.Content)
+                lblEmailNote.Text = Localization.GetString("MessageSent", LocalResourceFile)
+            Catch ex As Exception
+                lblEmailNote.Text = String.Format(Localization.GetString("MessageNotSent", LocalResourceFile), ex.Message)
+            End Try
+
+        End Sub
+
+        Private Sub btnSendEmails_Click(sender As Object, e As EventArgs) Handles btnSendEmails.Click
+
+            Dim users As New List(Of UserInfo)
+            Dim ds As DataSet = Nothing
+            Dim strError As String = ""
+
+            If ctlRoles.SelectedNode Is Nothing Then
+                _IsReportResult = True
+            End If
+
+            If _IsReportResult Then
+                ds = GetReportResult(strError)
+            Else
+                ds = GetUserList()
+            End If
+
+            Dim resultMsg As String = ""
+            For Each row As DataRow In ds.Tables(0).Rows
+                Dim oUser As UserInfo = UserController.GetUserById(PortalId, row("UserId"))
+                Try
+                    DotNetNuke.Services.Mail.Mail.SendEmail(PortalSettings.Email, User.Email, txtEmailSubjectAll.Text, txtEmailBodyAll.Content)
+                Catch ex As Exception
+                    resultMsg += ex.Message + "<br/>"
+                End Try
+            Next
+            If resultMsg = "" Then
+                DotNetNuke.UI.Skins.Skin.AddModuleMessage(Me, Localization.GetString("MessagesSent", LocalResourceFile), Skins.Controls.ModuleMessage.ModuleMessageType.GreenSuccess)
+            Else
+                DotNetNuke.UI.Skins.Skin.AddModuleMessage(Me, String.Format(Localization.GetString("MessagesNotSent", LocalResourceFile), resultMsg), Skins.Controls.ModuleMessage.ModuleMessageType.RedError)
+            End If
+
+        End Sub
+
+        ''' <summary>
+        ''' Sends an email to a users
+        ''' </summary>
+        ''' <param name="user"></param>
+        ''' <remarks></remarks>
+        Private Sub SendEmail(user As UserInfo, subject As String, body As String)
             Dim strPassword As String = Localization.GetString("HiddenPassword", LocalResourceFile)
             If MembershipProvider.Instance.PasswordRetrievalEnabled Then
                 strPassword = MembershipProvider.Instance().GetPassword(User, "")
             End If
 
-            Dim strBody As String = txtNotifyUserBody.Content.Replace(Localization.GetString("HiddenPassword", LocalResourceFile), strPassword)
-            Dim strSubject As String = txtNotifyUserSubject.Text
-            If strSubject = "" Then
-                strSubject = Localization.GetString("txtNotifyUserSubject", LocalResourceFile)
-            End If
+            Dim strBody As String = body.Replace(Localization.GetString("HiddenPassword", LocalResourceFile), strPassword)
+            Dim strSubject As String = subject
+
+            DotNetNuke.Services.Mail.Mail.SendEmail(PortalSettings.Email, User.Email, strSubject, strBody)
+        End Sub
+#End Region
+
+#Region "Account Message Event handlers"
+
+        Private Sub btnSendMessage_Click(sender As Object, e As EventArgs) Handles btnSendMessage.Click
 
             Try
-
-                DotNetNuke.Services.Mail.Mail.SendEmail(PortalSettings.Email, User.Email, strSubject, strBody)
-                lblEmailNote.Text = Localization.GetString("MessageSent", LocalResourceFile)
-
+                Dim users As New List(Of UserInfo)
+                users.Add(User)
+                SendMessage(users, txtMessageSubject.Text, txtMessageBody.Text)
+                DotNetNuke.UI.Skins.Skin.AddModuleMessage(Me, Localization.GetString("InternalMessagesSent", LocalResourceFile), Skins.Controls.ModuleMessage.ModuleMessageType.GreenSuccess)
             Catch ex As Exception
-
-                lblEmailNote.Text = String.Format(Localization.GetString("MessageNotSent", LocalResourceFile), ex.Message)
-
+                DotNetNuke.UI.Skins.Skin.AddModuleMessage(Me, String.Format(Localization.GetString("InternalMessagesNotSent", LocalResourceFile), ex.Message), Skins.Controls.ModuleMessage.ModuleMessageType.RedError)
             End Try
 
+        End Sub
+
+        Private Sub btnSendMessages_Click(sender As Object, e As EventArgs) Handles btnSendMessages.Click
+
+            Dim users As New List(Of UserInfo)
+            Dim ds As DataSet = Nothing
+            Dim strError As String = ""
+
+            If ctlRoles.SelectedNode Is Nothing Then
+                _IsReportResult = True
+            End If
+
+            If _IsReportResult Then
+                ds = GetReportResult(strError)
+            Else
+                ds = GetUserList()
+            End If
+            For Each row As DataRow In ds.Tables(0).Rows
+                Dim oUser As UserInfo = UserController.GetUserById(PortalId, row("UserId"))
+                If Not oUser Is Nothing Then
+                    users.Add(oUser)
+                End If
+            Next
+
+            Try
+                SendMessage(users, txtMessageSubjectAll.Text, txtMessageBodyAll.Text)
+                DotNetNuke.UI.Skins.Skin.AddModuleMessage(Me, Localization.GetString("InternalMessageSent", LocalResourceFile), Skins.Controls.ModuleMessage.ModuleMessageType.GreenSuccess)
+            Catch ex As Exception
+                DotNetNuke.UI.Skins.Skin.AddModuleMessage(Me, String.Format(Localization.GetString("InternalMessageNotSent", LocalResourceFile), ex.Message), Skins.Controls.ModuleMessage.ModuleMessageType.RedError)
+            End Try
+
+        End Sub
+
+        ''' <summary>
+        ''' Sends a message to a list of users
+        ''' </summary>
+        ''' <param name="users"></param>
+        ''' <remarks></remarks>
+        Private Sub SendMessage(users As List(Of UserInfo), subject As String, body As String)
+            Dim strPassword As String = Localization.GetString("HiddenPassword", LocalResourceFile)
+            If MembershipProvider.Instance.PasswordRetrievalEnabled Then
+                strPassword = MembershipProvider.Instance().GetPassword(User, "")
+            End If
+
+            Dim strBody As String = body.Replace(Localization.GetString("HiddenPassword", LocalResourceFile), strPassword)
+            Dim strSubject As String = subject
+
+            Dim message As New DotNetNuke.Services.Social.Messaging.Message()
+            message.Subject = strSubject
+            message.Body = strBody
+
+            DotNetNuke.Services.Social.Messaging.MessagingController.Instance.SendMessage(message, Nothing, users, Nothing)
         End Sub
 
 #End Region
@@ -1578,7 +1682,7 @@ Namespace Connect.Modules.UserManagement.AccountManagement
             If Not DataCache.GetCache("PROPLIST_" & strListName) Is Nothing Then
                 entries = CType(DataCache.GetCache("PROPLIST_" & strListName), List(Of ListEntryInfo))
             Else
-                entries = lc.GetListEntryInfoItems(strListName, strValue)
+                entries = lc.GetListEntryInfoItems(strListName, strValue).ToList()
                 DataCache.SetCache("PROPLIST_" & strListName, entries)
             End If
 
@@ -1867,6 +1971,8 @@ Namespace Connect.Modules.UserManagement.AccountManagement
             Me.txtNotifyUserBody.ToolsFile = Me.TemplateSourceDirectory & "/Config/Toolsfile.xml"
             Me.txtNotifyPasswordBody.ToolsFile = Me.TemplateSourceDirectory & "/Config/Toolsfile.xml"
 
+            Me.txtEmailBodyAll.ToolsFile = Me.TemplateSourceDirectory & "/Config/Toolsfile.xml"
+
             txtNotifyRoleSubject.Text = String.Format(Localization.GetString("txtNotifyRoleSubject", LocalResourceFile), PortalSettings.PortalName)
             txtNotifyUserSubject.Text = String.Format(Localization.GetString("txtNotifyUserSubject", LocalResourceFile), PortalSettings.PortalName)
             txtNotifyPasswordSubject.Text = String.Format(Localization.GetString("txtNotifyPasswordSubject", LocalResourceFile), PortalSettings.PortalName)
@@ -1878,6 +1984,7 @@ Namespace Connect.Modules.UserManagement.AccountManagement
             lblProfileNote.Text = Localization.GetString("lblProfileNote", LocalResourceFile)
             lblRolesNote.Text = Localization.GetString("lblRolesNote", LocalResourceFile)
             lblEmailNote.Text = Localization.GetString("lblEmailNote", LocalResourceFile)
+            lblMessageNote.Text = Localization.GetString("lblMessageNote", LocalResourceFile)
             lblSitesNote.Text = Localization.GetString("lblSitesNote", LocalResourceFile)
 
             tabAccount.Visible = False
@@ -1890,6 +1997,8 @@ Namespace Connect.Modules.UserManagement.AccountManagement
             pnlRolesTab.Visible = False
             tabEmail.Visible = False
             pnlEmailTab.Visible = False
+            tabMessage.Visible = False
+            pnlMessageTab.Visible = False
             tabSites.Visible = False
             pnlSitesTab.Visible = False
 
@@ -1913,6 +2022,10 @@ Namespace Connect.Modules.UserManagement.AccountManagement
                 If strTab.ToLower = "email" Then
                     tabEmail.Visible = True
                     pnlEmailTab.Visible = True
+                End If
+                If strTab.ToLower = "message" Then
+                    tabMessage.Visible = True
+                    pnlMessageTab.Visible = True
                 End If
                 If strTab.ToLower = "sites" Then
                     tabSites.Visible = True
@@ -1980,7 +2093,10 @@ Namespace Connect.Modules.UserManagement.AccountManagement
             End If
 
             pnlCreateAccount.Visible = AllowCreate
-            btnExport.Visible = AllowExport
+            pnlExport.Visible = AllowExport
+
+            pnlEmailUsers.Visible = AllowEmailUsers
+            pnlMessageUsers.Visible = AllowMessageUsers
 
             btnNotifyPassword.Text = Localization.GetString("btnNotifyPassword", LocalResourceFile)
             btnNotifyPasswordSkip.Text = Localization.GetString("btnNotifyPasswordSkip", LocalResourceFile)
@@ -2373,7 +2489,6 @@ Namespace Connect.Modules.UserManagement.AccountManagement
             Dim blnUseCache As Boolean = True
 
             If txtSearch.Text.Length > 0 Then
-
                 strSearch = txtSearch.Text.Trim
                 intRole = PortalSettings.RegisteredRoleId
                 blnUseCache = False
@@ -2387,9 +2502,7 @@ Namespace Connect.Modules.UserManagement.AccountManagement
                     Catch
                     End Try
                 End If
-
             Else
-
                 If Not ctlRoles.SelectedNode Is Nothing Then
                     If CType(ctlRoles.SelectedNode.Attributes("IsGroup"), Boolean) = False Then
                         Try
@@ -2398,7 +2511,6 @@ Namespace Connect.Modules.UserManagement.AccountManagement
                         End Try
                     End If
                 End If
-
             End If
 
             If Not ctlRoles.SelectedNode Is Nothing Then
@@ -2412,18 +2524,15 @@ Namespace Connect.Modules.UserManagement.AccountManagement
             Dim dr As IDataReader = Nothing
 
             If intRole <> Null.NullInteger Then
-
                 If blnUseCache Then
                     ds = GetCachedUserList(intRole)
                 End If
 
                 If ds Is Nothing Then
-
                     ds = New DataSet
                     Dim dt As New DataTable
 
                     If intRole = PortalSettings.RegisteredRoleId Or intRole = -2 Then
-
                         Dim strCols As String = ""
                         For Each item As ListItem In chkSearchCols.Items
                             If item.Selected = True Then
@@ -2433,18 +2542,12 @@ Namespace Connect.Modules.UserManagement.AccountManagement
 
                         dr = DotNetNuke.Data.DataProvider.Instance().ExecuteReader("Connect_Accounts_GetUsers", intRole, PortalId, DotNetNuke.Data.DataProvider.Instance().GetNull(strSearch), strCols, blnShowDeleted)
                         dt.Load(dr)
-
-
-
                     Else
-
                         dr = DotNetNuke.Data.DataProvider.Instance().ExecuteReader("Connect_Accounts_GetRoleMembers", intRole, PortalId)
                         dt.Load(dr)
-
                     End If
 
                     ds.Tables.Add(dt)
-
 
                     If blnShowDeleted = False AndAlso strSearch = Null.NullString Then
                         CacheUserList(intRole, ds)

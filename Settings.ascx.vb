@@ -22,8 +22,8 @@
 Imports DotNetNuke
 Imports DotNetNuke.Services.Exceptions
 
-
 Namespace Connect.Modules.UserManagement.AccountManagement
+
     Partial Class Settings
         Inherits Entities.Modules.ModuleSettingsBase
 
@@ -41,6 +41,8 @@ Namespace Connect.Modules.UserManagement.AccountManagement
                     If (Settings.Contains("AllowDelete")) Then chkAllowDelete.Checked = CType(Settings("AllowDelete"), Boolean)
                     If (Settings.Contains("AllowHardDelete")) Then chkAllowHardDelete.Checked = CType(Settings("AllowHardDelete"), Boolean)
                     If (Settings.Contains("AllowExport")) Then chkAllowExport.Checked = CType(Settings("AllowExport"), Boolean)
+                    If (Settings.Contains("AllowEmailUsers")) Then chkAllowSendEmails.Checked = CType(Settings("AllowEmailUsers"), Boolean)
+                    If (Settings.Contains("AllowMessageUsers")) Then chkAllowSendMessages.Checked = CType(Settings("AllowMessageUsers"), Boolean)
 
                     If Settings.Contains("AllowedRoles") Then
                         For Each allowedrole As String In CType(Settings("AllowedRoles"), String).Split(Char.Parse(";"))
@@ -82,6 +84,8 @@ Namespace Connect.Modules.UserManagement.AccountManagement
                 objModules.UpdateTabModuleSetting(TabModuleId, "AllowDelete", chkAllowDelete.Checked.ToString)
                 objModules.UpdateTabModuleSetting(TabModuleId, "AllowHardDelete", chkAllowHardDelete.Checked.ToString)
                 objModules.UpdateTabModuleSetting(TabModuleId, "AllowExport", chkAllowExport.Checked.ToString)
+                objModules.UpdateTabModuleSetting(TabModuleId, "AllowEmailUsers", chkAllowSendEmails.Checked.ToString)
+                objModules.UpdateTabModuleSetting(TabModuleId, "AllowMessageUsers", chkAllowSendMessages.Checked.ToString)
                 objModules.UpdateTabModuleSetting(TabModuleId, "AllowReports", chkAllowReports.Checked.ToString)
                 Dim strAllowedRoles As String = ""
                 For Each item As ListItem In chkAllowedRoles.Items

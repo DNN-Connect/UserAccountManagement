@@ -29,6 +29,17 @@
 </div>
 
 <div class="dnnFormItem">
+     <dnn:Label ID="lblAllowSendEmails" runat="server" resourcekey="lblAllowSendEmails"></dnn:Label>
+     <asp:CheckBox ID="chkAllowSendEmails" runat="server" />
+</div>
+
+<div class="dnnFormItem">
+     <dnn:Label ID="lblAllowSendMessages" runat="server" resourcekey="lblAllowSendMessages"></dnn:Label>
+     <asp:CheckBox ID="chkAllowSendMessages" runat="server" />
+</div>
+
+
+<div class="dnnFormItem">
     <dnn:Label ID="lblAllowedRoles" runat="server" resourcekey="lblAllowedRoles"></dnn:Label>
     <asp:CheckBoxList ID="chkAllowedRoles" runat="server" RepeatColumns="2" DataTextField="RoleName" DataValueField="RoleId"></asp:CheckBoxList>  
 </div>
@@ -45,7 +56,8 @@
          <asp:ListItem Text="Password" Value="password"></asp:ListItem>
          <asp:ListItem Text="Profile" Value="profile"></asp:ListItem>
          <asp:ListItem Text="Roles" Value="roles"></asp:ListItem>
-         <asp:ListItem Text="E-Mail" Value="email"></asp:ListItem>         
+         <asp:ListItem Text="E-Mail" Value="email"></asp:ListItem>
+         <asp:ListItem Text="Message" Value="message"></asp:ListItem>
          <asp:ListItem Text="Sites" Value="sites"></asp:ListItem>
      </asp:CheckBoxList> 
 </div>

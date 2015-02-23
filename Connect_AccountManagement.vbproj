@@ -127,24 +127,28 @@
     </Compile>
     <Compile Include="Reports.ascx.vb">
       <DependentUpon>Reports.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Templates.ascx.designer.vb">
       <DependentUpon>Templates.ascx</DependentUpon>
     </Compile>
     <Compile Include="Templates.ascx.vb">
       <DependentUpon>Templates.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Settings.ascx.designer.vb">
       <DependentUpon>Settings.ascx</DependentUpon>
     </Compile>
     <Compile Include="Settings.ascx.vb">
       <DependentUpon>Settings.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="View.ascx.designer.vb">
       <DependentUpon>View.ascx</DependentUpon>
     </Compile>
     <Compile Include="View.ascx.vb">
       <DependentUpon>View.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -159,7 +163,7 @@
     <Content Include="Connect_AccountManagement.dnn" />
     <Content Include="Providers\DataProviders\SqlDataProvider\01.02.00.SqlDataProvider" />
     <None Include="Providers\DataProviders\SqlDataProvider\01.00.00.SqlDataProvider" />
-    <Content Include="Providers\DataProviders\SqlDataProvider\01.03.00.SqlDataProvider" />
+    <Content Include="Providers\DataProviders\SqlDataProvider\01.02.03.SqlDataProvider" />
     <None Include="Providers\DataProviders\SqlDataProvider\Uninstall.SqlDataProvider" />
   </ItemGroup>
   <ItemGroup>
@@ -199,7 +203,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>62597</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

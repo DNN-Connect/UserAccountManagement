@@ -42,6 +42,14 @@
             <asp:Linkbutton ID="btnExport" runat="server" CssClass="dnnSecondaryAction" />
         </asp:Panel>
 
+        <asp:Panel ID="pnlEmailUsers" runat="server" CssClass="connect_btnContainer">
+            <a href="#" class="cmdEmailUsers dnnSecondaryAction"><%= Localization.GetString("btnEmailUsers", LocalResourceFile)%></a>
+        </asp:Panel>
+
+        <asp:Panel ID="pnlMessageUsers" runat="server" CssClass="connect_btnContainer">
+            <a href="#" class="cmdMessageUsers dnnSecondaryAction"><%= Localization.GetString("btnMessageUsers", LocalResourceFile)%></a>
+        </asp:Panel>
+
         <asp:Panel ID="pnlReport" runat="server" CssClass="connect_btnContainer">
             <div class="connect_drpContainer dnnFormItem"><asp:DropDownList ID="drpReports" runat="server"></asp:DropDownList></div>
             <asp:Linkbutton ID="btnReport" runat="server" Text="Run Report" CssClass="dnnSecondaryAction" />
@@ -194,6 +202,7 @@
                     <li id="tabProfile" runat="server"><a href="#dvProfile"><asp:Label id="lblProfileTab" runat="server" resourcekey="lblProfileTab" /></a></li>
                     <li id="tabRoles" runat="server"><a href="#dvRoles"><asp:Label id="lblRolesTab" runat="server" resourcekey="lblRolesTab" /></a></li>
                     <li id="tabEmail" runat="server"><a href="#dvEmail"><asp:Label id="lblEmailTab" runat="server" resourcekey="lblEmailTab" /></a></li>
+                    <li id="tabMessage" runat="server"><a href="#dvMessage"><asp:Label id="lblMessageTab" runat="server" resourcekey="lblMessageTab" /></a></li>
                     <li id="tabSites" runat="server"><a href="#dvSites"><asp:Label id="lblSitesTab" runat="server" resourcekey="lblSitesTab" /></a></li>
                     <asp:PlaceHolder ID="plhAdditionalTabs" runat="server"></asp:PlaceHolder>
                 </ul>
@@ -409,9 +418,30 @@
                             <dnn:dnnEditor ID="txtNotifyUserBody" runat="server" Width="600px" Height="275px"></dnn:dnnEditor>
                         </div>
                             
-                            
                         <ul class="dnnActions">
                             <li><asp:Button ID="btnNotifyUser" runat="server" Visible="true" CssClass="dnnPrimaryAction" /></li>
+                        </ul>
+
+                    </asp:Panel>
+                </div>
+                               
+                <div id="dvMessage" class="dnnClear">
+                    <asp:Panel ID="pnlMessageTab" runat="server">
+                    
+                        <p class="connect_note"><asp:Literal ID="lblMessageNote" runat="server"></asp:Literal></p>
+
+                        <div style="padding-bottom:10px;">
+                            <asp:Label ID="lblMessageSubject" runat="server" resourcekey="lblMessageSubject"></asp:Label><br />
+                            <asp:TextBox ID="txtMessageSubject" runat="server" Width="600px"></asp:TextBox>
+                        </div> 
+                                                    
+                        <div style="padding-top:20px;padding-bottom:20px;">
+                            <asp:Label ID="lblMessageBody" runat="server" resourcekey="lblMessageBody"></asp:Label><br />
+                            <asp:TextBox ID="txtMessageBody" runat="server" Width="600px" TextMode="MultiLine" Rows="5"></asp:TextBox>
+                        </div>
+                            
+                        <ul class="dnnActions">
+                            <li><asp:Button ID="btnSendMessage" runat="server" Visible="true" resourcekey="btnSendMessage" CssClass="dnnPrimaryAction" /></li>
                         </ul>
 
                     </asp:Panel>
@@ -458,6 +488,40 @@
                      
 </div>
 
+<div class="ConnectSendEmails dnnDialog dnnClear" style="display:none" title='<%= Localization.GetString("lblSendEmailsTitle", LocalResourceFile)%>'>
+    <p><%= Localization.GetString("lblEmailNotes", LocalResourceFile)%></p>
+
+    <div style="padding-bottom:10px;">
+        <dnn:dnnTextBox ID="txtEmailSubjectAll" runat="server" Width="600px" Height="25px"></dnn:dnnTextBox>
+    </div> 
+                                                    
+    <div style="padding-top:20px;padding-bottom:20px;">
+        <dnn:dnnEditor ID="txtEmailBodyAll" runat="server" Width="600px" Height="275px"></dnn:dnnEditor>
+    </div>
+                            
+    <ul class="dnnActions">
+        <li><asp:Button ID="btnSendEmails" runat="server" resourcekey="btnSendEmails" CssClass="dnnPrimaryAction" /></li>
+    </ul>
+</div>
+
+<div class="ConnectSendMessages dnnDialog dnnClear" style="display:none" title='<%= Localization.GetString("lblSendMessagesTitle", LocalResourceFile)%>'>
+    <p><%= Localization.GetString("lblMessageNotes", LocalResourceFile)%></p>
+
+    <div style="padding-bottom:10px;">
+        <asp:Label ID="Label1" runat="server" resourcekey="lblMessageSubject"></asp:Label><br />
+        <asp:TextBox ID="txtMessageSubjectAll" runat="server" Width="600px"></asp:TextBox>
+    </div> 
+                                                    
+    <div style="padding-top:20px;padding-bottom:20px;">
+        <asp:Label ID="Label2" runat="server" resourcekey="lblMessageBody"></asp:Label><br />
+        <asp:TextBox ID="txtMessageBodyAll" runat="server" Width="600px" TextMode="MultiLine" Rows="5"></asp:TextBox>
+    </div>
+                            
+    <ul class="dnnActions">
+        <li><asp:Button ID="btnSendMessages" runat="server" resourcekey="btnSendMessages" CssClass="dnnPrimaryAction" /></li>
+    </ul>
+</div>
+
 <div class="ConnectRoleMembershipApproval dnnDialog dnnClear" title='<%= Localization.GetString("lblRoleApprovalTitle", LocalResourceFile)%>'>
     <p><%= Localization.GetString("lblRoleApprovalNote", LocalResourceFile)%></p>
 </div>
@@ -485,7 +549,6 @@
     var lblCancelNotificationText = '<%= Localization.GetString("lblCancelNotificationText", LocalResourceFile) %>';
     var lblDeleteYes = '<%= Localization.GetString("lblDeleteYes", LocalResourceFile)%>';
     var lblDeleteCancel = '<%= Localization.GetString("lblDeleteCancel", LocalResourceFile) %>';
-
 
     $(".ConnectRoleMembershipApproval").dialog({
         autoOpen: false,
@@ -726,7 +789,15 @@
                 window.location.href = url;
             });
 
+            $('.cmdEmailUsers').click(function () {
+                $(".ConnectSendEmails").dialog({ modal: true, dialogClass: 'dnnFormPopup', width: 650});
+                $(".ConnectSendEmails").parent().appendTo(jQuery("form:first"));
+            });  
 
+            $('.cmdMessageUsers').click(function () {
+                $(".ConnectSendMessages").dialog({ modal: true, dialogClass: 'dnnFormPopup', width: 650});
+                $(".ConnectSendMessages").parent().appendTo(jQuery("form:first"));
+            });        
         }
 
         $(document).ready(function () {
