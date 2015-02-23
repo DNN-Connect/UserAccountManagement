@@ -6,11 +6,27 @@
 </p>
 <hr/>
 <div class="License">
+
 	<h3>Release Notes</h3>
+	<p class="Owner">
+		<b>Version 01.03.00</b>
+	</p>
+	<p>Major Release</p>
 	
+	<ul>
+		<li>New: Add Messages to current view</li>
+		<li>New: Add Message to current user</li>
+		<li>New: New Checkboxlist control for profile properties</li>
+		<li>Fix: Deleted users not shown correctly</li>
+		<li>Fix: Module settings not saving correctly</li>
+		<li>New: Allow for showing last login date in grid</li>
+	</ul>
+	<p><a href="https://github.com/DNN-Connect/UserAccountManagement/issues?q=milestone%3A01.03.00+is%3Aclosed">Full change log</a></p>
+
 	<p class="Owner">
 		<b>Version 01.02.02</b>
 	</p>
+
 	<p>Minor Release</p>	
 	<ul>
 		<li>Moved license from BSD to GPLv2</li>
