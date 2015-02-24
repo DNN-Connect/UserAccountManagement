@@ -50,7 +50,8 @@ AS
 				{databaseOwner}[{objectQualifier}Users] U 
 				INNER JOIN ProfileProperties PP ON U.UserID = PP._uid 
 				PIVOT (MAX(PropertyValue) FOR PP.PropertyName IN ( [Unit], [Street], [City], [Region], [Country], [PostalCode], [Telephone], [Cell], [TimeZone], [PreferredLocale], [PreferredTimeZone], [Photo])) X 
-				INNER JOIN {databaseOwner}[aspnet_Membership] AM ON am.Email = X.Email 
+				INNER JOIN {databaseOwner}[aspnet_Users] AU ON AU.UserName = X.Username
+				INNER JOIN {databaseOwner}[aspnet_Membership] AM ON am.UserId = AU.UserId 
 				LEFT JOIN {databaseOwner}[{objectQualifier}UserPortals] UP 
 					ON CASE WHEN X.IsSuperuser = 1 THEN 0 ELSE X.UserId END = UP.UserId
 
@@ -61,7 +62,7 @@ CREATE PROCEDURE {databaseOwner}[{objectQualifier}Connect_Accounts_GetUsers]
 	@RoleId int,
 	@PortalId int
 AS
-Select 
+SELECT DISTINCT
 	* 
 FROM
 	{objectQualifier}vw_Connect_Users
@@ -71,7 +72,7 @@ WHERE
 		OR
 		(IsSuperUser = 1 and @RoleId = -1) 
 		or
-		((@RoleId > -1) and ([UserID] in(Select [UserId] from {databaseOwner}[{objectQualifier}UserRoles] where [RoleID] = @RoleId)))
+		((@RoleId > -1) and ([UserID] in(Select [UserId] from {databaseOwner}[{objectQualifier}UserRoles] where [RoleID] = @RoleId)) and IsSuperUser = 0)
 	)
 GO
 
@@ -81,7 +82,7 @@ CREATE PROCEDURE {databaseOwner}[{objectQualifier}Connect_Accounts_SearchUsers]
 	@SearchText nvarchar(256),
 	@SearchCols nvarchar(256)	
 AS
-Select DISTINCT
+SELECT DISTINCT
 	U.*
 FROM
 	{databaseOwner}[{objectQualifier}UserProfile] UP
@@ -113,7 +114,7 @@ AND
 		OR
 		(IsSuperUser = 1 and @RoleId = -1) 
 		or
-		((@RoleId > -1) and (U.[UserID] in(Select [UserId] from {databaseOwner}[{objectQualifier}UserRoles] where [RoleID] = @RoleId)))
+		((@RoleId > -1) and (U.[UserID] in(Select [UserId] from {databaseOwner}[{objectQualifier}UserRoles] where [RoleID] = @RoleId)) and IsSuperUser = 0)
 	)
 GO
 

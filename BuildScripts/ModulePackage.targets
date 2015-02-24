@@ -45,7 +45,7 @@
       <InstallInclude Include="**\*.js" />
       <InstallInclude Include="**\*.txt"  Exclude="**\obj\**;**\_ReSharper*\**;" />
       <InstallInclude Include="**\images\*.*" />
-      <InstallInclude Include="**\Resources\*.*" />
+      <InstallInclude Include="**\fonts\*.*" />
       <InstallInclude Include="**\config\*.*" />
     </ItemGroup>
 
@@ -63,7 +63,7 @@
       <SourceInclude Include="**\*.txt" Exclude="**\obj\**;**\_ReSharper*\**;" />
       <SourceInclude Include="**\images\*.*" />
       <SourceInclude Include="**\config\*.*" />
-      <SourceInclude Include="**\resources\*.*" />
+      <SourceInclude Include="**\fonts\*.*" />
       <SourceInclude Include="**\*.vb" />
       <SourceInclude Include="**\*.vb.designer" />
       <SourceInclude Include="**\*.vbproj" />

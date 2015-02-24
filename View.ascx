@@ -797,7 +797,43 @@
             $('.cmdMessageUsers').click(function () {
                 $(".ConnectSendMessages").dialog({ modal: true, dialogClass: 'dnnFormPopup', width: 650});
                 $(".ConnectSendMessages").parent().appendTo(jQuery("form:first"));
-            });        
+            });    
+            
+            var sf = $.ServicesFramework(<%= ModuleId %>);
+            var autosuggesturl = sf.getServiceRoot('ConnectAccounts') + 'Users/AutoSuggestResult';
+            $("#<%= txtSearch.ClientID%>").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        type: "POST",
+                        url: autosuggesturl,
+                        data: {
+                            PortalId: "<%= PortalId%>",
+                            TabId: "<%= TabId%>",
+                            SearchText: request.term,
+                            RoleId: "<%= PortalSettings.RegisteredRoleId%>",
+                            SearchCols: 'Firstname,Lastname'
+                        },
+                        success: function (data) {
+                            response($.map(data, function (item) {
+                                return {
+                                    label: item.EntryName,
+                                    value: item.EntryUrl
+                                }
+                            }));
+                        } 
+                    });
+                },
+                minLength: 2,
+                focus: function(event, ui) {
+                    // prevent autocomplete from updating the textbox
+                    event.preventDefault();
+                },
+                select: function (event, ui) {
+                    event.preventDefault();
+                    window.location.href = ui.item.value;
+                }
+            });
+
         }
 
         $(document).ready(function () {

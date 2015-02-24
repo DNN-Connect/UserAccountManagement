@@ -777,7 +777,7 @@ Namespace Connect.Modules.UserManagement.AccountManagement
         '''Auto-generated field.
         '''To modify move field declaration from designer file to code-behind file.
         '''</remarks>
-        Protected WithEvents lblPassword1 As Global.System.Web.UI.UserControl
+        Protected WithEvents lblPassword1 As Global.DotNetNuke.UI.UserControls.LabelControl
 
         '''<summary>
         '''txtPassword1 control.
@@ -795,7 +795,7 @@ Namespace Connect.Modules.UserManagement.AccountManagement
         '''Auto-generated field.
         '''To modify move field declaration from designer file to code-behind file.
         '''</remarks>
-        Protected WithEvents lblPassword2 As Global.System.Web.UI.UserControl
+        Protected WithEvents lblPassword2 As Global.DotNetNuke.UI.UserControls.LabelControl
 
         '''<summary>
         '''txtPassword2 control.
