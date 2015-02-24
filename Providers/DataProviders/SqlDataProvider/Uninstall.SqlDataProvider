@@ -51,6 +51,39 @@ if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{
     drop procedure {databaseOwner}[{objectQualifier}Connect_Users_DeleteReport]
 GO 
 
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}Connect_Accounts_GetUsers]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    drop procedure {databaseOwner}[{objectQualifier}Connect_Accounts_GetUsers]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}Connect_GetUserList]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    drop procedure {databaseOwner}[{objectQualifier}Connect_GetUserList]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}Connect_Accounts_SearchUsers]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    drop procedure {databaseOwner}[{objectQualifier}Connect_Accounts_SearchUsers]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}Connect_Accounts_GetRegisteredUsers]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    drop procedure {databaseOwner}[{objectQualifier}Connect_Accounts_GetRegisteredUsers]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}Connect_Accounts_GetRoleMembers]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    drop procedure {databaseOwner}[{objectQualifier}Connect_Accounts_GetRoleMembers]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}Connect_Accounts_SearchRegisteredUsers]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    drop procedure {databaseOwner}[{objectQualifier}Connect_Accounts_SearchRegisteredUsers]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}Connect_Accounts_SearchRoleMembers]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    drop procedure {databaseOwner}[{objectQualifier}Connect_Accounts_SearchRoleMembers]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}vw_Connect_Users]') and OBJECTPROPERTY(id, N'IsView') = 1)
+    drop View {databaseOwner}[{objectQualifier}vw_Connect_Users]
+GO
+
+
 ALTER TABLE {databaseOwner}{objectQualifier}Connect_UsersReports Drop Constraint PK_{objectQualifier}Connect_UsersReports
 GO
 

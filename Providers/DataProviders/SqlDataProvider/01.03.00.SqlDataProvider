@@ -4,12 +4,42 @@ if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{
     drop procedure {databaseOwner}[{objectQualifier}Connect_Accounts_GetUsers]
 GO
 
-if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}Connect_Accounts_GetRoleMembers]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
-    drop procedure {databaseOwner}[{objectQualifier}Connect_Accounts_GetRoleMembers]
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}Connect_GetUserList]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    drop procedure {databaseOwner}[{objectQualifier}Connect_GetUserList]
 GO
 
 if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}Connect_Accounts_SearchUsers]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
     drop procedure {databaseOwner}[{objectQualifier}Connect_Accounts_SearchUsers]
+GO
+
+-- delete fro re-creation
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}Connect_Accounts_GetRegisteredUsers]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    drop procedure {databaseOwner}[{objectQualifier}Connect_Accounts_GetRegisteredUsers]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}Connect_Accounts_GetRoleMembers]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    drop procedure {databaseOwner}[{objectQualifier}Connect_Accounts_GetRoleMembers]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}Connect_Accounts_SearchRegisteredUsers]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    drop procedure {databaseOwner}[{objectQualifier}Connect_Accounts_SearchRegisteredUsers]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}Connect_Accounts_SearchRoleMembers]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    drop procedure {databaseOwner}[{objectQualifier}Connect_Accounts_SearchRoleMembers]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}Connect_Accounts_GetDeletedAccounts]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    drop procedure {databaseOwner}[{objectQualifier}Connect_Accounts_GetDeletedAccounts]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}Connect_Accounts_GetSuperUsers]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    drop procedure {databaseOwner}[{objectQualifier}Connect_Accounts_GetSuperUsers]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}Connect_Accounts_SearchDeletedUsers]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    drop procedure {databaseOwner}[{objectQualifier}Connect_Accounts_SearchDeletedUsers]
 GO
 
 if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}vw_Connect_Users]') and OBJECTPROPERTY(id, N'IsView') = 1)
@@ -27,25 +57,29 @@ AS
 				INNER JOIN {databaseOwner}[{objectQualifier}ProfilePropertyDefinition] PPD ON UP.PropertyDefinitionID = PPD.PropertyDefinitionID 
 			) 
 	
-			SELECT 
+			SELECT DISTINCT
 				 X.UserId,
 				 X.Username,
 				 X.FirstName,
 				 X.LastName,
 				 X.DisplayName,
-			   UP.CreatedDate,
 				 X.Email,
 			    UP.PortalId,
+				 X.Street,
+				 X.Unit,
 				 X.PostalCode,
 				 X.City,
 				 X.Country,
+				 X.Region,
 				 X.Telephone,
+				 X.Cell,
+				 X.TimeZone,
+				 X.Photo,
 				 X.PreferredLocale,
-				AM.LastLoginDate,
+				 X.PreferredTimeZone,
 				 X.IsSuperUser,
 				UP.IsDeleted,
-				'' as Status,
-				'' as RoleId
+				AM.LastLoginDate
 			FROM 
 				{databaseOwner}[{objectQualifier}Users] U 
 				INNER JOIN ProfileProperties PP ON U.UserID = PP._uid 
@@ -58,37 +92,205 @@ AS
 GO
 
 
-CREATE PROCEDURE {databaseOwner}[{objectQualifier}Connect_Accounts_GetUsers]
+Create PROCEDURE {databaseOwner}[{objectQualifier}Connect_Accounts_GetRoleMembers]
 	@RoleId int,
 	@PortalId int
 AS
 SELECT DISTINCT
-	* 
+	U.UserId,
+	U.Username,
+	U.FirstName,
+	U.LastName,
+	U.DisplayName,
+	U.Email,
+	U.Street,
+	U.Unit,
+	U.PostalCode,
+	U.City,
+	U.Country,	
+	U.Region,	
+	U.Telephone,
+	U.Cell,
+	U.PreferredTimeZone,
+	U.TimeZone,
+	U.PreferredLocale,
+	U.IsDeleted,
+	U.IsSuperUser,
+	UR.Status as 'Status',
+	UR.RoleID as 'RoleId',
+	U.LastLoginDate,		
+	UR.CreatedOnDate as 'CreatedDate'	
 FROM
-	{objectQualifier}vw_Connect_Users
+	{databaseOwner}{objectQualifier}vw_Connect_Users U
+	Inner Join {databaseOwner}[{objectQualifier}UserRoles] UR on UR.UserId = U.UserID
 WHERE
-	(
-		(IsDeleted = 1 and @RoleId = -2) 
-		OR
-		(IsSuperUser = 1 and @RoleId = -1) 
-		or
-		((@RoleId > -1) and ([UserID] in(Select [UserId] from {databaseOwner}[{objectQualifier}UserRoles] where [RoleID] = @RoleId)) and IsSuperUser = 0)
-	)
+	UR.RoleID = @RoleId
+AND
+	U.IsDeleted = 0
+AND
+	U.IsSuperUser = 0
+AND
+	U.PortalId = @PortalId
+
 GO
 
-CREATE PROCEDURE {databaseOwner}[{objectQualifier}Connect_Accounts_SearchUsers]
+CREATE PROCEDURE {databaseOwner}[{objectQualifier}Connect_Accounts_GetSuperUsers]
+	@RoleId int
+AS
+SELECT DISTINCT
+	U.UserId,
+	U.Username,
+	U.FirstName,
+	U.LastName,
+	U.DisplayName,
+	U.Email,
+	U.Street,
+	U.Unit,
+	U.PostalCode,
+	U.City,
+	U.Country,	
+	U.Region,	
+	U.Telephone,
+	U.Cell,
+	U.PreferredTimeZone,
+	U.TimeZone,
+	U.PreferredLocale,
+	U.IsDeleted,
+	U.IsSuperUser,
+	UP.Authorised as 'Status',
+	(Select @RoleId) as 'RoleId',
+	U.LastLoginDate,		
+	UP.CreatedDate as 'CreatedDate'	
+FROM
+	{databaseOwner}{objectQualifier}vw_Connect_Users U
+	Inner Join {databaseOwner}[{objectQualifier}UserPortals] UP on U.UserId = UP.UserId
+WHERE
+	U.IsDeleted = 0
+AND
+	U.IsSuperUser = 1
+GO
+
+CREATE PROCEDURE {databaseOwner}[{objectQualifier}Connect_Accounts_GetDeletedAccounts]
+	@RoleId int,
+	@PortalId int
+AS
+SELECT DISTINCT
+	U.UserId,
+	U.Username,
+	U.FirstName,
+	U.LastName,
+	U.DisplayName,
+	U.Email,
+	U.Street,
+	U.Unit,
+	U.PostalCode,
+	U.City,
+	U.Country,	
+	U.Region,	
+	U.Telephone,
+	U.Cell,
+	U.PreferredTimeZone,
+	U.TimeZone,
+	U.PreferredLocale,
+	U.IsDeleted,
+	U.IsSuperUser,
+	UP.Authorised as 'Status',
+	(Select @RoleId) as 'RoleId',
+	U.LastLoginDate,		
+	UP.CreatedDate as 'CreatedDate'	
+FROM
+	{databaseOwner}{objectQualifier}vw_Connect_Users U
+	Inner Join {databaseOwner}[{objectQualifier}UserPortals] UP on U.UserId = UP.UserId
+WHERE
+	UP.PortalId = @PortalId
+AND
+	U.IsDeleted = 1
+AND
+	U.IsSuperUser = 0
+GO
+
+
+CREATE PROCEDURE {databaseOwner}[{objectQualifier}Connect_Accounts_GetRegisteredUsers]
+	@RoleId int,
+	@PortalId int
+AS
+SELECT DISTINCT
+	U.UserId,
+	U.Username,
+	U.FirstName,
+	U.LastName,
+	U.DisplayName,
+	U.Email,
+	U.Street,
+	U.Unit,
+	U.PostalCode,
+	U.City,
+	U.Country,	
+	U.Region,	
+	U.Telephone,
+	U.Cell,
+	U.PreferredTimeZone,
+	U.TimeZone,
+	U.PreferredLocale,
+	U.IsDeleted,
+	U.IsSuperUser,
+	UP.Authorised as 'Status',
+	(Select @RoleId) as 'RoleId',
+	U.LastLoginDate,		
+	UP.CreatedDate as 'CreatedDate'	
+FROM
+	{databaseOwner}{objectQualifier}vw_Connect_Users U
+	Inner Join {databaseOwner}[{objectQualifier}UserPortals] UP on U.UserId = UP.UserId
+WHERE
+	UP.PortalId = @PortalId
+AND
+	U.IsDeleted = 0
+AND
+	U.IsSuperUser = 0
+GO
+
+CREATE PROCEDURE {databaseOwner}[{objectQualifier}Connect_Accounts_SearchDeletedUsers]
 	@RoleId int,
 	@PortalId int,
 	@SearchText nvarchar(256),
-	@SearchCols nvarchar(256)	
+	@SearchCols nvarchar(256)
 AS
 SELECT DISTINCT
-	U.*
+	U.UserId,
+	U.Username,
+	U.FirstName,
+	U.LastName,
+	U.DisplayName,
+	U.Email,
+	U.Street,
+	U.Unit,
+	U.PostalCode,
+	U.City,
+	U.Country,	
+	U.Region,	
+	U.Telephone,
+	U.Cell,
+	U.PreferredTimeZone,
+	U.TimeZone,
+	U.PreferredLocale,
+	U.IsDeleted,
+	U.IsSuperUser,
+	'' as 'Status',
+	(Select @RoleId) as 'RoleId',
+	U.LastLoginDate,		
+	USRP.CreatedDate as 'CreatedDate'		
 FROM
 	{databaseOwner}[{objectQualifier}UserProfile] UP
 	INNER JOIN {databaseOwner}[{objectQualifier}ProfilePropertyDefinition] PD on PD.[PropertyDefinitionID] = UP.[PropertyDefinitionID]
-	Inner JOIN {databaseOwner}[{objectQualifier}vw_Connect_Users] U on U.UserId = UP.UserID
+	INNER JOIN {databaseOwner}[{objectQualifier}vw_Connect_Users] U on U.UserId = UP.UserID
+	Inner Join {databaseOwner}[{objectQualifier}UserPortals] USRP on U.UserId = USRP.UserId
 WHERE
+	U.PortalId = @PortalId
+AND
+	U.IsDeleted = 1
+AND
+	U.IsSuperUser = 0
+AND
 	(
 		(UP.[PropertyValue] Like '%' + @SearchText + '%' And (PatIndex('%' + PD.[PropertyName] + '%' , @SearchCols) > 0))
 
@@ -106,17 +308,132 @@ WHERE
 		)
 
 	)
+
+GO
+
+CREATE PROCEDURE {databaseOwner}[{objectQualifier}Connect_Accounts_SearchRoleMembers]
+	@RoleId int,
+	@SearchText nvarchar(256),
+	@SearchCols nvarchar(256)
+AS
+SELECT DISTINCT
+	U.UserId,
+	U.Username,
+	U.FirstName,
+	U.LastName,
+	U.DisplayName,
+	U.Email,
+	U.Street,
+	U.Unit,
+	U.PostalCode,
+	U.City,
+	U.Country,	
+	U.Region,	
+	U.Telephone,
+	U.Cell,
+	U.PreferredTimeZone,
+	U.TimeZone,
+	U.PreferredLocale,
+	U.IsDeleted,
+	U.IsSuperUser,
+	UR.Status as 'Status',
+	UR.RoleID as 'RoleId',
+	U.LastLoginDate,		
+	UR.CreatedOnDate as 'CreatedDate'		
+FROM
+	{databaseOwner}[{objectQualifier}UserProfile] UP
+	INNER JOIN {databaseOwner}[{objectQualifier}ProfilePropertyDefinition] PD on PD.[PropertyDefinitionID] = UP.[PropertyDefinitionID]
+	INNER JOIN {databaseOwner}[{objectQualifier}vw_Connect_Users] U on U.UserId = UP.UserID
+	Inner Join {databaseOwner}[{objectQualifier}UserRoles] UR on UR.UserId = U.UserID
+WHERE
+	UR.RoleID = @RoleId
 AND
-	U.PortalId = @PortalId
+	U.IsDeleted = 0
+AND
+	U.IsSuperUser = 0
 AND
 	(
-		(IsDeleted = 1 and @RoleId = -2) 
+		(UP.[PropertyValue] Like '%' + @SearchText + '%' And (PatIndex('%' + PD.[PropertyName] + '%' , @SearchCols) > 0))
+
 		OR
-		(IsSuperUser = 1 and @RoleId = -1) 
-		or
-		((@RoleId > -1) and (U.[UserID] in(Select [UserId] from {databaseOwner}[{objectQualifier}UserRoles] where [RoleID] = @RoleId)) and IsSuperUser = 0)
+		(
+				(U.[FirstName] Like '%' + @SearchText + '%' and PATINDEX('%FirstName%', @SearchCols) > 0)
+				OR
+				(U.[LastName] Like '%' + @SearchText + '%' and PATINDEX('%LastName%', @SearchCols) > 0)		
+				OR
+				(U.[DisplayName] Like '%' + @SearchText + '%' and PATINDEX('%DisplayName%', @SearchCols) > 0)				
+				OR
+				(U.[Email] Like '%' + @SearchText + '%' and PATINDEX('%Email%', @SearchCols) > 0)						
+				OR
+				(U.[Username] Like '%' + @SearchText + '%' and PATINDEX('%Username%', @SearchCols) > 0)	
+		)
+
 	)
+
 GO
+
+CREATE PROCEDURE {databaseOwner}[{objectQualifier}Connect_Accounts_SearchRegisteredUsers]
+	@RoleId int,
+	@PortalId int,
+	@SearchText nvarchar(256),
+	@SearchCols nvarchar(256)
+AS
+SELECT DISTINCT
+	U.UserId,
+	U.Username,
+	U.FirstName,
+	U.LastName,
+	U.DisplayName,
+	U.Email,
+	U.Street,
+	U.Unit,
+	U.PostalCode,
+	U.City,
+	U.Country,	
+	U.Region,	
+	U.Telephone,
+	U.Cell,
+	U.PreferredTimeZone,
+	U.TimeZone,
+	U.PreferredLocale,
+	U.IsDeleted,
+	U.IsSuperUser,
+	USRP.Authorised as 'Status',
+	(Select @RoleId) as 'RoleId',
+	U.LastLoginDate,		
+	USRP.CreatedDate as 'CreatedDate'	
+FROM
+	{databaseOwner}[{objectQualifier}UserProfile] UP
+	INNER JOIN {databaseOwner}[{objectQualifier}ProfilePropertyDefinition] PD on PD.[PropertyDefinitionID] = UP.[PropertyDefinitionID]
+	INNER JOIN {databaseOwner}[{objectQualifier}vw_Connect_Users] U on U.UserId = UP.UserID
+	INNER JOIN {databaseOwner}[{objectQualifier}UserPortals] USRP on U.UserId = USRP.UserId
+WHERE
+	USRP.PortalId = @PortalId
+AND
+	U.IsDeleted = 0
+AND
+	U.IsSuperUser = 0
+AND
+	(
+		(UP.[PropertyValue] Like '%' + @SearchText + '%' And (PatIndex('%' + PD.[PropertyName] + '%' , @SearchCols) > 0))
+
+		OR
+		(
+				(U.[FirstName] Like '%' + @SearchText + '%' and PATINDEX('%FirstName%', @SearchCols) > 0)
+				OR
+				(U.[LastName] Like '%' + @SearchText + '%' and PATINDEX('%LastName%', @SearchCols) > 0)		
+				OR
+				(U.[DisplayName] Like '%' + @SearchText + '%' and PATINDEX('%DisplayName%', @SearchCols) > 0)				
+				OR
+				(U.[Email] Like '%' + @SearchText + '%' and PATINDEX('%Email%', @SearchCols) > 0)						
+				OR
+				(U.[Username] Like '%' + @SearchText + '%' and PATINDEX('%Username%', @SearchCols) > 0)	
+		)
+
+	)
+
+GO
+
 
 if not exists (select 1 from {databaseOwner}[{objectQualifier}Lists] where ListName='DataType' and Value='CheckboxList')
 begin

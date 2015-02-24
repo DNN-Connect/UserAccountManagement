@@ -132,9 +132,6 @@
   <data name="Country.Header" xml:space="preserve">
     <value>Country</value>
   </data>
-  <data name="Created.Header" xml:space="preserve">
-    <value>Member since</value>
-  </data>
   <data name="DeleteAccount.Text" xml:space="preserve">
     <value>Delete</value>
   </data>
@@ -474,8 +471,8 @@
   <data name="ClickToSet.Text" xml:space="preserve">
     <value>Click here to set your password</value>
   </data>
-  <data name="CreatedOnDate.Header" xml:space="preserve">
-    <value>In Role since</value>
+  <data name="CreatedDate.Header" xml:space="preserve">
+    <value>Member since</value>
   </data>
   <data name="lblCancelNotificationText.Text" xml:space="preserve">
     <value>Cancel</value>
@@ -629,5 +626,11 @@
   </data>
   <data name="LastLoginDate.Text" xml:space="preserve">
     <value>Last login date</value>
+  </data>
+  <data name="lblInRoleSince.Text" xml:space="preserve">
+    <value>In Role Since</value>
+  </data>
+  <data name="cmdHardDeleteSelected.Text" xml:space="preserve">
+    <value>Remove selected users</value>
   </data>
 </root>

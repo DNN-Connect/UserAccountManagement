@@ -23,16 +23,26 @@ Namespace Connect.Modules.UserManagement.AccountManagement.Services
             Try
 
                 Dim resultList As New List(Of AutoSuggestResponseDTO)
-                Dim dr As IDataReader = DotNetNuke.Data.DataProvider.Instance().ExecuteReader("Connect_Accounts_SearchUsers", postData.RoleId, postData.PortalId, postData.SearchText, postData.SearchCols)
-                While dr.Read
-                    Dim result As New AutoSuggestResponseDTO
-                    result.EntryIcon = ""
-                    result.EntryName = Convert.ToString(dr("Displayname"))
-                    result.EntryUrl = NavigateURL(postData.TabId, "", "uid=" & Convert.ToString(dr("UserId")), "RoleId=" & postData.RoleId.ToString, "Action=edit")
-                    resultList.Add(result)
-                End While
-                dr.Close()
-                dr.Dispose()
+                Dim dr As IDataReader = Nothing
+                If postData.RoleId = PortalSettings.RegisteredRoleId Then
+                    dr = DotNetNuke.Data.DataProvider.Instance().ExecuteReader("Connect_Accounts_SearchRegisteredUsers", postData.RoleId, postData.PortalId, postData.SearchText, postData.SearchCols)
+                ElseIf postData.RoleId = -2 Then
+                    dr = DotNetNuke.Data.DataProvider.Instance().ExecuteReader("Connect_Accounts_SearchDeletedUsers", postData.RoleId, postData.PortalId, postData.SearchText, postData.SearchCols)
+                Else
+                    dr = DotNetNuke.Data.DataProvider.Instance().ExecuteReader("Connect_Accounts_SearchRoleMembers", postData.RoleId, postData.SearchText, postData.SearchCols)
+                End If
+
+                If Not dr Is Nothing Then
+                    While dr.Read
+                        Dim result As New AutoSuggestResponseDTO
+                        result.EntryIcon = ""
+                        result.EntryName = Convert.ToString(dr("Displayname"))
+                        result.EntryUrl = NavigateURL(postData.TabId, "", "uid=" & Convert.ToString(dr("UserId")), "RoleId=" & postData.RoleId.ToString, "Action=edit")
+                        resultList.Add(result)
+                    End While
+                    dr.Close()
+                    dr.Dispose()
+                End If
 
                 httpResponseMessage = Me.Request.CreateResponse(Of List(Of AutoSuggestResponseDTO))(HttpStatusCode.OK, resultList)
 

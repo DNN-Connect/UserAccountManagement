@@ -86,8 +86,7 @@
                                 <dnn:dnnGridBoundColumn DataField="Telephone" HeaderText="Telephone" Visible="false"></dnn:dnnGridBoundColumn>
                                 <dnn:dnnGridBoundColumn DataField="Cell" HeaderText="Cell" Visible="false"></dnn:dnnGridBoundColumn>
                                 <dnn:dnnGridBoundColumn DataField="PreferredLocale" HeaderText="PreferredLocale" Visible="false"></dnn:dnnGridBoundColumn>
-                                <dnn:dnnGridBoundColumn DataField="CreatedOnDate" HeaderText="CreatedOnDate" DataFormatString="{0:dd.MM.yyyy}" Visible="false"></dnn:dnnGridBoundColumn>                         
-                                <dnn:dnnGridBoundColumn DataField="CreatedDate" HeaderText="Created" DataFormatString="{0:dd.MM.yyyy}" Visible="false"></dnn:dnnGridBoundColumn>                         
+                                <dnn:dnnGridBoundColumn DataField="CreatedDate" HeaderText="CreatedDate" DataFormatString="{0:dd.MM.yyyy}" Visible="false" HeaderStyle-CssClass="CreatedDate"></dnn:dnnGridBoundColumn>                         
                                 <dnn:dnnGridBoundColumn DataField="LastLoginDate" HeaderText="LastLoginDate" DataFormatString="{0:dd.MM.yyyy}" Visible="false"></dnn:dnnGridBoundColumn>                         
                                 <dnn:dnnGridTemplateColumn HeaderText="Status" DataField="Status">
                                     <ItemTemplate>
@@ -132,6 +131,7 @@
                     <ul class="dnnActions dnnClear">
                         <li><asp:LinkButton ID="cmdBulkDelete" runat="server" CssClass="dnnSecondaryAction"></asp:LinkButton></li>
                         <li><asp:LinkButton ID="cmdBulkRemove" runat="server" CssClass="dnnSecondaryAction"></asp:LinkButton></li>
+                        <li><asp:LinkButton ID="cmdHardDeleteSelected" runat="server" CssClass="dnnSecondaryAction"></asp:LinkButton></li>
                     </ul> 
 
                 </div>
@@ -833,6 +833,12 @@
                     window.location.href = ui.item.value;
                 }
             });
+
+            var selectedRoleId = <%= Request.QueryString("RoleId")%>;
+            if(selectedRoleId != <%= PortalSettings.RegisteredRoleId%> && selectedRoleId != -2){
+                var lblInRoleSince = '<%= Localization.GetString("lblInRoleSince", LocalResourceFile)%>';
+                $('th.CreatedDate > a').html(lblInRoleSince);
+            }
 
         }
 

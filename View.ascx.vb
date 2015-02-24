@@ -98,10 +98,15 @@ Namespace Connect.Modules.UserManagement.AccountManagement
 
         Protected Sub Page_PreRender(sender As Object, e As System.EventArgs) Handles Me.PreRender
 
+
+
         End Sub
 
         Private Sub grdUsers_PreRender(sender As Object, e As EventArgs) Handles grdUsers.PreRender
             grdUsers.ClientSettings.Scrolling.AllowScroll = False
+
+
+
         End Sub
 
         Private Sub btnReport_Click(sender As Object, e As EventArgs) Handles btnReport.Click
@@ -175,6 +180,7 @@ Namespace Connect.Modules.UserManagement.AccountManagement
                     If Not btnSetStatus Is Nothing Then
                         btnSetStatus.Visible = False
                         If intRole <> -2 AndAlso intRole <> PortalSettings.RegisteredRoleId Then
+                            'If intRole <> -2 Then
                             btnSetStatus.Visible = True
                         End If
                     End If
@@ -510,7 +516,11 @@ Namespace Connect.Modules.UserManagement.AccountManagement
                 Exit Sub
             End If
 
-            UserController.RestoreUser(oUser)
+            Try
+                UserController.RestoreUser(oUser)
+            Catch
+            End Try
+
             ClearCache()
 
             Response.Redirect(NavigateURL(TabId, "", "uid=" & oUser.UserID.ToString, "RoleId=" & TargetRoleId.ToString, "Action=Edit"), False)
@@ -643,10 +653,43 @@ Namespace Connect.Modules.UserManagement.AccountManagement
 
         End Sub
 
+        Private Sub cmdHardDeleteSelected_Click(sender As Object, e As EventArgs) Handles cmdHardDeleteSelected.Click
+
+            For i As Integer = 0 To grdUsers.SelectedItems.Count - 1
+
+                Dim intUser As Integer = Null.NullInteger
+
+                Try
+
+                    Dim selecteditem As GridItem = grdUsers.SelectedItems(i)
+                    Dim selectedvalue As String = selecteditem.OwnerTableView.DataKeyValues(selecteditem.ItemIndex)("UserId")
+                    intUser = Convert.ToInt32(selectedvalue)
+
+                    If intUser <> Null.NullInteger Then
+
+                        Dim oUser As UserInfo = UserController.GetUserById(PortalId, intUser)
+
+                        UserController.RemoveUser(oUser)
+
+                    End If
+
+                Catch
+                End Try
+
+            Next
+
+            ClearCache()
+            grdUsers.Rebind()
+
+
+        End Sub
+
         Private Sub cmdBulkRemove_Click(sender As Object, e As EventArgs) Handles cmdBulkRemove.Click
 
             Dim rc As New RoleController
             Dim intRole As Integer = Convert.ToInt32(Request.QueryString("RoleId"))
+
+
             Dim role As RoleInfo = rc.GetRole(intRole, PortalId)
 
             For i As Integer = 0 To grdUsers.SelectedItems.Count - 1
@@ -673,6 +716,7 @@ Namespace Connect.Modules.UserManagement.AccountManagement
                 End Try
 
             Next
+
 
             ClearCache()
             grdUsers.Rebind()
@@ -1156,7 +1200,11 @@ Namespace Connect.Modules.UserManagement.AccountManagement
                             Exit Sub
                         End If
 
-                        UserController.RestoreUser(oUser)
+                        Try
+                            UserController.RestoreUser(oUser)
+                        Catch
+                        End Try
+
                         ClearCache()
 
                         Response.Redirect(NavigateURL(TabId, "", "uid=" & oUser.UserID.ToString, "RoleId=" & PortalSettings.RegisteredRoleId.ToString, "Action=Edit"), False)
@@ -1959,6 +2007,7 @@ Namespace Connect.Modules.UserManagement.AccountManagement
 
             cmdBulkDelete.Text = Localization.GetString("cmdBulkDelete", LocalResourceFile)
             cmdBulkRemove.Text = Localization.GetString("cmdBulkRemove", LocalResourceFile)
+            cmdHardDeleteSelected.Text = Localization.GetString("cmdHardDeleteSelected", LocalResourceFile)
 
             Dim reports As New List(Of UserReportInfo)
             Dim ctrlReports As New UserReportsController
@@ -2221,16 +2270,12 @@ Namespace Connect.Modules.UserManagement.AccountManagement
                     Dim strCol As String = strGridCol
                     Try
                         grdUsers.Columns.FindByDataField(strCol).Visible = True
-
-                        If strCol.ToLower = "dreateddate" Then
-                            grdUsers.Columns.FindByDataField(strCol).Visible = (ctlRoles.SelectedNode.Value = PortalSettings.RegisteredRoleId.ToString)
-                        End If
-
                     Catch
                     End Try
 
                 End If
             Next
+
 
             If drpPageSize.SelectedItem.Value = "All" Then
                 grdUsers.AllowPaging = False
@@ -2240,10 +2285,33 @@ Namespace Connect.Modules.UserManagement.AccountManagement
             End If
 
             If Not ctlRoles.SelectedNode Is Nothing Then
-                grdUsers.Columns.FindByDataField("CreatedDate").Visible = (ctlRoles.SelectedNode.Value = PortalSettings.RegisteredRoleId.ToString)
-                grdUsers.Columns.FindByDataField("CreatedOnDate").Visible = (ctlRoles.SelectedNode.Value <> PortalSettings.RegisteredRoleId.ToString)
-                grdUsers.Columns.FindByDataField("Status").Visible = (ctlRoles.SelectedNode.Value <> PortalSettings.RegisteredRoleId.ToString)
+
+                Try
+                    If ctlRoles.SelectedNode.Value = "-2" Or ctlRoles.SelectedNode.Value = PortalSettings.RegisteredRoleId.ToString Then
+                        grdUsers.Columns.FindByDataField("Status").Visible = False
+                    End If
+                Catch
+                End Try
+
             End If
+
+            '    Dim colInRoleSince As GridColumn = grdUsers.Columns.FindByUniqueName("col_InRoleSince")
+            '    If Not colInRoleSince Is Nothing Then
+            '        colInRoleSince.Visible = True
+            '        If ctlRoles.SelectedNode.Value = PortalSettings.RegisteredRoleId.ToString OrElse ctlRoles.SelectedNode.Value = "-2" Then
+            '            colInRoleSince.Visible = False
+            '        End If
+            '    End If
+
+            '    Dim colUserSince As GridColumn = grdUsers.Columns.FindByUniqueName("col_UserSince")
+            '    If Not colUserSince Is Nothing Then
+            '        colUserSince.Visible = False
+            '        If ctlRoles.SelectedNode.Value = PortalSettings.RegisteredRoleId.ToString Then
+            '            colUserSince.Visible = True
+            '        End If
+            '    End If
+
+            'End If
 
         End Sub
 
@@ -2433,14 +2501,22 @@ Namespace Connect.Modules.UserManagement.AccountManagement
 
             If Convert.ToInt32(SelectedRole) = PortalSettings.RegisteredRoleId Then
                 cmdBulkRemove.Visible = False
+                cmdHardDeleteSelected.Visible = False
             End If
             If Convert.ToInt32(SelectedRole) = -2 Then
                 cmdBulkRemove.Visible = False
                 cmdBulkDelete.Visible = False
+                cmdHardDeleteSelected.Visible = True
             End If
+
             If Not AllowDelete Then
-                cmdBulkDelete.Visible = False
+                cmdBulkDelete.Visible = False                
             End If
+
+            If Not AllowHardDelete Then
+                cmdHardDeleteSelected.Visible = False
+            End If
+
         End Sub
 
         Private Sub BindUsers()
@@ -2497,7 +2573,8 @@ Namespace Connect.Modules.UserManagement.AccountManagement
                 End If
             End If
 
-            cmdBulkRemove.Visible = (intRole = -2)
+            cmdBulkRemove.Visible = (intRole <> -2 AndAlso intRole <> PortalSettings.RegisteredRoleId)
+            cmdHardDeleteSelected.Visible = (intRole = -2 AndAlso AllowHardDelete)
 
             If txtSearch.Text.Length > 0 Then
                 strSearch = txtSearch.Text
@@ -2517,7 +2594,15 @@ Namespace Connect.Modules.UserManagement.AccountManagement
                 Dim dt As New DataTable
 
                 If String.IsNullOrEmpty(strSearch) Then
-                    dr = DotNetNuke.Data.DataProvider.Instance().ExecuteReader("Connect_Accounts_GetUsers", intRole, PortalId)
+                    If intRole = PortalSettings.RegisteredRoleId Then
+                        dr = DotNetNuke.Data.DataProvider.Instance().ExecuteReader("Connect_Accounts_GetRegisteredUsers", intRole, PortalId)
+                    ElseIf intRole = -1 Then
+                        dr = DotNetNuke.Data.DataProvider.Instance().ExecuteReader("Connect_Accounts_GetSuperUsers", intRole)
+                    ElseIf intRole = -2 Then
+                        dr = DotNetNuke.Data.DataProvider.Instance().ExecuteReader("Connect_Accounts_GetDeletedAccounts", intRole, PortalId)
+                    Else
+                        dr = DotNetNuke.Data.DataProvider.Instance().ExecuteReader("Connect_Accounts_GetRoleMembers", intRole, PortalId)
+                    End If
                     dt.Load(dr)
                 Else
 
@@ -2528,7 +2613,13 @@ Namespace Connect.Modules.UserManagement.AccountManagement
                         End If
                     Next
 
-                    dr = DotNetNuke.Data.DataProvider.Instance().ExecuteReader("Connect_Accounts_SearchUsers", intRole, PortalId, strSearch, strCols)
+                    If intRole = PortalSettings.RegisteredRoleId Then
+                        dr = DotNetNuke.Data.DataProvider.Instance().ExecuteReader("Connect_Accounts_SearchRegisteredUsers", intRole, PortalId, strSearch, strCols)
+                    ElseIf intRole = -2 Then
+                        dr = DotNetNuke.Data.DataProvider.Instance().ExecuteReader("Connect_Accounts_SearchDeletedUsers", intRole, PortalId, strSearch, strCols)
+                    Else
+                        dr = DotNetNuke.Data.DataProvider.Instance().ExecuteReader("Connect_Accounts_SearchRoleMembers", intRole, strSearch, strCols)
+                    End If
                     dt.Load(dr)
 
                 End If
@@ -2571,7 +2662,7 @@ Namespace Connect.Modules.UserManagement.AccountManagement
                     DataCache.RemoveCache("DNNWERK_USERLIST_ROLEID" & role.RoleID.ToString)
                 End If
             Next
-
+            DataCache.RemoveCache("DNNWERK_USERLIST_ROLEID-2")
         End Sub
 
         Private Sub BindReports()
@@ -2641,6 +2732,7 @@ Namespace Connect.Modules.UserManagement.AccountManagement
         End Property
 
 #End Region
+
 
     End Class
 

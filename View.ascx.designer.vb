@@ -267,6 +267,15 @@ Namespace Connect.Modules.UserManagement.AccountManagement
         Protected WithEvents cmdBulkRemove As Global.System.Web.UI.WebControls.LinkButton
 
         '''<summary>
+        '''cmdHardDeleteSelected control.
+        '''</summary>
+        '''<remarks>
+        '''Auto-generated field.
+        '''To modify move field declaration from designer file to code-behind file.
+        '''</remarks>
+        Protected WithEvents cmdHardDeleteSelected As Global.System.Web.UI.WebControls.LinkButton
+
+        '''<summary>
         '''lblSearchOptions control.
         '''</summary>
         '''<remarks>
