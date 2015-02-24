@@ -92,21 +92,21 @@ Namespace Connect.Modules.UserManagement.AccountManagement
                     End If
                 End If
 
+                If Not Request.QueryString("Action") Is Nothing Then
+                    If Request.QueryString("Action") = "Messaging" Then
+                        pnlGrid.Visible = False
+                        pnlCreate.Visible = False
+                        pnlUser.Visible = False
+                        pnlRoleMessaging.Visible = True
+                    End If
+                End If
+
             End If
-
-        End Sub
-
-        Protected Sub Page_PreRender(sender As Object, e As System.EventArgs) Handles Me.PreRender
-
-
 
         End Sub
 
         Private Sub grdUsers_PreRender(sender As Object, e As EventArgs) Handles grdUsers.PreRender
             grdUsers.ClientSettings.Scrolling.AllowScroll = False
-
-
-
         End Sub
 
         Private Sub btnReport_Click(sender As Object, e As EventArgs) Handles btnReport.Click
@@ -123,14 +123,6 @@ Namespace Connect.Modules.UserManagement.AccountManagement
             pnlGrid.Visible = True
             pnlUser.Visible = False
             pnlCreate.Visible = False
-
-        End Sub
-
-        Protected Sub btnUpdate_Click(ByVal sender As Object, ByVal e As System.EventArgs)
-
-        End Sub
-
-        Protected Sub btnDelete_Click(ByVal sender As Object, ByVal e As System.EventArgs)
 
         End Sub
 
@@ -206,6 +198,11 @@ Namespace Connect.Modules.UserManagement.AccountManagement
                 End Try
 
             End If
+        End Sub
+
+        Private Sub btnCancelMessaging_Click(sender As Object, e As EventArgs) Handles btnCancelMessaging.Click
+            Response.Redirect(NavigateURL(TabId, "", "RoleId=" & Request.QueryString("RoleId")), False)
+            Context.ApplicationInstance.CompleteRequest()
         End Sub
 
         Private Sub btnApplyOptions_Click(sender As Object, e As EventArgs) Handles btnApplyOptions.Click
@@ -738,38 +735,7 @@ Namespace Connect.Modules.UserManagement.AccountManagement
 
         End Sub
 
-        Private Sub btnSendEmails_Click(sender As Object, e As EventArgs) Handles btnSendEmails.Click
-
-            Dim users As New List(Of UserInfo)
-            Dim ds As DataSet = Nothing
-            Dim strError As String = ""
-
-            If ctlRoles.SelectedNode Is Nothing Then
-                _IsReportResult = True
-            End If
-
-            If _IsReportResult Then
-                ds = GetReportResult(strError)
-            Else
-                ds = GetUserList()
-            End If
-
-            Dim resultMsg As String = ""
-            For Each row As DataRow In ds.Tables(0).Rows
-                Dim oUser As UserInfo = UserController.GetUserById(PortalId, row("UserId"))
-                Try
-                    DotNetNuke.Services.Mail.Mail.SendEmail(PortalSettings.Email, User.Email, txtEmailSubjectAll.Text, txtEmailBodyAll.Content)
-                Catch ex As Exception
-                    resultMsg += ex.Message + "<br/>"
-                End Try
-            Next
-            If resultMsg = "" Then
-                DotNetNuke.UI.Skins.Skin.AddModuleMessage(Me, Localization.GetString("MessagesSent", LocalResourceFile), Skins.Controls.ModuleMessage.ModuleMessageType.GreenSuccess)
-            Else
-                DotNetNuke.UI.Skins.Skin.AddModuleMessage(Me, String.Format(Localization.GetString("MessagesNotSent", LocalResourceFile), resultMsg), Skins.Controls.ModuleMessage.ModuleMessageType.RedError)
-            End If
-
-        End Sub
+        
 
         ''' <summary>
         ''' Sends an email to a users
@@ -777,16 +743,19 @@ Namespace Connect.Modules.UserManagement.AccountManagement
         ''' <param name="user"></param>
         ''' <remarks></remarks>
         Private Sub SendEmail(user As UserInfo, subject As String, body As String)
+
             Dim strPassword As String = Localization.GetString("HiddenPassword", LocalResourceFile)
             If MembershipProvider.Instance.PasswordRetrievalEnabled Then
-                strPassword = MembershipProvider.Instance().GetPassword(User, "")
+                strPassword = MembershipProvider.Instance().GetPassword(user, "")
             End If
 
             Dim strBody As String = body.Replace(Localization.GetString("HiddenPassword", LocalResourceFile), strPassword)
             Dim strSubject As String = subject
 
-            DotNetNuke.Services.Mail.Mail.SendEmail(PortalSettings.Email, User.Email, strSubject, strBody)
+            DotNetNuke.Services.Mail.Mail.SendEmail(PortalSettings.Email, user.Email, strSubject, strBody)
+
         End Sub
+
 #End Region
 
 #Region "Account Message Event handlers"
@@ -806,7 +775,7 @@ Namespace Connect.Modules.UserManagement.AccountManagement
 
         Private Sub btnSendMessages_Click(sender As Object, e As EventArgs) Handles btnSendMessages.Click
 
-            Dim users As New List(Of UserInfo)
+            Dim recipients As New List(Of UserInfo)
             Dim ds As DataSet = Nothing
             Dim strError As String = ""
 
@@ -819,19 +788,43 @@ Namespace Connect.Modules.UserManagement.AccountManagement
             Else
                 ds = GetUserList()
             End If
-            For Each row As DataRow In ds.Tables(0).Rows
-                Dim oUser As UserInfo = UserController.GetUserById(PortalId, row("UserId"))
-                If Not oUser Is Nothing Then
-                    users.Add(oUser)
-                End If
-            Next
 
-            Try
-                SendMessage(users, txtMessageSubjectAll.Text, txtMessageBodyAll.Text)
-                DotNetNuke.UI.Skins.Skin.AddModuleMessage(Me, Localization.GetString("InternalMessageSent", LocalResourceFile), Skins.Controls.ModuleMessage.ModuleMessageType.GreenSuccess)
-            Catch ex As Exception
-                DotNetNuke.UI.Skins.Skin.AddModuleMessage(Me, String.Format(Localization.GetString("InternalMessageNotSent", LocalResourceFile), ex.Message), Skins.Controls.ModuleMessage.ModuleMessageType.RedError)
-            End Try
+            Select Case rblMessagingMode.SelectedValue
+                Case "e"
+
+                    Dim resultMsg As String = ""
+
+                    For Each row As DataRow In ds.Tables(0).Rows
+                        Try
+                            DotNetNuke.Services.Mail.Mail.SendEmail(PortalSettings.Email, row("EMail"), txtEmailSubjectAll.Text, txtEmailBodyAll.Content)
+                        Catch ex As Exception
+                            resultMsg += ex.Message + "<br/>"
+                        End Try
+                    Next
+
+                    If resultMsg = "" Then
+                        DotNetNuke.UI.Skins.Skin.AddModuleMessage(Me, Localization.GetString("MessagesSent", LocalResourceFile), Skins.Controls.ModuleMessage.ModuleMessageType.GreenSuccess)
+                    Else
+                        DotNetNuke.UI.Skins.Skin.AddModuleMessage(Me, String.Format(Localization.GetString("MessagesNotSent", LocalResourceFile), resultMsg), Skins.Controls.ModuleMessage.ModuleMessageType.RedError)
+                    End If
+
+                Case "m"
+
+                    For Each row As DataRow In ds.Tables(0).Rows
+                        Dim oUser As UserInfo = UserController.GetUserById(PortalId, row("UserId"))
+                        If Not oUser Is Nothing Then
+                            recipients.Add(oUser)
+                        End If
+                    Next
+
+                    Try
+                        SendMessage(recipients, txtEmailSubjectAll.Text, txtEmailBodyAll.Content)
+                        DotNetNuke.UI.Skins.Skin.AddModuleMessage(Me, Localization.GetString("InternalMessageSent", LocalResourceFile), Skins.Controls.ModuleMessage.ModuleMessageType.GreenSuccess)
+                    Catch ex As Exception
+                        DotNetNuke.UI.Skins.Skin.AddModuleMessage(Me, String.Format(Localization.GetString("InternalMessageNotSent", LocalResourceFile), ex.Message), Skins.Controls.ModuleMessage.ModuleMessageType.RedError)
+                    End Try
+
+            End Select
 
         End Sub
 
@@ -2005,6 +1998,15 @@ Namespace Connect.Modules.UserManagement.AccountManagement
 
         Private Sub InitializeForm()
 
+            rblMessagingMode.Items(0).Text = Localization.GetString("MessagingModeMessage", LocalResourceFile)
+            rblMessagingMode.Items(1).Text = Localization.GetString("MessagingModeEmail", LocalResourceFile)
+            lblMessagingNotes.Text = Localization.GetString("lblMessagingNotes", LocalResourceFile)
+            btnMessageUsers.Text = Localization.GetString("btnMessageUsers", LocalResourceFile)
+            lblMessagesSubject.Text = Localization.GetString("lblMessagesSubject", LocalResourceFile)
+            lblMessagesBody.Text = Localization.GetString("lblMessagesBody", LocalResourceFile)
+            btnSendMessages.Text = Localization.GetString("btnSendMessages", LocalResourceFile)
+            btnCancelMessaging.Text = Localization.GetString("btnCancelMessaging", LocalResourceFile)
+
             cmdBulkDelete.Text = Localization.GetString("cmdBulkDelete", LocalResourceFile)
             cmdBulkRemove.Text = Localization.GetString("cmdBulkRemove", LocalResourceFile)
             cmdHardDeleteSelected.Text = Localization.GetString("cmdHardDeleteSelected", LocalResourceFile)
@@ -2144,8 +2146,8 @@ Namespace Connect.Modules.UserManagement.AccountManagement
             pnlCreateAccount.Visible = AllowCreate
             pnlExport.Visible = AllowExport
 
-            pnlEmailUsers.Visible = AllowEmailUsers
             pnlMessageUsers.Visible = AllowMessageUsers
+            btnMessageUsers.NavigateUrl = NavigateURL(TabId, "", "Action=Messaging", "RoleId=" & Request.QueryString("RoleId"))
 
             btnNotifyPassword.Text = Localization.GetString("btnNotifyPassword", LocalResourceFile)
             btnNotifyPasswordSkip.Text = Localization.GetString("btnNotifyPasswordSkip", LocalResourceFile)

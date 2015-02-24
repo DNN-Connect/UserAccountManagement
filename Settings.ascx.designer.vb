@@ -21,7 +21,7 @@ Namespace Connect.Modules.UserManagement.AccountManagement
         '''Auto-generated field.
         '''To modify move field declaration from designer file to code-behind file.
         '''</remarks>
-        Protected WithEvents lblAllowReports As Global.System.Web.UI.UserControl
+        Protected WithEvents lblAllowReports As Global.DotNetNuke.UI.UserControls.LabelControl
 
         '''<summary>
         '''chkAllowReports control.
@@ -39,7 +39,7 @@ Namespace Connect.Modules.UserManagement.AccountManagement
         '''Auto-generated field.
         '''To modify move field declaration from designer file to code-behind file.
         '''</remarks>
-        Protected WithEvents lblAllowCreate As Global.System.Web.UI.UserControl
+        Protected WithEvents lblAllowCreate As Global.DotNetNuke.UI.UserControls.LabelControl
 
         '''<summary>
         '''chkAllowCreate control.
@@ -57,7 +57,7 @@ Namespace Connect.Modules.UserManagement.AccountManagement
         '''Auto-generated field.
         '''To modify move field declaration from designer file to code-behind file.
         '''</remarks>
-        Protected WithEvents lblAllowDelete As Global.System.Web.UI.UserControl
+        Protected WithEvents lblAllowDelete As Global.DotNetNuke.UI.UserControls.LabelControl
 
         '''<summary>
         '''chkAllowDelete control.
@@ -75,7 +75,7 @@ Namespace Connect.Modules.UserManagement.AccountManagement
         '''Auto-generated field.
         '''To modify move field declaration from designer file to code-behind file.
         '''</remarks>
-        Protected WithEvents lblAllowHardDelete As Global.System.Web.UI.UserControl
+        Protected WithEvents lblAllowHardDelete As Global.DotNetNuke.UI.UserControls.LabelControl
 
         '''<summary>
         '''chkAllowHardDelete control.
@@ -93,7 +93,7 @@ Namespace Connect.Modules.UserManagement.AccountManagement
         '''Auto-generated field.
         '''To modify move field declaration from designer file to code-behind file.
         '''</remarks>
-        Protected WithEvents lblAllowExport As Global.System.Web.UI.UserControl
+        Protected WithEvents lblAllowExport As Global.DotNetNuke.UI.UserControls.LabelControl
 
         '''<summary>
         '''chkAllowExport control.
@@ -105,31 +105,13 @@ Namespace Connect.Modules.UserManagement.AccountManagement
         Protected WithEvents chkAllowExport As Global.System.Web.UI.WebControls.CheckBox
 
         '''<summary>
-        '''lblAllowSendEmails control.
-        '''</summary>
-        '''<remarks>
-        '''Auto-generated field.
-        '''To modify move field declaration from designer file to code-behind file.
-        '''</remarks>
-        Protected WithEvents lblAllowSendEmails As Global.System.Web.UI.UserControl
-
-        '''<summary>
-        '''chkAllowSendEmails control.
-        '''</summary>
-        '''<remarks>
-        '''Auto-generated field.
-        '''To modify move field declaration from designer file to code-behind file.
-        '''</remarks>
-        Protected WithEvents chkAllowSendEmails As Global.System.Web.UI.WebControls.CheckBox
-
-        '''<summary>
         '''lblAllowSendMessages control.
         '''</summary>
         '''<remarks>
         '''Auto-generated field.
         '''To modify move field declaration from designer file to code-behind file.
         '''</remarks>
-        Protected WithEvents lblAllowSendMessages As Global.System.Web.UI.UserControl
+        Protected WithEvents lblAllowSendMessages As Global.DotNetNuke.UI.UserControls.LabelControl
 
         '''<summary>
         '''chkAllowSendMessages control.
@@ -147,7 +129,7 @@ Namespace Connect.Modules.UserManagement.AccountManagement
         '''Auto-generated field.
         '''To modify move field declaration from designer file to code-behind file.
         '''</remarks>
-        Protected WithEvents lblAllowedRoles As Global.System.Web.UI.UserControl
+        Protected WithEvents lblAllowedRoles As Global.DotNetNuke.UI.UserControls.LabelControl
 
         '''<summary>
         '''chkAllowedRoles control.
@@ -165,7 +147,7 @@ Namespace Connect.Modules.UserManagement.AccountManagement
         '''Auto-generated field.
         '''To modify move field declaration from designer file to code-behind file.
         '''</remarks>
-        Protected WithEvents lblPreselectRole As Global.System.Web.UI.UserControl
+        Protected WithEvents lblPreselectRole As Global.DotNetNuke.UI.UserControls.LabelControl
 
         '''<summary>
         '''drpPreselectRole control.
@@ -183,7 +165,7 @@ Namespace Connect.Modules.UserManagement.AccountManagement
         '''Auto-generated field.
         '''To modify move field declaration from designer file to code-behind file.
         '''</remarks>
-        Protected WithEvents lblUserTabs As Global.System.Web.UI.UserControl
+        Protected WithEvents lblUserTabs As Global.DotNetNuke.UI.UserControls.LabelControl
 
         '''<summary>
         '''chkUserTabs control.
@@ -201,7 +183,7 @@ Namespace Connect.Modules.UserManagement.AccountManagement
         '''Auto-generated field.
         '''To modify move field declaration from designer file to code-behind file.
         '''</remarks>
-        Protected WithEvents lblAdditionalControls As Global.System.Web.UI.UserControl
+        Protected WithEvents lblAdditionalControls As Global.DotNetNuke.UI.UserControls.LabelControl
 
         '''<summary>
         '''txtAditionalControls control.

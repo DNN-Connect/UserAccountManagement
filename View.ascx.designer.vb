@@ -159,15 +159,6 @@ Namespace Connect.Modules.UserManagement.AccountManagement
         Protected WithEvents btnExport As Global.System.Web.UI.WebControls.LinkButton
 
         '''<summary>
-        '''pnlEmailUsers control.
-        '''</summary>
-        '''<remarks>
-        '''Auto-generated field.
-        '''To modify move field declaration from designer file to code-behind file.
-        '''</remarks>
-        Protected WithEvents pnlEmailUsers As Global.System.Web.UI.WebControls.Panel
-
-        '''<summary>
         '''pnlMessageUsers control.
         '''</summary>
         '''<remarks>
@@ -175,6 +166,15 @@ Namespace Connect.Modules.UserManagement.AccountManagement
         '''To modify move field declaration from designer file to code-behind file.
         '''</remarks>
         Protected WithEvents pnlMessageUsers As Global.System.Web.UI.WebControls.Panel
+
+        '''<summary>
+        '''btnMessageUsers control.
+        '''</summary>
+        '''<remarks>
+        '''Auto-generated field.
+        '''To modify move field declaration from designer file to code-behind file.
+        '''</remarks>
+        Protected WithEvents btnMessageUsers As Global.System.Web.UI.WebControls.HyperLink
 
         '''<summary>
         '''pnlReport control.
@@ -1221,6 +1221,42 @@ Namespace Connect.Modules.UserManagement.AccountManagement
         Protected WithEvents cmdCancelCreate As Global.System.Web.UI.WebControls.LinkButton
 
         '''<summary>
+        '''pnlRoleMessaging control.
+        '''</summary>
+        '''<remarks>
+        '''Auto-generated field.
+        '''To modify move field declaration from designer file to code-behind file.
+        '''</remarks>
+        Protected WithEvents pnlRoleMessaging As Global.System.Web.UI.WebControls.Panel
+
+        '''<summary>
+        '''lblMessagingNotes control.
+        '''</summary>
+        '''<remarks>
+        '''Auto-generated field.
+        '''To modify move field declaration from designer file to code-behind file.
+        '''</remarks>
+        Protected WithEvents lblMessagingNotes As Global.System.Web.UI.WebControls.Literal
+
+        '''<summary>
+        '''rblMessagingMode control.
+        '''</summary>
+        '''<remarks>
+        '''Auto-generated field.
+        '''To modify move field declaration from designer file to code-behind file.
+        '''</remarks>
+        Protected WithEvents rblMessagingMode As Global.System.Web.UI.WebControls.RadioButtonList
+
+        '''<summary>
+        '''lblMessagesSubject control.
+        '''</summary>
+        '''<remarks>
+        '''Auto-generated field.
+        '''To modify move field declaration from designer file to code-behind file.
+        '''</remarks>
+        Protected WithEvents lblMessagesSubject As Global.System.Web.UI.WebControls.Label
+
+        '''<summary>
         '''txtEmailSubjectAll control.
         '''</summary>
         '''<remarks>
@@ -1228,6 +1264,15 @@ Namespace Connect.Modules.UserManagement.AccountManagement
         '''To modify move field declaration from designer file to code-behind file.
         '''</remarks>
         Protected WithEvents txtEmailSubjectAll As Global.DotNetNuke.Web.UI.WebControls.DnnTextBox
+
+        '''<summary>
+        '''lblMessagesBody control.
+        '''</summary>
+        '''<remarks>
+        '''Auto-generated field.
+        '''To modify move field declaration from designer file to code-behind file.
+        '''</remarks>
+        Protected WithEvents lblMessagesBody As Global.System.Web.UI.WebControls.Label
 
         '''<summary>
         '''txtEmailBodyAll control.
@@ -1239,51 +1284,6 @@ Namespace Connect.Modules.UserManagement.AccountManagement
         Protected WithEvents txtEmailBodyAll As Global.DotNetNuke.Web.UI.WebControls.DnnEditor
 
         '''<summary>
-        '''btnSendEmails control.
-        '''</summary>
-        '''<remarks>
-        '''Auto-generated field.
-        '''To modify move field declaration from designer file to code-behind file.
-        '''</remarks>
-        Protected WithEvents btnSendEmails As Global.System.Web.UI.WebControls.Button
-
-        '''<summary>
-        '''Label1 control.
-        '''</summary>
-        '''<remarks>
-        '''Auto-generated field.
-        '''To modify move field declaration from designer file to code-behind file.
-        '''</remarks>
-        Protected WithEvents Label1 As Global.System.Web.UI.WebControls.Label
-
-        '''<summary>
-        '''txtMessageSubjectAll control.
-        '''</summary>
-        '''<remarks>
-        '''Auto-generated field.
-        '''To modify move field declaration from designer file to code-behind file.
-        '''</remarks>
-        Protected WithEvents txtMessageSubjectAll As Global.System.Web.UI.WebControls.TextBox
-
-        '''<summary>
-        '''Label2 control.
-        '''</summary>
-        '''<remarks>
-        '''Auto-generated field.
-        '''To modify move field declaration from designer file to code-behind file.
-        '''</remarks>
-        Protected WithEvents Label2 As Global.System.Web.UI.WebControls.Label
-
-        '''<summary>
-        '''txtMessageBodyAll control.
-        '''</summary>
-        '''<remarks>
-        '''Auto-generated field.
-        '''To modify move field declaration from designer file to code-behind file.
-        '''</remarks>
-        Protected WithEvents txtMessageBodyAll As Global.System.Web.UI.WebControls.TextBox
-
-        '''<summary>
         '''btnSendMessages control.
         '''</summary>
         '''<remarks>
@@ -1291,5 +1291,14 @@ Namespace Connect.Modules.UserManagement.AccountManagement
         '''To modify move field declaration from designer file to code-behind file.
         '''</remarks>
         Protected WithEvents btnSendMessages As Global.System.Web.UI.WebControls.Button
+
+        '''<summary>
+        '''btnCancelMessaging control.
+        '''</summary>
+        '''<remarks>
+        '''Auto-generated field.
+        '''To modify move field declaration from designer file to code-behind file.
+        '''</remarks>
+        Protected WithEvents btnCancelMessaging As Global.System.Web.UI.WebControls.Button
     End Class
 End Namespace

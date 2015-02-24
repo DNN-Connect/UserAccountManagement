@@ -29,11 +29,6 @@
 </div>
 
 <div class="dnnFormItem">
-     <dnn:Label ID="lblAllowSendEmails" runat="server" resourcekey="lblAllowSendEmails"></dnn:Label>
-     <asp:CheckBox ID="chkAllowSendEmails" runat="server" />
-</div>
-
-<div class="dnnFormItem">
      <dnn:Label ID="lblAllowSendMessages" runat="server" resourcekey="lblAllowSendMessages"></dnn:Label>
      <asp:CheckBox ID="chkAllowSendMessages" runat="server" />
 </div>

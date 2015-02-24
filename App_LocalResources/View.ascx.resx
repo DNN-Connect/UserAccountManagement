@@ -597,9 +597,6 @@
   <data name="btnSendMessages.Text" xml:space="preserve">
     <value>Send Messages</value>
   </data>
-  <data name="lblMessageNotes.Text" xml:space="preserve">
-    <value>You may send an internal message to all the users in the current view</value>
-  </data>
   <data name="lblSendMessagesTitle.Text" xml:space="preserve">
     <value>Send Internal Message to Users</value>
   </data>
@@ -609,8 +606,8 @@
   <data name="InternalMessagesSent.Text" xml:space="preserve">
     <value>Messages sent sucessfully.</value>
   </data>
-  <data name="lblEmailNotes.Text" xml:space="preserve">
-    <value>You may send an e-mail directly to the account's e-mail address for the users in the current view</value>
+  <data name="lblMessagingNotes.Text" xml:space="preserve">
+    <value>Send a message to all users in the currently selected view</value>
   </data>
   <data name="lblSendEmailsTitle.Text" xml:space="preserve">
     <value>Send Emails to Users</value>
@@ -632,5 +629,20 @@
   </data>
   <data name="cmdHardDeleteSelected.Text" xml:space="preserve">
     <value>Remove selected users</value>
+  </data>
+  <data name="btnCancelMessaging.Text" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="lblMessagesBody.Text" xml:space="preserve">
+    <value>Body:</value>
+  </data>
+  <data name="lblMessagesSubject.Text" xml:space="preserve">
+    <value>Subject:</value>
+  </data>
+  <data name="MessagingModeEmail.Text" xml:space="preserve">
+    <value>E-Mail</value>
+  </data>
+  <data name="MessagingModeMessage.Text" xml:space="preserve">
+    <value>Internal Message</value>
   </data>
 </root>
