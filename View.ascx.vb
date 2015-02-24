@@ -2532,7 +2532,12 @@ Namespace Connect.Modules.UserManagement.AccountManagement
                     ds = New DataSet
                     Dim dt As New DataTable
 
-                    If intRole = PortalSettings.RegisteredRoleId Or intRole = -2 Then
+
+                    If String.IsNullOrEmpty(strSearch) Then
+                        dr = DotNetNuke.Data.DataProvider.Instance().ExecuteReader("Connect_Accounts_GetUsers", intRole, PortalId)
+                        dt.Load(dr)
+                    Else
+
                         Dim strCols As String = ""
                         For Each item As ListItem In chkSearchCols.Items
                             If item.Selected = True Then
@@ -2540,11 +2545,9 @@ Namespace Connect.Modules.UserManagement.AccountManagement
                             End If
                         Next
 
-                        dr = DotNetNuke.Data.DataProvider.Instance().ExecuteReader("Connect_Accounts_GetUsers", intRole, PortalId, DotNetNuke.Data.DataProvider.Instance().GetNull(strSearch), strCols, blnShowDeleted)
+                        dr = DotNetNuke.Data.DataProvider.Instance().ExecuteReader("Connect_Accounts_SearchUsers", intRole, PortalId, strSearch, strCols)
                         dt.Load(dr)
-                    Else
-                        dr = DotNetNuke.Data.DataProvider.Instance().ExecuteReader("Connect_Accounts_GetRoleMembers", intRole, PortalId)
-                        dt.Load(dr)
+
                     End If
 
                     ds.Tables.Add(dt)

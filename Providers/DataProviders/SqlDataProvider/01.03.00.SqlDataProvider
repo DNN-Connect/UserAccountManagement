@@ -8,49 +8,91 @@ if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{
     drop procedure {databaseOwner}[{objectQualifier}Connect_Accounts_GetRoleMembers]
 GO
 
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}Connect_Accounts_SearchUsers]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    drop procedure {databaseOwner}[{objectQualifier}Connect_Accounts_SearchUsers]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}vw_Connect_Users]') and OBJECTPROPERTY(id, N'IsView') = 1)
+    drop View {databaseOwner}[{objectQualifier}vw_Connect_Users]
+GO
+
+CREATE VIEW {databaseOwner}[{objectQualifier}vw_Connect_Users]
+AS
+
+		WITH ProfileProperties (_uid, PropertyName, PropertyValue) 
+		AS 
+			( 
+				SELECT up.UserID as _uid, PropertyName, up.PropertyValue 
+				FROM {databaseOwner}[{objectQualifier}UserProfile] UP
+				INNER JOIN {databaseOwner}[{objectQualifier}ProfilePropertyDefinition] PPD ON UP.PropertyDefinitionID = PPD.PropertyDefinitionID 
+			) 
+	
+			SELECT 
+				 X.UserId,
+				 X.Username,
+				 X.FirstName,
+				 X.LastName,
+				 X.DisplayName,
+			   UP.CreatedDate,
+				 X.Email,
+			    UP.PortalId,
+				 X.PostalCode,
+				 X.City,
+				 X.Country,
+				 X.Telephone,
+				 X.PreferredLocale,
+				AM.LastLoginDate,
+				 X.IsSuperUser,
+				UP.IsDeleted,
+				'' as Status,
+				'' as RoleId
+			FROM 
+				{databaseOwner}[{objectQualifier}Users] U 
+				INNER JOIN ProfileProperties PP ON U.UserID = PP._uid 
+				PIVOT (MAX(PropertyValue) FOR PP.PropertyName IN ( [Unit], [Street], [City], [Region], [Country], [PostalCode], [Telephone], [Cell], [TimeZone], [PreferredLocale], [PreferredTimeZone], [Photo])) X 
+				INNER JOIN {databaseOwner}[aspnet_Membership] AM ON am.Email = X.Email 
+				LEFT JOIN {databaseOwner}[{objectQualifier}UserPortals] UP 
+					ON CASE WHEN X.IsSuperuser = 1 THEN 0 ELSE X.UserId END = UP.UserId
+
+GO
+
+
 CREATE PROCEDURE {databaseOwner}[{objectQualifier}Connect_Accounts_GetUsers]
+	@RoleId int,
+	@PortalId int
+AS
+Select 
+	* 
+FROM
+	{objectQualifier}vw_Connect_Users
+WHERE
+	(
+		(IsDeleted = 1 and @RoleId = -2) 
+		OR
+		(IsSuperUser = 1 and @RoleId = -1) 
+		or
+		((@RoleId > -1) and ([UserID] in(Select [UserId] from {databaseOwner}[{objectQualifier}UserRoles] where [RoleID] = @RoleId)))
+	)
+GO
+
+CREATE PROCEDURE {databaseOwner}[{objectQualifier}Connect_Accounts_SearchUsers]
 	@RoleId int,
 	@PortalId int,
 	@SearchText nvarchar(256),
-	@SearchCols nvarchar(256),
-	@ShowDeleted bit
-as
-
-SELECT DISTINCT
-	U.[UserID],
-	U.[Username],
-	U.[FirstName],
-	U.[LastName],
-	U.[DisplayName],	
-	UP.[CreatedDate],
-	U.[Email],
-	UP.[PortalId],	
-	(Select Top 1 [PropertyValue] From {databaseOwner}[{objectQualifier}UserProfile] Inner Join {databaseOwner}[{objectQualifier}ProfilePropertyDefinition] On {databaseOwner}[{objectQualifier}ProfilePropertyDefinition].[PropertyDefinitionID] = {databaseOwner}[{objectQualifier}UserProfile].[PropertyDefinitionID] Where {databaseOwner}[{objectQualifier}ProfilePropertyDefinition].[PropertyName] = 'PostalCode' and {databaseOwner}[{objectQualifier}UserProfile].[UserID] = U.[UserID]) as [PostalCode],
-	(Select Top 1 [PropertyValue] From {databaseOwner}[{objectQualifier}UserProfile] Inner Join {databaseOwner}[{objectQualifier}ProfilePropertyDefinition] On {databaseOwner}[{objectQualifier}ProfilePropertyDefinition].[PropertyDefinitionID] = {databaseOwner}[{objectQualifier}UserProfile].[PropertyDefinitionID] Where {databaseOwner}[{objectQualifier}ProfilePropertyDefinition].[PropertyName] = 'City' and {databaseOwner}[{objectQualifier}UserProfile].[UserID] = U.[UserID]) as [City],
-	(Select Top 1 [PropertyValue] From {databaseOwner}[{objectQualifier}UserProfile] Inner Join {databaseOwner}[{objectQualifier}ProfilePropertyDefinition] On {databaseOwner}[{objectQualifier}ProfilePropertyDefinition].[PropertyDefinitionID] = {databaseOwner}[{objectQualifier}UserProfile].[PropertyDefinitionID] Where {databaseOwner}[{objectQualifier}ProfilePropertyDefinition].[PropertyName] = 'Country' and {databaseOwner}[{objectQualifier}UserProfile].[UserID] = U.[UserID]) as [Country],
-	(Select Top 1 [PropertyValue] From {databaseOwner}[{objectQualifier}UserProfile] Inner Join {databaseOwner}[{objectQualifier}ProfilePropertyDefinition] On {databaseOwner}[{objectQualifier}ProfilePropertyDefinition].[PropertyDefinitionID] = {databaseOwner}[{objectQualifier}UserProfile].[PropertyDefinitionID] Where {databaseOwner}[{objectQualifier}ProfilePropertyDefinition].[PropertyName] = 'Telephone' and {databaseOwner}[{objectQualifier}UserProfile].[UserID] = U.[UserID]) as [Telephone],
-	(Select Top 1 [PropertyValue] From {databaseOwner}[{objectQualifier}UserProfile] Inner Join {databaseOwner}[{objectQualifier}ProfilePropertyDefinition] On {databaseOwner}[{objectQualifier}ProfilePropertyDefinition].[PropertyDefinitionID] = {databaseOwner}[{objectQualifier}UserProfile].[PropertyDefinitionID] Where {databaseOwner}[{objectQualifier}ProfilePropertyDefinition].[PropertyName] = 'Cell' and {databaseOwner}[{objectQualifier}UserProfile].[UserID] = U.[UserID]) as [Cell],
-	(Select Top 1 [PropertyValue] From {databaseOwner}[{objectQualifier}UserProfile] Inner Join {databaseOwner}[{objectQualifier}ProfilePropertyDefinition] On {databaseOwner}[{objectQualifier}ProfilePropertyDefinition].[PropertyDefinitionID] = {databaseOwner}[{objectQualifier}UserProfile].[PropertyDefinitionID] Where {databaseOwner}[{objectQualifier}ProfilePropertyDefinition].[PropertyName] = 'PreferredLocale' and {databaseOwner}[{objectQualifier}UserProfile].[UserID] = U.[UserID]) as [PreferredLocale],
-	'' as Status,
-	'' as RoleId,
-	AM.[LastLoginDate]
-FROM 
-	{databaseOwner}[{objectQualifier}Users] U 
-	INNER JOIN {databaseOwner}[{objectQualifier}UserPortals] UP on UP.[UserId] = U.[UserID]
-	INNER JOIN {databaseOwner}[{objectQualifier}UserProfile] P on p.[UserID] = U.[UserID]
-	INNER JOIN {databaseOwner}[{objectQualifier}ProfilePropertyDefinition] PD on PD.[PropertyDefinitionID] = p.[PropertyDefinitionID]
-	INNER JOIN {databaseOwner}[aspnet_Users] AU on AU.[UserName] = U.[UserName]
-	INNER JOIN {databaseOwner}[aspnet_Membership] AM on AM.[UserId] = AU.[UserId]
-WHERE 
-	UP.[PortalId] = @PortalId
-AND
-	((UP.[IsDeleted] = 0 and @ShowDeleted = 0) or (UP.[IsDeleted] = 1 and @ShowDeleted = 1))
-AND
+	@SearchCols nvarchar(256)	
+AS
+Select DISTINCT
+	U.*
+FROM
+	{databaseOwner}[{objectQualifier}UserProfile] UP
+	INNER JOIN {databaseOwner}[{objectQualifier}ProfilePropertyDefinition] PD on PD.[PropertyDefinitionID] = UP.[PropertyDefinitionID]
+	Inner JOIN {databaseOwner}[{objectQualifier}vw_Connect_Users] U on U.UserId = UP.UserID
+WHERE
 	(
+		(UP.[PropertyValue] Like '%' + @SearchText + '%' And (PatIndex('%' + PD.[PropertyName] + '%' , @SearchCols) > 0))
+
+		OR
 		(
-			(P.[PropertyValue] Like '%' + @SearchText + '%' And (PatIndex('%' + Pd.[PropertyName] + ',%' , @SearchCols) > 0))
-			or
-			(
 				(U.[FirstName] Like '%' + @SearchText + '%' and PATINDEX('%FirstName%', @SearchCols) > 0)
 				OR
 				(U.[LastName] Like '%' + @SearchText + '%' and PATINDEX('%LastName%', @SearchCols) > 0)		
@@ -60,64 +102,19 @@ AND
 				(U.[Email] Like '%' + @SearchText + '%' and PATINDEX('%Email%', @SearchCols) > 0)						
 				OR
 				(U.[Username] Like '%' + @SearchText + '%' and PATINDEX('%Username%', @SearchCols) > 0)	
-			)
-		) 
-		or @SearchText is Null
+		)
+
 	)
+AND
+	U.PortalId = @PortalId
 AND
 	(
-		(U.[UserID] in(Select [UserId] from {databaseOwner}[{objectQualifier}UserRoles] where [RoleID] = @RoleId)) 
-	or 
-		(@ShowDeleted = 1)
+		(IsDeleted = 1 and @RoleId = -2) 
+		OR
+		(IsSuperUser = 1 and @RoleId = -1) 
+		or
+		((@RoleId > -1) and (U.[UserID] in(Select [UserId] from {databaseOwner}[{objectQualifier}UserRoles] where [RoleID] = @RoleId)))
 	)
-AND
-	U.[IsSuperUser] = 0
-Order By
-	UP.[CreatedDate] desc
-GO
-
-CREATE PROCEDURE {databaseOwner}[{objectQualifier}Connect_Accounts_GetRoleMembers]
-	@RoleId int,
-	@PortalId int
-as
-
-SELECT DISTINCT
-	U.[UserID],
-	U.[Username],
-	U.[FirstName],
-	U.[LastName],
-	U.[DisplayName],	
-	UP.[CreatedDate],
-	U.[Email],
-	UP.[PortalId],	
-	(Select Top 1 [PropertyValue] From {databaseOwner}[{objectQualifier}UserProfile] Inner Join {databaseOwner}[{objectQualifier}ProfilePropertyDefinition] On {databaseOwner}[{objectQualifier}ProfilePropertyDefinition].[PropertyDefinitionID] = {databaseOwner}[{objectQualifier}UserProfile].[PropertyDefinitionID] Where {databaseOwner}[{objectQualifier}ProfilePropertyDefinition].[PropertyName] = 'PostalCode' and {databaseOwner}[{objectQualifier}UserProfile].[UserID] = U.[UserID]) as [PostalCode],
-	(Select Top 1 [PropertyValue] From {databaseOwner}[{objectQualifier}UserProfile] Inner Join {databaseOwner}[{objectQualifier}ProfilePropertyDefinition] On {databaseOwner}[{objectQualifier}ProfilePropertyDefinition].[PropertyDefinitionID] = {databaseOwner}[{objectQualifier}UserProfile].[PropertyDefinitionID] Where {databaseOwner}[{objectQualifier}ProfilePropertyDefinition].[PropertyName] = 'City' and {databaseOwner}[{objectQualifier}UserProfile].[UserID] = U.[UserID]) as [City],
-	(Select Top 1 [PropertyValue] From {databaseOwner}[{objectQualifier}UserProfile] Inner Join {databaseOwner}[{objectQualifier}ProfilePropertyDefinition] On {databaseOwner}[{objectQualifier}ProfilePropertyDefinition].[PropertyDefinitionID] = {databaseOwner}[{objectQualifier}UserProfile].[PropertyDefinitionID] Where {databaseOwner}[{objectQualifier}ProfilePropertyDefinition].[PropertyName] = 'Country' and {databaseOwner}[{objectQualifier}UserProfile].[UserID] = U.[UserID]) as [Country],
-	(Select Top 1 [PropertyValue] From {databaseOwner}[{objectQualifier}UserProfile] Inner Join {databaseOwner}[{objectQualifier}ProfilePropertyDefinition] On {databaseOwner}[{objectQualifier}ProfilePropertyDefinition].[PropertyDefinitionID] = {databaseOwner}[{objectQualifier}UserProfile].[PropertyDefinitionID] Where {databaseOwner}[{objectQualifier}ProfilePropertyDefinition].[PropertyName] = 'Telephone' and {databaseOwner}[{objectQualifier}UserProfile].[UserID] = U.[UserID]) as [Telephone],
-	(Select Top 1 [PropertyValue] From {databaseOwner}[{objectQualifier}UserProfile] Inner Join {databaseOwner}[{objectQualifier}ProfilePropertyDefinition] On {databaseOwner}[{objectQualifier}ProfilePropertyDefinition].[PropertyDefinitionID] = {databaseOwner}[{objectQualifier}UserProfile].[PropertyDefinitionID] Where {databaseOwner}[{objectQualifier}ProfilePropertyDefinition].[PropertyName] = 'Cell' and {databaseOwner}[{objectQualifier}UserProfile].[UserID] = U.[UserID]) as [Cell],
-	(Select Top 1 [PropertyValue] From {databaseOwner}[{objectQualifier}UserProfile] Inner Join {databaseOwner}[{objectQualifier}ProfilePropertyDefinition] On {databaseOwner}[{objectQualifier}ProfilePropertyDefinition].[PropertyDefinitionID] = {databaseOwner}[{objectQualifier}UserProfile].[PropertyDefinitionID] Where {databaseOwner}[{objectQualifier}ProfilePropertyDefinition].[PropertyName] = 'PreferredLocale' and {databaseOwner}[{objectQualifier}UserProfile].[UserID] = U.[UserID]) as [PreferredLocale],
-	UR.[Status],
-	UR.[CreatedOnDate],
-	UR.[RoleId],
-	AM.[LastLoginDate]
-FROM 
-	{databaseOwner}[{objectQualifier}UserRoles] UR 
-	INNER JOIN {databaseOwner}[{objectQualifier}Users] U on U.[UserId] = UR.[UserId]
-	INNER JOIN {databaseOwner}[{objectQualifier}UserPortals] UP on UP.[UserId] = U.[UserID]
-	INNER JOIN {databaseOwner}[{objectQualifier}UserProfile] P on p.[UserID] = U.[UserID]
-	INNER JOIN {databaseOwner}[{objectQualifier}ProfilePropertyDefinition] PD on PD.[PropertyDefinitionID] = p.[PropertyDefinitionID]
-	INNER JOIN {databaseOwner}[aspnet_Users] AU on AU.[UserName] = U.[UserName]
-	INNER JOIN {databaseOwner}[aspnet_Membership] AM on AM.[UserId] = AU.[UserId]
-WHERE 
-	UP.[PortalId] = @PortalId
-AND
-	UP.[IsDeleted] = 0
-AND
-	UR.[RoleId] = @RoleId
-AND
-	U.[IsSuperUser] = 0
-Order By
-	UR.[CreatedOnDate] desc
 GO
 
 if not exists (select 1 from {databaseOwner}[{objectQualifier}Lists] where ListName='DataType' and Value='CheckboxList')
