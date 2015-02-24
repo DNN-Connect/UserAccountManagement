@@ -810,7 +810,7 @@
                             PortalId: "<%= PortalId%>",
                             TabId: "<%= TabId%>",
                             SearchText: request.term,
-                            RoleId: "<%= PortalSettings.RegisteredRoleId%>",
+                            RoleId: '<%= Request.QueryString("RoleId")%>',
                             SearchCols: 'Firstname,Lastname'
                         },
                         success: function (data) {

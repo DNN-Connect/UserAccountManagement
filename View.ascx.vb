@@ -2483,92 +2483,65 @@ Namespace Connect.Modules.UserManagement.AccountManagement
 
         Private Function GetUserList() As DataSet
 
-            Dim intRole As Integer = Null.NullInteger
+            Dim intRole As Integer = PortalSettings.RegisteredRoleId
             Dim strSearch As String = Null.NullString
-            Dim blnShowDeleted As Boolean = False
             Dim blnUseCache As Boolean = True
 
-            If txtSearch.Text.Length > 0 Then
-                strSearch = txtSearch.Text.Trim
-                intRole = PortalSettings.RegisteredRoleId
-                blnUseCache = False
 
-                If ctlRoles.SelectedNode.Value <> PortalSettings.RegisteredRoleId.ToString And Not ctlRoles.SelectedNode.Value = "-2" Then
-                    ctlRoles.UnselectAllNodes()
+            If Not ctlRoles.SelectedNode Is Nothing Then
+                If CType(ctlRoles.SelectedNode.Attributes("IsGroup"), Boolean) = False Then
                     Try
-                        ctlRoles.FindNodeByValue(PortalSettings.RegisteredRoleId.ToString).Selected = True
-                        'make sure bulk remove is not visible here!
-                        cmdBulkRemove.Visible = False
+                        intRole = Convert.ToInt32(ctlRoles.SelectedNode.Value)
                     Catch
                     End Try
                 End If
-            Else
-                If Not ctlRoles.SelectedNode Is Nothing Then
-                    If CType(ctlRoles.SelectedNode.Attributes("IsGroup"), Boolean) = False Then
-                        Try
-                            intRole = Convert.ToInt32(ctlRoles.SelectedNode.Value)
-                        Catch
-                        End Try
-                    End If
-                End If
             End If
 
-            If Not ctlRoles.SelectedNode Is Nothing Then
-                If ctlRoles.SelectedNode.Value = "-2" Then
-                    blnShowDeleted = True
-                    blnUseCache = False
-                End If
+            cmdBulkRemove.Visible = (intRole = -2)
+
+            If txtSearch.Text.Length > 0 Then
+                strSearch = txtSearch.Text
+                blnUseCache = False
             End If
 
             Dim ds As DataSet = Nothing
             Dim dr As IDataReader = Nothing
 
-            If intRole <> Null.NullInteger Then
-                If blnUseCache Then
-                    ds = GetCachedUserList(intRole)
-                End If
+            If blnUseCache Then
+                ds = GetCachedUserList(intRole)
+            End If
 
-                If ds Is Nothing Then
-                    ds = New DataSet
-                    Dim dt As New DataTable
+            If ds Is Nothing Then
 
+                ds = New DataSet
+                Dim dt As New DataTable
 
-                    If String.IsNullOrEmpty(strSearch) Then
-                        dr = DotNetNuke.Data.DataProvider.Instance().ExecuteReader("Connect_Accounts_GetUsers", intRole, PortalId)
-                        dt.Load(dr)
-                    Else
-
-                        Dim strCols As String = ""
-                        For Each item As ListItem In chkSearchCols.Items
-                            If item.Selected = True Then
-                                strCols += item.Value & ","
-                            End If
-                        Next
-
-                        dr = DotNetNuke.Data.DataProvider.Instance().ExecuteReader("Connect_Accounts_SearchUsers", intRole, PortalId, strSearch, strCols)
-                        dt.Load(dr)
-
-                    End If
-
-                    ds.Tables.Add(dt)
-
-                    If blnShowDeleted = False AndAlso strSearch = Null.NullString Then
-                        CacheUserList(intRole, ds)
-                    End If
-
-                End If
-
-                If blnShowDeleted = True Then
-                    If ds.Tables(0).Rows.Count > 0 Then
-                        btnHardDelete.Visible = AllowHardDelete
-                    Else
-                        btnHardDelete.Visible = False
-                    End If
+                If String.IsNullOrEmpty(strSearch) Then
+                    dr = DotNetNuke.Data.DataProvider.Instance().ExecuteReader("Connect_Accounts_GetUsers", intRole, PortalId)
+                    dt.Load(dr)
                 Else
-                    btnHardDelete.Visible = False
+
+                    Dim strCols As String = ""
+                    For Each item As ListItem In chkSearchCols.Items
+                        If item.Selected = True Then
+                            strCols += item.Value & ","
+                        End If
+                    Next
+
+                    dr = DotNetNuke.Data.DataProvider.Instance().ExecuteReader("Connect_Accounts_SearchUsers", intRole, PortalId, strSearch, strCols)
+                    dt.Load(dr)
+
+                End If
+
+                ds.Tables.Add(dt)
+
+                If String.IsNullOrEmpty(strSearch) Then
+                    CacheUserList(intRole, ds)
                 End If
 
             End If
+
+            btnHardDelete.Visible = ((intRole = -2) AndAlso (ds.Tables(0).Rows.Count > 0) AndAlso AllowHardDelete)
 
             Return ds
 
