@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Accounts.Manage", "AccountManagement\Accounts.Manage.vbproj", "{17DBC02A-B1B7-47CC-A8F5-EFC4EF47D9FA}"
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Account.Management", "AccountManagement\Account.Management.vbproj", "{17DBC02A-B1B7-47CC-A8F5-EFC4EF47D9FA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{53A802BE-1013-4D28-BC45-88AC4C1E1089}"
 	ProjectSection(SolutionItems) = preProject
@@ -11,9 +11,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{53A802BE
 		Build\MSBuild.Community.Tasks.Targets = Build\MSBuild.Community.Tasks.Targets
 	EndProjectSection
 EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Accounts.Forms", "AccountForms\Accounts.Forms.vbproj", "{8C863196-4C19-4117-9DE0-55DA8EBE7ADB}"
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Account.UserForms", "AccountForms\Account.UserForms.vbproj", "{8C863196-4C19-4117-9DE0-55DA8EBE7ADB}"
 EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Accounts.Library", "Library\Accounts.Library.vbproj", "{4F9B447A-D262-439A-822E-34849356966E}"
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Account.WebControls", "Account.WebControls\Account.WebControls.vbproj", "{30A20C18-EF3C-4F4D-AE5E-D73CA4C712E1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,10 @@ Global
 		{8C863196-4C19-4117-9DE0-55DA8EBE7ADB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8C863196-4C19-4117-9DE0-55DA8EBE7ADB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8C863196-4C19-4117-9DE0-55DA8EBE7ADB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4F9B447A-D262-439A-822E-34849356966E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4F9B447A-D262-439A-822E-34849356966E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4F9B447A-D262-439A-822E-34849356966E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4F9B447A-D262-439A-822E-34849356966E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30A20C18-EF3C-4F4D-AE5E-D73CA4C712E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30A20C18-EF3C-4F4D-AE5E-D73CA4C712E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30A20C18-EF3C-4F4D-AE5E-D73CA4C712E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30A20C18-EF3C-4F4D-AE5E-D73CA4C712E1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

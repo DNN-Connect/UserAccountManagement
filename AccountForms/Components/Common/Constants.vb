@@ -38,7 +38,7 @@ Imports System.Data
 Imports Microsoft.VisualBasic
 
 
-Namespace Connect.Libraries.UserManagement
+Namespace Common
 
     Public Class Constants
 

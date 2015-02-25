@@ -35,14 +35,10 @@
     <BinSourceInclude Include="$(MSBuildProjectDirectory)\bin\$(AssemblyName).dll" />
     <BinSourceInclude Include="$(MSBuildProjectDirectory)\bin\$(AssemblyName).pdb" />
     <BinSourceInclude Include="$(MSBuildProjectDirectory)\bin\$(AssemblyName).xml" />
-    <BinSourceInclude Include="$(MSBuildProjectDirectory)\..\Library\bin\Connect.Modules.AccountManagement.Library.dll" />
-    <BinSourceInclude Include="$(MSBuildProjectDirectory)\..\Library\bin\Connect.Modules.AccountManagement.Library.pdb" />
-    <BinSourceInclude Include="$(MSBuildProjectDirectory)\..\Library\bin\Connect.Modules.AccountManagement.Library.xml" />
   </ItemGroup>
   
   <ItemGroup>
     <BinInstallInclude Include="$(MSBuildProjectDirectory)\bin\$(AssemblyName).dll" />
-    <BinInstallInclude Include="$(MSBuildProjectDirectory)\..\Library\bin\Connect.Modules.AccountManagement.Library.dll" />
   </ItemGroup>
   
   <Target Name="CopyBin">

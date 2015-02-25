@@ -21,14 +21,21 @@
 '***********************************************************************************
 
 Imports DotNetNuke.Entities.Users
+Imports DotNetNuke.Security
+Imports DotNetNuke.Common.Utilities
 
-Namespace Connect.Libraries.UserManagement.Interfaces
+Namespace Common
 
-    Public Interface iAccountUpdate
+    Public Class Utilities
 
-        Sub FinalizeAccountUpdate(ByRef Server As System.Web.HttpServerUtility, ByRef Response As HttpResponse, ByRef Request As HttpRequest, ByVal objUser As UserInfo)
+        Public Shared Function GetVerificationCode(User As UserInfo) As String
 
-    End Interface
+            Dim ps As New PortalSecurity
+            Dim code As String = ps.EncryptString(User.PortalID + "-" + User.UserID, Config.GetDecryptionkey())
+            Return code.Replace("+", ".").Replace("/", "-").Replace("=", "_")
 
+        End Function
+
+    End Class
 End Namespace
 

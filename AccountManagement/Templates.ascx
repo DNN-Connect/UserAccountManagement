@@ -1,4 +1,4 @@
-<%@ Control Language="vb" AutoEventWireup="false" Inherits="Connect.Modules.Accounts.UserForms.Templates" Codebehind="Templates.ascx.vb" %>
+<%@ Control Language="vb" AutoEventWireup="false" Inherits="Connect.Modules.Accounts.AccountManagement.Templates" Codebehind="Templates.ascx.vb" %>
 <%@ Register TagPrefix="dnn" TagName="Label" Src="~/controls/LabelControl.ascx" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.UI.WebControls" Assembly="DotNetNuke.Web" %>
 

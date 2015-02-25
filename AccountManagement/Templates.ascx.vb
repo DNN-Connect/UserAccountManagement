@@ -29,12 +29,11 @@ Imports DotNetNuke.UI.Skins.Controls
 Imports DotNetNuke.Services.Localization
 Imports DotNetNuke.Common.Globals
 Imports DotNetNuke.Framework.JavaScriptLibraries
-Imports Connect.Modules.Accounts.UserForms.Common
 
 
 
 Partial Class Templates
-    Inherits ConnectUsersModuleBase
+    Inherits AccountManagementBase
 
 
     Private Sub Page_Init(sender As Object, e As System.EventArgs) Handles Me.Init
@@ -52,12 +51,7 @@ Partial Class Templates
             BindThemes()
             BindLocales()
 
-            If Settings.Contains("ModuleTheme") Then
-                Try
-                    SelectTheme(CType(Settings("ModuleTheme"), String))
-                Catch
-                End Try
-            End If
+            SelectTheme(Settings.ModuleTheme)
 
             BindSelectedTheme()
             VerifyPasswordSettings()
@@ -162,41 +156,33 @@ Partial Class Templates
 
         cmdDeleteSelected.Visible = (drpThemes.SelectedIndex <> 0)
 
-        If Settings.Contains("ModuleTheme") Then
-            Try
-                If CType(Settings("ModuleTheme"), String) = drpThemes.SelectedItem.Text Then
-                    chkUseTheme.Checked = True
-                    DotNetNuke.UI.Utilities.ClientAPI.AddButtonConfirm(cmdDeleteSelected, Localization.GetSafeJSString(Localization.GetString("lblThemeInUse", LocalResourceFile)))
-                Else
-                    chkUseTheme.Checked = False
-                    DotNetNuke.UI.Utilities.ClientAPI.AddButtonConfirm(cmdDeleteSelected, Localization.GetSafeJSString(Localization.GetString("lblConfirmDelete", LocalResourceFile)))
-                End If
-            Catch
-            End Try
+        If Settings.ModuleTheme = drpThemes.SelectedItem.Text Then
+            chkUseTheme.Checked = True
+            DotNetNuke.UI.Utilities.ClientAPI.AddButtonConfirm(cmdDeleteSelected, Localization.GetSafeJSString(Localization.GetString("lblThemeInUse", LocalResourceFile)))
         Else
-            DotNetNuke.UI.Utilities.ClientAPI.AddButtonConfirm(cmdDeleteSelected, Localization.GetSafeJSString(Localization.GetString("lblConfirmDelete", LocalResourceFile)))
             chkUseTheme.Checked = False
+            DotNetNuke.UI.Utilities.ClientAPI.AddButtonConfirm(cmdDeleteSelected, Localization.GetSafeJSString(Localization.GetString("lblConfirmDelete", LocalResourceFile)))
         End If
 
         Dim path As String = drpThemes.SelectedValue
 
         For Each file As String In System.IO.Directory.GetFiles(path)
 
-            If file.EndsWith(Constants.TemplateName_EmailToAdmin) Then
-                txtEmailAdminTemplate.Text = GetTemplate(drpThemes.SelectedItem.Value, Constants.TemplateName_EmailToAdmin, drpLocales.SelectedValue, True)
-            End If
-            If file.EndsWith(Constants.TemplateName_EmailToUser_Private) Then
-                txtEmailUserPrivate.Text = GetTemplate(drpThemes.SelectedItem.Value, Constants.TemplateName_EmailToUser_Private, drpLocales.SelectedValue, True)
-            End If
-            If file.EndsWith(Constants.TemplateName_EmailToUser_Verified) Then
-                txtEmailUserVerified.Text = GetTemplate(drpThemes.SelectedItem.Value, Constants.TemplateName_EmailToUser_Verified, drpLocales.SelectedValue, True)
-            End If
-            If file.EndsWith(Constants.TemplateName_EmailToUser) Then
-                txtEmailUser.Text = GetTemplate(drpThemes.SelectedItem.Value, Constants.TemplateName_EmailToUser, drpLocales.SelectedValue, True)
-            End If
-            If file.EndsWith(Constants.TemplateName_Form) Then
-                txtFormTemplate.Text = GetTemplate(drpThemes.SelectedItem.Value, Constants.TemplateName_Form, drpLocales.SelectedValue, True)
-            End If
+            'If file.EndsWith(Constants.TemplateName_EmailToAdmin) Then
+            '    txtEmailAdminTemplate.Text = GetTemplate(drpThemes.SelectedItem.Value, Constants.TemplateName_EmailToAdmin, drpLocales.SelectedValue, True)
+            'End If
+            'If file.EndsWith(Constants.TemplateName_EmailToUser_Private) Then
+            '    txtEmailUserPrivate.Text = GetTemplate(drpThemes.SelectedItem.Value, Constants.TemplateName_EmailToUser_Private, drpLocales.SelectedValue, True)
+            'End If
+            'If file.EndsWith(Constants.TemplateName_EmailToUser_Verified) Then
+            '    txtEmailUserVerified.Text = GetTemplate(drpThemes.SelectedItem.Value, Constants.TemplateName_EmailToUser_Verified, drpLocales.SelectedValue, True)
+            'End If
+            'If file.EndsWith(Constants.TemplateName_EmailToUser) Then
+            '    txtEmailUser.Text = GetTemplate(drpThemes.SelectedItem.Value, Constants.TemplateName_EmailToUser, drpLocales.SelectedValue, True)
+            'End If
+            'If file.EndsWith(Constants.TemplateName_Form) Then
+            '    txtFormTemplate.Text = GetTemplate(drpThemes.SelectedItem.Value, Constants.TemplateName_Form, drpLocales.SelectedValue, True)
+            'End If
 
         Next
 
@@ -205,32 +191,32 @@ Partial Class Templates
 
     Private Sub SaveTemplate(SelectedTheme As String, TemplateName As String, Locale As String)
 
-        Dim path As String = SelectedTheme & "\" & TemplateName.Replace(Constants.TemplateName_Extension, "." & Locale & Constants.TemplateName_Extension)
+        'Dim path As String = SelectedTheme & "\" & TemplateName.Replace(Constants.TemplateName_Extension, "." & Locale & Constants.TemplateName_Extension)
 
-        If (PortalSettings.DefaultLanguage.ToLower = Locale.ToLower) Or String.IsNullOrEmpty(Locale) Then
-            path = SelectedTheme & "\" & TemplateName
-        End If
+        'If (PortalSettings.DefaultLanguage.ToLower = Locale.ToLower) Or String.IsNullOrEmpty(Locale) Then
+        '    path = SelectedTheme & "\" & TemplateName
+        'End If
 
-        Dim sw As New System.IO.StreamWriter(path, False)
+        'Dim sw As New System.IO.StreamWriter(path, False)
 
-        If TemplateName = Constants.TemplateName_EmailToAdmin Then
-            sw.Write(txtEmailAdminTemplate.Text)
-        End If
-        If TemplateName = Constants.TemplateName_EmailToUser_Private Then
-            sw.Write(txtEmailUserPrivate.Text)
-        End If
-        If TemplateName = Constants.TemplateName_EmailToUser_Verified Then
-            sw.Write(txtEmailUserVerified.Text)
-        End If
-        If TemplateName = Constants.TemplateName_EmailToUser Then
-            sw.Write(txtEmailUser.Text)
-        End If
-        If TemplateName = Constants.TemplateName_Form Then
-            sw.Write(txtFormTemplate.Text)
-        End If
+        ''If TemplateName = Constants.TemplateName_EmailToAdmin Then
+        ''    sw.Write(txtEmailAdminTemplate.Text)
+        ''End If
+        ''If TemplateName = Constants.TemplateName_EmailToUser_Private Then
+        ''    sw.Write(txtEmailUserPrivate.Text)
+        ''End If
+        ''If TemplateName = Constants.TemplateName_EmailToUser_Verified Then
+        ''    sw.Write(txtEmailUserVerified.Text)
+        ''End If
+        ''If TemplateName = Constants.TemplateName_EmailToUser Then
+        ''    sw.Write(txtEmailUser.Text)
+        ''End If
+        ''If TemplateName = Constants.TemplateName_Form Then
+        ''    sw.Write(txtFormTemplate.Text)
+        ''End If
 
-        sw.Close()
-        sw.Dispose()
+        'sw.Close()
+        'sw.Dispose()
 
     End Sub
 
@@ -284,21 +270,21 @@ Partial Class Templates
 
             For Each file As String In System.IO.Directory.GetFiles(basepath)
 
-                If file.EndsWith(Constants.TemplateName_EmailToAdmin) Then
-                    SaveTemplate(drpThemes.SelectedValue, Constants.TemplateName_EmailToAdmin, drpLocales.SelectedValue)
-                End If
-                If file.EndsWith(Constants.TemplateName_EmailToUser_Private) Then
-                    SaveTemplate(drpThemes.SelectedValue, Constants.TemplateName_EmailToUser_Private, drpLocales.SelectedValue)
-                End If
-                If file.EndsWith(Constants.TemplateName_EmailToUser_Verified) Then
-                    SaveTemplate(drpThemes.SelectedValue, Constants.TemplateName_EmailToUser_Verified, drpLocales.SelectedValue)
-                End If
-                If file.EndsWith(Constants.TemplateName_EmailToUser) Then
-                    SaveTemplate(drpThemes.SelectedValue, Constants.TemplateName_EmailToUser, drpLocales.SelectedValue)
-                End If
-                If file.EndsWith(Constants.TemplateName_Form) Then
-                    SaveTemplate(drpThemes.SelectedValue, Constants.TemplateName_Form, drpLocales.SelectedValue)
-                End If
+                'If file.EndsWith(Constants.TemplateName_EmailToAdmin) Then
+                '    SaveTemplate(drpThemes.SelectedValue, Constants.TemplateName_EmailToAdmin, drpLocales.SelectedValue)
+                'End If
+                'If file.EndsWith(Constants.TemplateName_EmailToUser_Private) Then
+                '    SaveTemplate(drpThemes.SelectedValue, Constants.TemplateName_EmailToUser_Private, drpLocales.SelectedValue)
+                'End If
+                'If file.EndsWith(Constants.TemplateName_EmailToUser_Verified) Then
+                '    SaveTemplate(drpThemes.SelectedValue, Constants.TemplateName_EmailToUser_Verified, drpLocales.SelectedValue)
+                'End If
+                'If file.EndsWith(Constants.TemplateName_EmailToUser) Then
+                '    SaveTemplate(drpThemes.SelectedValue, Constants.TemplateName_EmailToUser, drpLocales.SelectedValue)
+                'End If
+                'If file.EndsWith(Constants.TemplateName_Form) Then
+                '    SaveTemplate(drpThemes.SelectedValue, Constants.TemplateName_Form, drpLocales.SelectedValue)
+                'End If
 
             Next
 

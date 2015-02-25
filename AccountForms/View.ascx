@@ -1,4 +1,4 @@
-<%@ Control Language="vb" AutoEventWireup="false" Inherits="Connect.Modules.UserManagement.AccountRegistration.View" Codebehind="View.ascx.vb" %>                      
+<%@ Control Language="vb" AutoEventWireup="false" Inherits="Connect.Modules.Accounts.UserForms.View" Codebehind="View.ascx.vb" %>                      
         
 <div class="connect_registerform">
 

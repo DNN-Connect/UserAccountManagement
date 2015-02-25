@@ -29,7 +29,7 @@ Imports DotNetNuke.Common.Lists
 Imports DotNetNuke.Services.Localization
 Imports DotNetNuke.UI.WebControls
 
-Namespace Connect.Libraries.UserManagement
+Namespace UI
 
     ''' <summary>
     ''' Provides a CheckboxList editor for the profile properties.
@@ -71,7 +71,7 @@ Namespace Connect.Libraries.UserManagement
             ControlStyle.AddAttributesToRender(writer)
             writer.AddAttribute(HtmlTextWriterAttribute.Name, Me.UniqueID)
             If AutoPostBack Then
-                writer.AddAttribute(HtmlTextWriterAttribute.Onchange, page.GetPostBackEventReference(Me))
+                writer.AddAttribute(HtmlTextWriterAttribute.Onchange, Page.ClientScript.GetPostBackEventReference(Me, String.Empty))
             End If
 
             writer.RenderBeginTag(HtmlTextWriterTag.Table)
@@ -84,7 +84,7 @@ Namespace Connect.Libraries.UserManagement
                 writer.RenderBeginTag(HtmlTextWriterTag.Tr)
                 For columnIndex As Integer = 0 To Me.Columns - 1
                     If (itemIndex <= lastIndex) Then
-                        Dim item As ListEntryInfo = List.Item(itemIndex)
+                        Dim item As ListEntryInfo = ListEntries(itemIndex)
                         Dim itemValue As String = GetItemValue(item)
                         Dim itemText As String = GetItemText(item)
                         Dim itemName As String = Me.UniqueID

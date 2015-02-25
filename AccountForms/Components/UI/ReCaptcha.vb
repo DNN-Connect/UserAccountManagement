@@ -28,7 +28,7 @@ Imports System.Net
 Imports System.IO
 Imports DotNetNuke.Entities.Portals
 
-Namespace Connect.Libraries.UserManagement
+Namespace UI
     Public Class ReCaptcha
 
         Public Shared Sub Validate(PrivateKey As String, ByRef IsValid As Boolean, ByRef Result As String)

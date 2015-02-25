@@ -1,0 +1,18 @@
+﻿
+UPDATE {databaseOwner}[{objectQualifier}Lists] 
+	SET
+		[Text] = 'Connect.WebControls.Controls.CheckboxListEditControl, Connect.WebControls'
+	WHERE
+		[Value] = 'CheckboxList'
+	AND
+		[ListName] = 'DataType'
+GO
+
+if not exists (select 1 from {databaseOwner}[{objectQualifier}Lists] where ListName='DataType' and Value='CheckboxList')
+begin
+	INSERT INTO {databaseOwner}[{objectQualifier}Lists] ([ListName],[Value],[Text],
+		[ParentID],[Level],[SortOrder],[DefinitionID],[PortalID],[SystemList])
+	VALUES('DataType','CheckboxList','Connect.WebControls.Controls.CheckboxListEditControl, Connect.WebControls',
+		0,0,0,-1,-1,1)
+end
+GO

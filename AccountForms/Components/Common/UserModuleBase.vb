@@ -41,12 +41,14 @@ Imports System.Text
 Imports DotNetNuke.Entities.Tabs
 Imports DotNetNuke.Services.FileSystem
 Imports DotNetNuke.UI.WebControls
-Imports DotNetNuke.Web.UI.WebControls
 
 Imports Telerik.Web.UI
+Imports Connect.Modules.Accounts.UserForms.Templating
+Imports DotNetNuke.Web.UI.WebControls
 
 
-Namespace Connect.Libraries.UserManagement
+Namespace Common
+
     Public Class ConnectUsersModuleBase
         Inherits PortalModuleBase
 
@@ -493,7 +495,7 @@ Namespace Connect.Libraries.UserManagement
             End Get
         End Property
 
-        Protected ReadOnly Property User() As Entities.Users.UserInfo
+        Protected ReadOnly Property User() As UserInfo
             Get
                 Dim oUser As UserInfo = Nothing
                 If Not Request.QueryString("uid") Is Nothing Then
@@ -501,7 +503,7 @@ Namespace Connect.Libraries.UserManagement
                         oUser = UserController.GetUserById(PortalId, Convert.ToInt32(Request.QueryString("uid")))
                     End If
                 Else
-                    oUser = UserController.GetCurrentUserInfo()
+                    oUser = UserController.Instance.GetCurrentUserInfo()
                 End If
                 Return oUser
             End Get
@@ -667,14 +669,14 @@ Namespace Connect.Libraries.UserManagement
                     Else
                         Return False
                     End If
-                ElseIf TypeOf (ctl) Is DotNetNuke.Web.UI.WebControls.DnnImageEditControl Then
-                    If CType(ctl, DotNetNuke.Web.UI.WebControls.DnnImageEditControl).Value <> "" Then
+                ElseIf TypeOf (ctl) Is DnnImageEditControl Then
+                    If CType(ctl, DnnImageEditControl).Value <> "" Then
                         Return True
                     Else
                         Return False
                     End If
-                ElseIf TypeOf (ctl) Is DotNetNuke.Web.UI.WebControls.DnnFileEditControl Then
-                    If CType(ctl, DotNetNuke.Web.UI.WebControls.DnnFileEditControl).Value <> "" Then
+                ElseIf TypeOf (ctl) Is DnnFileEditControl Then
+                    If CType(ctl, DnnFileEditControl).Value <> "" Then
                         Return True
                     Else
                         Return False
@@ -1952,7 +1954,7 @@ Namespace Connect.Libraries.UserManagement
 
         'Protected Sub AddVisibilityControl(ByVal ProfileAttribute As ProfilePropertyDefinition, ByRef plhControls As PlaceHolder, ByVal IsEnabled As Boolean, ByVal objUser As UserInfo)
 
-        '    Dim drp As New DotNetNuke.UI.WebControls.VisibilityControl
+        '    Dim drp As New DotNetNuke.VisibilityControl
         '    drp.User = objUser
         '    drp.Value = objUser.Profile.GetProperty(ProfileAttribute.PropertyName).ProfileVisibility
         '    drp.ID = plhControls.ID & "_" & Constants.ControlId_Visiblity & ProfileAttribute.PropertyDefinitionId.ToString
@@ -1967,10 +1969,10 @@ Namespace Connect.Libraries.UserManagement
             drp.ID = plhControls.ID & "_" & Constants.ControlId_Visiblity & ProfileAttribute.PropertyDefinitionId.ToString
             drp.CssClass = "ctlProfileVisibility"
             drp.Items.Add(New ListItem(Localization.GetString("VisibilitySelect", LocalResourceFile), "-1"))
-            drp.Items.Add(New ListItem(Localization.GetString("VisibilityAdminOnly", LocalResourceFile), DotNetNuke.Entities.Users.UserVisibilityMode.AdminOnly))
-            drp.Items.Add(New ListItem(Localization.GetString("VisibilityMembersOnly", LocalResourceFile), DotNetNuke.Entities.Users.UserVisibilityMode.MembersOnly))
-            drp.Items.Add(New ListItem(Localization.GetString("VisibilityFriendsAndGroups", LocalResourceFile), DotNetNuke.Entities.Users.UserVisibilityMode.FriendsAndGroups))
-            drp.Items.Add(New ListItem(Localization.GetString("VisibilityAllUsers", LocalResourceFile), DotNetNuke.Entities.Users.UserVisibilityMode.AllUsers))
+            drp.Items.Add(New ListItem(Localization.GetString("VisibilityAdminOnly", LocalResourceFile), UserVisibilityMode.AdminOnly))
+            drp.Items.Add(New ListItem(Localization.GetString("VisibilityMembersOnly", LocalResourceFile), UserVisibilityMode.MembersOnly))
+            drp.Items.Add(New ListItem(Localization.GetString("VisibilityFriendsAndGroups", LocalResourceFile), UserVisibilityMode.FriendsAndGroups))
+            drp.Items.Add(New ListItem(Localization.GetString("VisibilityAllUsers", LocalResourceFile), UserVisibilityMode.AllUsers))
 
             Try
                 Dim userProperty As ProfilePropertyDefinition = objUser.Profile.GetProperty(ProfileAttribute.PropertyName)
@@ -2205,13 +2207,13 @@ Namespace Connect.Libraries.UserManagement
 
                 Case "image"
 
-                    Dim ctl As New DotNetNuke.Web.UI.WebControls.DnnImageEditControl
+                    Dim ctl As New DnnImageEditControl
                     ctl.ID = plhControls.ID & "_" & Constants.ControlId_ProfileProperty & ProfileAttribute.PropertyDefinitionId.ToString
                     ctl.User = objUser
                     If IsEnabled Then
-                        ctl.EditMode = UI.WebControls.PropertyEditorMode.Edit
+                        ctl.EditMode = PropertyEditorMode.Edit
                     Else
-                        ctl.EditMode = UI.WebControls.PropertyEditorMode.View
+                        ctl.EditMode = PropertyEditorMode.View
                     End If
 
                     Try
@@ -2225,13 +2227,13 @@ Namespace Connect.Libraries.UserManagement
 
                 Case "file"
 
-                    Dim ctl As New DotNetNuke.Web.UI.WebControls.DnnFileEditControl
+                    Dim ctl As New DnnFileEditControl
                     ctl.ID = plhControls.ID & "_" & Constants.ControlId_ProfileProperty & ProfileAttribute.PropertyDefinitionId.ToString
                     ctl.User = objUser
                     If IsEnabled Then
-                        ctl.EditMode = UI.WebControls.PropertyEditorMode.Edit
+                        ctl.EditMode = PropertyEditorMode.Edit
                     Else
-                        ctl.EditMode = UI.WebControls.PropertyEditorMode.View
+                        ctl.EditMode = PropertyEditorMode.View
                     End If
 
                     Try
@@ -2504,9 +2506,9 @@ Namespace Connect.Libraries.UserManagement
                                 prop.ProfileVisibility = objVisibility
                                 propertiesCollection.Add(prop)
 
-                            ElseIf TypeOf (ctl) Is DotNetNuke.Web.UI.WebControls.DnnTimeZoneComboBox Then
+                            ElseIf TypeOf (ctl) Is DnnTimeZoneComboBox Then
 
-                                Dim value As String = CType(ctl, DotNetNuke.Web.UI.WebControls.DnnTimeZoneComboBox).SelectedValue
+                                Dim value As String = CType(ctl, DnnTimeZoneComboBox).SelectedValue
                                 prop = oUser.Profile.GetProperty(prop.PropertyName)
                                 prop.PropertyValue = value
                                 Dim objVisibility As New ProfileVisibility()
@@ -2514,9 +2516,9 @@ Namespace Connect.Libraries.UserManagement
                                 prop.ProfileVisibility = objVisibility
                                 propertiesCollection.Add(prop)
 
-                            ElseIf TypeOf (ctl) Is DotNetNuke.Web.UI.WebControls.DnnImageEditControl Then
+                            ElseIf TypeOf (ctl) Is DnnImageEditControl Then
 
-                                Dim value As String = CType(ctl, DotNetNuke.Web.UI.WebControls.DnnImageEditControl).Value
+                                Dim value As String = CType(ctl, DnnImageEditControl).Value
                                 prop = oUser.Profile.GetProperty(prop.PropertyName)
                                 prop.PropertyValue = value
                                 Dim objVisibility As New ProfileVisibility()
@@ -2524,9 +2526,9 @@ Namespace Connect.Libraries.UserManagement
                                 prop.ProfileVisibility = objVisibility
                                 propertiesCollection.Add(prop)
 
-                            ElseIf TypeOf (ctl) Is DotNetNuke.Web.UI.WebControls.DnnFileEditControl Then
+                            ElseIf TypeOf (ctl) Is DnnFileEditControl Then
 
-                                Dim value As String = CType(ctl, DotNetNuke.Web.UI.WebControls.DnnFileEditControl).Value
+                                Dim value As String = CType(ctl, DnnFileEditControl).Value
                                 prop = oUser.Profile.GetProperty(prop.PropertyName)
                                 prop.PropertyValue = value
                                 Dim objVisibility As New ProfileVisibility()
@@ -2667,14 +2669,14 @@ Namespace Connect.Libraries.UserManagement
 
         '                        oUser.Profile.SetProfileProperty(prop.PropertyName, value)
 
-        '                    ElseIf TypeOf (ctl) Is DotNetNuke.Web.UI.WebControls.DnnTimeZoneComboBox Then
-        '                        oUser.Profile.SetProfileProperty(prop.PropertyName, CType(ctl, DotNetNuke.Web.UI.WebControls.DnnTimeZoneComboBox).SelectedValue)
+        '                    ElseIf TypeOf (ctl) Is DnnTimeZoneComboBox Then
+        '                        oUser.Profile.SetProfileProperty(prop.PropertyName, CType(ctl, DnnTimeZoneComboBox).SelectedValue)
 
-        '                    ElseIf TypeOf (ctl) Is DotNetNuke.Web.UI.WebControls.DnnImageEditControl Then
-        '                        oUser.Profile.SetProfileProperty(prop.PropertyName, CType(ctl, DotNetNuke.Web.UI.WebControls.DnnImageEditControl).Value)
+        '                    ElseIf TypeOf (ctl) Is DnnImageEditControl Then
+        '                        oUser.Profile.SetProfileProperty(prop.PropertyName, CType(ctl, DnnImageEditControl).Value)
 
-        '                    ElseIf TypeOf (ctl) Is DotNetNuke.Web.UI.WebControls.DnnFileEditControl Then
-        '                        oUser.Profile.SetProfileProperty(prop.PropertyName, CType(ctl, DotNetNuke.Web.UI.WebControls.DnnFileEditControl).Value)
+        '                    ElseIf TypeOf (ctl) Is DnnFileEditControl Then
+        '                        oUser.Profile.SetProfileProperty(prop.PropertyName, CType(ctl, DnnFileEditControl).Value)
 
         '                    End If
         '                End If
@@ -2895,14 +2897,14 @@ Namespace Connect.Libraries.UserManagement
 
                 Case "image"
 
-                    Dim ctl As DotNetNuke.Web.UI.WebControls.DnnImageEditControl = objControl.FindControl(objControl.ID & "_" & Constants.ControlId_ProfileProperty & ProfProperty.PropertyDefinitionId.ToString)
+                    Dim ctl As DnnImageEditControl = objControl.FindControl(objControl.ID & "_" & Constants.ControlId_ProfileProperty & ProfProperty.PropertyDefinitionId.ToString)
                     If Not ctl Is Nothing Then
                         Return ctl
                     End If
 
                 Case "file"
 
-                    Dim ctl As DotNetNuke.Web.UI.WebControls.DnnFileEditControl = objControl.FindControl(objControl.ID & "_" & Constants.ControlId_ProfileProperty & ProfProperty.PropertyDefinitionId.ToString)
+                    Dim ctl As DnnFileEditControl = objControl.FindControl(objControl.ID & "_" & Constants.ControlId_ProfileProperty & ProfProperty.PropertyDefinitionId.ToString)
                     If Not ctl Is Nothing Then
                         Return ctl
                     End If

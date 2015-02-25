@@ -15,12 +15,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{4F9B447A-D262-439A-822E-34849356966E}</ProjectGuid>
+    <ProjectGuid>{8C863196-4C19-4117-9DE0-55DA8EBE7ADB}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{F184B08F-C81C-45F6-A57F-5ABD9991F28F}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
-    <RootNamespace>
-    </RootNamespace>
-    <AssemblyName>Connect.Modules.AccountManagement.Library</AssemblyName>
+    <RootNamespace>Connect.Modules.Accounts.UserForms</RootNamespace>
+    <AssemblyName>Connect.Modules.Accounts.UserForms</AssemblyName>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <OldToolsVersion>4.0</OldToolsVersion>
@@ -40,7 +39,7 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\</OutputPath>
-    <DocumentationFile>Connect.Modules.AccountManagement.Library.xml</DocumentationFile>
+    <DocumentationFile>Connect.Modules.Accounts.UserForms.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
@@ -50,7 +49,7 @@
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>bin\</OutputPath>
-    <DocumentationFile>Connect.Modules.AccountManagement.Library.xml</DocumentationFile>
+    <DocumentationFile>Connect.Modules.Accounts.UserForms.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
@@ -60,6 +59,9 @@
     </Reference>
     <Reference Include="DotNetNuke.Web">
       <HintPath>..\..\website\bin\DotNetNuke.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetNuke.WebUtility">
+      <HintPath>..\..\website\bin\DotNetNuke.WebUtility.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -78,11 +80,10 @@
     <Reference Include="System.Xml.Linq" />
     <Reference Include="Telerik.Web.UI, Version=2013.1.403.40, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\website\bin\Telerik.Web.UI.dll</HintPath>
+      <HintPath>..\..\..\bin\Telerik.Web.UI.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Import Include="DotNetNuke" />
     <Import Include="Microsoft.VisualBasic" />
     <Import Include="System" />
     <Import Include="System.Collections" />
@@ -105,31 +106,73 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.vb" />
-    <Compile Include="Components\CheckboxListEditControl.vb" />
-    <Compile Include="Components\Constants.vb" />
-    <Compile Include="Components\ReCaptcha.vb" />
-    <Compile Include="Components\TemplateController.vb" />
-    <Compile Include="Components\UserModuleBase.vb">
+    <Compile Include="Components\Interfaces\iAccountRegistration.vb" />
+    <Compile Include="Components\Interfaces\iAccountUpdate.vb" />
+    <Compile Include="Components\Common\Constants.vb" />
+    <Compile Include="Components\UI\ReCaptcha.vb" />
+    <Compile Include="Components\Templating\TemplateController.vb" />
+    <Compile Include="Components\Common\UserModuleBase.vb">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Components\UserReports.vb" />
-    <Compile Include="Components\Utilities.vb" />
-    <Compile Include="Interfaces\iAccountUpdate.vb" />
-    <Compile Include="Interfaces\iAccountRegistration.vb" />
+    <Compile Include="Components\Entities\UserReports.vb" />
+    <Compile Include="Components\Common\Utilities.vb" />
+    <Compile Include="Templates.ascx.designer.vb">
+      <DependentUpon>Templates.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Templates.ascx.vb">
+      <DependentUpon>Templates.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Settings.ascx.designer.vb">
+      <DependentUpon>Settings.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Settings.ascx.vb">
+      <DependentUpon>Settings.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View.ascx.designer.vb">
+      <DependentUpon>View.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="View.ascx.vb">
+      <DependentUpon>View.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App_LocalResources\Templates.ascx.resx" />
+    <None Include="App_LocalResources\Settings.ascx.resx" />
+    <None Include="App_LocalResources\View.ascx.resx" />
+    <None Include="BuildScripts\ModulePackage.targets" />
+    <None Include="BuildScripts\MSBuild.Community.Tasks.Targets" />
+    <None Include="AccountUserForms.dnn" />
+    <Content Include="Templates.ascx" />
+    <Content Include="Templates\Default\Email.Admin.txt" />
+    <Content Include="Templates\Default\Email.User.Private.txt" />
+    <Content Include="Templates\Default\Email.User.txt" />
+    <Content Include="Templates\Default\Email.User.Verified.txt" />
+    <Content Include="Module.Build" />
     <None Include="Providers\DataProviders\SqlDataProvider\01.00.00.SqlDataProvider" />
+    <Content Include="Providers\DataProviders\SqlDataProvider\01.03.00.SqlDataProvider" />
     <None Include="Providers\DataProviders\SqlDataProvider\Uninstall.SqlDataProvider" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Documentation\Documentation.css" />
+    <Content Include="Documentation\Documentation.html" />
+    <Content Include="module.css" />
+    <Content Include="Settings.ascx" />
+    <Content Include="Templates\Default\Form.txt" />
+    <Content Include="View.ascx" />
+    <Content Include="ReleaseNotes.txt" />
     <Content Include="License.txt" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="images\" />
     <Folder Include="My Project\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
-  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v12.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Import Project="Module.Build" />
   <ProjectExtensions>
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
@@ -138,13 +181,12 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>62597</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://dnn.connect/DesktopModules/Connect/Library/</IISUrl>
+          <IISUrl>http://dnn.connect/DesktopModules/Connect/AccountRegistration</IISUrl>
           <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
           <IISAppRootUrl>http://dnn.connect/</IISAppRootUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
-          <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl>
-          </CustomServerUrl>
+          <UseCustomServer>True</UseCustomServer>
+          <CustomServerUrl>http://dnn.connect/DesktopModules/Connect/AccountRegistration</CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>

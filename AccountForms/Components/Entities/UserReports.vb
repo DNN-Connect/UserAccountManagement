@@ -24,7 +24,7 @@ Imports Microsoft.VisualBasic
 Imports System.Collections.Generic
 Imports DotNetNuke.Common.Utilities
 
-Namespace Connect.Libraries.UserManagement
+Namespace Entities
 
     Public Class UserReportInfo
 

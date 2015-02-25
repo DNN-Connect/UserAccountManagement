@@ -10,260 +10,258 @@
 Option Strict On
 Option Explicit On
 
-Namespace Connect.Modules.UserManagement.AccountRegistration
 
-    Partial Public Class Settings
+Partial Public Class Settings
 
-        '''<summary>
-        '''lblUsernameMode control.
-        '''</summary>
-        '''<remarks>
-        '''Auto-generated field.
-        '''To modify move field declaration from designer file to code-behind file.
-        '''</remarks>
-        Protected WithEvents lblUsernameMode As Global.DotNetNuke.UI.UserControls.LabelControl
+    '''<summary>
+    '''lblUsernameMode control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblUsernameMode As Global.System.Web.UI.UserControl
 
-        '''<summary>
-        '''drpUsernameMode control.
-        '''</summary>
-        '''<remarks>
-        '''Auto-generated field.
-        '''To modify move field declaration from designer file to code-behind file.
-        '''</remarks>
-        Protected WithEvents drpUsernameMode As Global.System.Web.UI.WebControls.DropDownList
+    '''<summary>
+    '''drpUsernameMode control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents drpUsernameMode As Global.System.Web.UI.WebControls.DropDownList
 
-        '''<summary>
-        '''lblDisplaynameMode control.
-        '''</summary>
-        '''<remarks>
-        '''Auto-generated field.
-        '''To modify move field declaration from designer file to code-behind file.
-        '''</remarks>
-        Protected WithEvents lblDisplaynameMode As Global.DotNetNuke.UI.UserControls.LabelControl
+    '''<summary>
+    '''lblDisplaynameMode control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblDisplaynameMode As Global.System.Web.UI.UserControl
 
-        '''<summary>
-        '''drpDisplaynameMode control.
-        '''</summary>
-        '''<remarks>
-        '''Auto-generated field.
-        '''To modify move field declaration from designer file to code-behind file.
-        '''</remarks>
-        Protected WithEvents drpDisplaynameMode As Global.System.Web.UI.WebControls.DropDownList
+    '''<summary>
+    '''drpDisplaynameMode control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents drpDisplaynameMode As Global.System.Web.UI.WebControls.DropDownList
 
-        '''<summary>
-        '''lblRedirectAfterLogin control.
-        '''</summary>
-        '''<remarks>
-        '''Auto-generated field.
-        '''To modify move field declaration from designer file to code-behind file.
-        '''</remarks>
-        Protected WithEvents lblRedirectAfterLogin As Global.DotNetNuke.UI.UserControls.LabelControl
+    '''<summary>
+    '''lblRedirectAfterLogin control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblRedirectAfterLogin As Global.System.Web.UI.UserControl
 
-        '''<summary>
-        '''drpRedirectAfterLogin control.
-        '''</summary>
-        '''<remarks>
-        '''Auto-generated field.
-        '''To modify move field declaration from designer file to code-behind file.
-        '''</remarks>
-        Protected WithEvents drpRedirectAfterLogin As Global.System.Web.UI.WebControls.DropDownList
+    '''<summary>
+    '''drpRedirectAfterLogin control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents drpRedirectAfterLogin As Global.System.Web.UI.WebControls.DropDownList
 
-        '''<summary>
-        '''lblRedirectAfterSubmit control.
-        '''</summary>
-        '''<remarks>
-        '''Auto-generated field.
-        '''To modify move field declaration from designer file to code-behind file.
-        '''</remarks>
-        Protected WithEvents lblRedirectAfterSubmit As Global.DotNetNuke.UI.UserControls.LabelControl
+    '''<summary>
+    '''lblRedirectAfterSubmit control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblRedirectAfterSubmit As Global.System.Web.UI.UserControl
 
-        '''<summary>
-        '''drpRedirectAfterSubmit control.
-        '''</summary>
-        '''<remarks>
-        '''Auto-generated field.
-        '''To modify move field declaration from designer file to code-behind file.
-        '''</remarks>
-        Protected WithEvents drpRedirectAfterSubmit As Global.System.Web.UI.WebControls.DropDownList
+    '''<summary>
+    '''drpRedirectAfterSubmit control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents drpRedirectAfterSubmit As Global.System.Web.UI.WebControls.DropDownList
 
-        '''<summary>
-        '''lblUsermanagementTab control.
-        '''</summary>
-        '''<remarks>
-        '''Auto-generated field.
-        '''To modify move field declaration from designer file to code-behind file.
-        '''</remarks>
-        Protected WithEvents lblUsermanagementTab As Global.DotNetNuke.UI.UserControls.LabelControl
+    '''<summary>
+    '''lblUsermanagementTab control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblUsermanagementTab As Global.System.Web.UI.UserControl
 
-        '''<summary>
-        '''drpUserManagementTab control.
-        '''</summary>
-        '''<remarks>
-        '''Auto-generated field.
-        '''To modify move field declaration from designer file to code-behind file.
-        '''</remarks>
-        Protected WithEvents drpUserManagementTab As Global.System.Web.UI.WebControls.DropDownList
+    '''<summary>
+    '''drpUserManagementTab control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents drpUserManagementTab As Global.System.Web.UI.WebControls.DropDownList
 
-        '''<summary>
-        '''lblAddToRole control.
-        '''</summary>
-        '''<remarks>
-        '''Auto-generated field.
-        '''To modify move field declaration from designer file to code-behind file.
-        '''</remarks>
-        Protected WithEvents lblAddToRole As Global.DotNetNuke.UI.UserControls.LabelControl
+    '''<summary>
+    '''lblAddToRole control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblAddToRole As Global.System.Web.UI.UserControl
 
-        '''<summary>
-        '''drpAddToRole control.
-        '''</summary>
-        '''<remarks>
-        '''Auto-generated field.
-        '''To modify move field declaration from designer file to code-behind file.
-        '''</remarks>
-        Protected WithEvents drpAddToRole As Global.System.Web.UI.WebControls.DropDownList
+    '''<summary>
+    '''drpAddToRole control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents drpAddToRole As Global.System.Web.UI.WebControls.DropDownList
 
-        '''<summary>
-        '''lblAddToRoleStatus control.
-        '''</summary>
-        '''<remarks>
-        '''Auto-generated field.
-        '''To modify move field declaration from designer file to code-behind file.
-        '''</remarks>
-        Protected WithEvents lblAddToRoleStatus As Global.DotNetNuke.UI.UserControls.LabelControl
+    '''<summary>
+    '''lblAddToRoleStatus control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblAddToRoleStatus As Global.System.Web.UI.UserControl
 
-        '''<summary>
-        '''drpRoleStatus control.
-        '''</summary>
-        '''<remarks>
-        '''Auto-generated field.
-        '''To modify move field declaration from designer file to code-behind file.
-        '''</remarks>
-        Protected WithEvents drpRoleStatus As Global.System.Web.UI.WebControls.DropDownList
+    '''<summary>
+    '''drpRoleStatus control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents drpRoleStatus As Global.System.Web.UI.WebControls.DropDownList
 
-        '''<summary>
-        '''lblNotifyRole control.
-        '''</summary>
-        '''<remarks>
-        '''Auto-generated field.
-        '''To modify move field declaration from designer file to code-behind file.
-        '''</remarks>
-        Protected WithEvents lblNotifyRole As Global.DotNetNuke.UI.UserControls.LabelControl
+    '''<summary>
+    '''lblNotifyRole control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblNotifyRole As Global.System.Web.UI.UserControl
 
-        '''<summary>
-        '''drpNotifyRole control.
-        '''</summary>
-        '''<remarks>
-        '''Auto-generated field.
-        '''To modify move field declaration from designer file to code-behind file.
-        '''</remarks>
-        Protected WithEvents drpNotifyRole As Global.System.Web.UI.WebControls.DropDownList
+    '''<summary>
+    '''drpNotifyRole control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents drpNotifyRole As Global.System.Web.UI.WebControls.DropDownList
 
-        '''<summary>
-        '''lblNotifyUser control.
-        '''</summary>
-        '''<remarks>
-        '''Auto-generated field.
-        '''To modify move field declaration from designer file to code-behind file.
-        '''</remarks>
-        Protected WithEvents lblNotifyUser As Global.DotNetNuke.UI.UserControls.LabelControl
+    '''<summary>
+    '''lblNotifyUser control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblNotifyUser As Global.System.Web.UI.UserControl
 
-        '''<summary>
-        '''chkNotifyUser control.
-        '''</summary>
-        '''<remarks>
-        '''Auto-generated field.
-        '''To modify move field declaration from designer file to code-behind file.
-        '''</remarks>
-        Protected WithEvents chkNotifyUser As Global.System.Web.UI.WebControls.CheckBox
+    '''<summary>
+    '''chkNotifyUser control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents chkNotifyUser As Global.System.Web.UI.WebControls.CheckBox
 
-        '''<summary>
-        '''lblInterface control.
-        '''</summary>
-        '''<remarks>
-        '''Auto-generated field.
-        '''To modify move field declaration from designer file to code-behind file.
-        '''</remarks>
-        Protected WithEvents lblInterface As Global.DotNetNuke.UI.UserControls.LabelControl
+    '''<summary>
+    '''lblInterface control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblInterface As Global.System.Web.UI.UserControl
 
-        '''<summary>
-        '''txtInterface control.
-        '''</summary>
-        '''<remarks>
-        '''Auto-generated field.
-        '''To modify move field declaration from designer file to code-behind file.
-        '''</remarks>
-        Protected WithEvents txtInterface As Global.System.Web.UI.WebControls.TextBox
+    '''<summary>
+    '''txtInterface control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtInterface As Global.System.Web.UI.WebControls.TextBox
 
-        '''<summary>
-        '''lblPrivateCaptchaKey control.
-        '''</summary>
-        '''<remarks>
-        '''Auto-generated field.
-        '''To modify move field declaration from designer file to code-behind file.
-        '''</remarks>
-        Protected WithEvents lblPrivateCaptchaKey As Global.DotNetNuke.UI.UserControls.LabelControl
+    '''<summary>
+    '''lblPrivateCaptchaKey control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblPrivateCaptchaKey As Global.System.Web.UI.UserControl
 
-        '''<summary>
-        '''txtPrivateCaptchaKey control.
-        '''</summary>
-        '''<remarks>
-        '''Auto-generated field.
-        '''To modify move field declaration from designer file to code-behind file.
-        '''</remarks>
-        Protected WithEvents txtPrivateCaptchaKey As Global.System.Web.UI.WebControls.TextBox
+    '''<summary>
+    '''txtPrivateCaptchaKey control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtPrivateCaptchaKey As Global.System.Web.UI.WebControls.TextBox
 
-        '''<summary>
-        '''lblCompareFirstNameLastName control.
-        '''</summary>
-        '''<remarks>
-        '''Auto-generated field.
-        '''To modify move field declaration from designer file to code-behind file.
-        '''</remarks>
-        Protected WithEvents lblCompareFirstNameLastName As Global.DotNetNuke.UI.UserControls.LabelControl
+    '''<summary>
+    '''lblCompareFirstNameLastName control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblCompareFirstNameLastName As Global.System.Web.UI.UserControl
 
-        '''<summary>
-        '''chkCompareFirstNameLastName control.
-        '''</summary>
-        '''<remarks>
-        '''Auto-generated field.
-        '''To modify move field declaration from designer file to code-behind file.
-        '''</remarks>
-        Protected WithEvents chkCompareFirstNameLastName As Global.System.Web.UI.WebControls.CheckBox
+    '''<summary>
+    '''chkCompareFirstNameLastName control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents chkCompareFirstNameLastName As Global.System.Web.UI.WebControls.CheckBox
 
-        '''<summary>
-        '''lblValidateEmailThroughRegex control.
-        '''</summary>
-        '''<remarks>
-        '''Auto-generated field.
-        '''To modify move field declaration from designer file to code-behind file.
-        '''</remarks>
-        Protected WithEvents lblValidateEmailThroughRegex As Global.DotNetNuke.UI.UserControls.LabelControl
+    '''<summary>
+    '''lblValidateEmailThroughRegex control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblValidateEmailThroughRegex As Global.System.Web.UI.UserControl
 
-        '''<summary>
-        '''chkValidateEmailThroughRegex control.
-        '''</summary>
-        '''<remarks>
-        '''Auto-generated field.
-        '''To modify move field declaration from designer file to code-behind file.
-        '''</remarks>
-        Protected WithEvents chkValidateEmailThroughRegex As Global.System.Web.UI.WebControls.CheckBox
+    '''<summary>
+    '''chkValidateEmailThroughRegex control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents chkValidateEmailThroughRegex As Global.System.Web.UI.WebControls.CheckBox
 
-        '''<summary>
-        '''lblEmailRegex control.
-        '''</summary>
-        '''<remarks>
-        '''Auto-generated field.
-        '''To modify move field declaration from designer file to code-behind file.
-        '''</remarks>
-        Protected WithEvents lblEmailRegex As Global.DotNetNuke.UI.UserControls.LabelControl
+    '''<summary>
+    '''lblEmailRegex control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblEmailRegex As Global.System.Web.UI.UserControl
 
-        '''<summary>
-        '''txtEmailRegex control.
-        '''</summary>
-        '''<remarks>
-        '''Auto-generated field.
-        '''To modify move field declaration from designer file to code-behind file.
-        '''</remarks>
-        Protected WithEvents txtEmailRegex As Global.System.Web.UI.WebControls.TextBox
-    End Class
-End Namespace
+    '''<summary>
+    '''txtEmailRegex control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtEmailRegex As Global.System.Web.UI.WebControls.TextBox
+End Class

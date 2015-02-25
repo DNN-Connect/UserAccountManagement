@@ -23,7 +23,7 @@
 Imports DotNetNuke.Entities.Users
 Imports DotNetNuke.Entities.Profile
 
-Namespace Connect.Libraries.UserManagement.Interfaces
+Namespace Interfaces
 
     ''' <summary>
     ''' Provides pre and post hooks on the user registration.

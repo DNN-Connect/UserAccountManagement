@@ -2,7 +2,7 @@
 Imports DotNetNuke.Common.Utilities
 Imports DotNetNuke.Entities.Users
 Imports DotNetNuke.Security.Roles
-Imports Connect.Modules.AccountManagement.Common
+Imports Connect.Modules.Accounts.AccountManagement.Common
 
 Public Class AccountManagementBase
     Inherits PortalModuleBase
@@ -41,7 +41,7 @@ Public Class AccountManagementBase
 
 #Region "Public Methods"
 
-    
+
 
 #End Region
 

@@ -1,8 +1,8 @@
 ﻿<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <ModulePath>Connect/AccountForms</ModulePath>
-    <DNNFileName>AccountForms</DNNFileName>
-    <PackageName>AccountForms</PackageName>
+    <ModulePath>Connect/AccountUserForms</ModulePath>
+    <DNNFileName>AccountUserForms</DNNFileName>
+    <PackageName>AccountUserForms</PackageName>
     <Extension>zip</Extension>
     <BuildScriptsPath>$(MSBuildProjectDirectory)\..\Build</BuildScriptsPath>
     <WebsitePath>$(MSBuildProjectDirectory)\..\..\Website</WebsitePath>
@@ -32,13 +32,9 @@
     <BinSourceInclude Include="$(MSBuildProjectDirectory)\bin\$(AssemblyName).dll" />
     <BinSourceInclude Include="$(MSBuildProjectDirectory)\bin\$(AssemblyName).pdb" />
     <BinSourceInclude Include="$(MSBuildProjectDirectory)\bin\$(AssemblyName).xml" />
-    <BinSourceInclude Include="$(MSBuildProjectDirectory)\..\Library\bin\Connect.Modules.AccountManagement.Library.dll" />
-    <BinSourceInclude Include="$(MSBuildProjectDirectory)\..\Library\bin\Connect.Modules.AccountManagement.Library.pdb" />
-    <BinSourceInclude Include="$(MSBuildProjectDirectory)\..\Library\bin\Connect.Modules.AccountManagement.Library.xml" />
   </ItemGroup>
   <ItemGroup>
     <BinInstallInclude Include="$(MSBuildProjectDirectory)\bin\$(AssemblyName).dll" />
-    <BinInstallInclude Include="$(MSBuildProjectDirectory)\..\Library\bin\Connect.Modules.AccountManagement.Library.dll" />
   </ItemGroup>
   <Target Name="CopyBin">
     <Copy SourceFiles="@(BinSourceInclude)" DestinationFolder="$(WebsitePath)/bin" />

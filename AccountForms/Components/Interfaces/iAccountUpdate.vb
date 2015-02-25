@@ -20,31 +20,15 @@
 '
 '***********************************************************************************
 
-Imports DotNetNuke
-Imports DotNetNuke.Entities.Modules
-Imports System.Web.UI
-Imports DotNetNuke.Entities.Profile
+Imports DotNetNuke.Entities.Users
 
-Namespace Connect.Libraries.UserManagement
-    Public Class TemplateController
+Namespace Interfaces
 
-        Public Shared Function GetTemplate(ByVal strPath As String) As String
+    Public Interface iAccountUpdate
 
+        Sub FinalizeAccountUpdate(ByRef Server As System.Web.HttpServerUtility, ByRef Response As HttpResponse, ByRef Request As HttpRequest, ByVal objUser As UserInfo)
 
-            If System.IO.File.Exists(strPath) Then
-                Dim templ As String = ""
-                Dim sr As New System.IO.StreamReader(strPath)
-                templ = sr.ReadToEnd
-                sr.Close()
-                sr.Dispose()
-                Return templ
-            Else
-                Return "Could not load template, sorry..."
-            End If
+    End Interface
 
-        End Function
-
-    End Class
 End Namespace
-
 

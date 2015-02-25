@@ -7,18 +7,17 @@ Imports System.Runtime.InteropServices
 ' associated with an assembly.
 
 ' Review the values of the assembly attributes
-<Assembly: AssemblyTitle("Connect AccountManagementLibrary")> 
-<Assembly: AssemblyDescription("A library for handling user management in from DNN-Connect")> 
-<Assembly: AssemblyConfiguration("")> 
-<Assembly: AssemblyCompany("")> 
-<Assembly: AssemblyProduct("")> 
-<Assembly: AssemblyCopyright("$Year$ dnn-connect.org")> 
+<Assembly: AssemblyTitle("DNN-Connect WebControls")> 
+<Assembly: AssemblyDescription("Webcontrols from DNN-Connect")> 
+<Assembly: AssemblyCompany("DNN-Connect")> 
+<Assembly: AssemblyProduct("DNN-Connect WebControls")> 
+<Assembly: AssemblyCopyright("Copyright ©  2015 dnn-connect.rg")> 
 <Assembly: AssemblyTrademark("")> 
 
 <Assembly: ComVisible(False)>
 
 'The following GUID is for the ID of the typelib if this project is exposed to COM
-<Assembly: Guid("334e9cee-0d47-4d70-924b-b5098a3432cb")> 
+<Assembly: Guid("625228f2-92ab-4df1-ae77-814adaf947b7")> 
 
 ' Version information for an assembly consists of the following four values:
 '
@@ -31,5 +30,5 @@ Imports System.Runtime.InteropServices
 ' by using the '*' as shown below:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("01.03.00")> 
-<Assembly: AssemblyFileVersion("01.03.00")> 
+<Assembly: AssemblyVersion("1.0.0.0")> 
+<Assembly: AssemblyFileVersion("1.0.0.0")> 

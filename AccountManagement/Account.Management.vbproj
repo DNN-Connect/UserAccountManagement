@@ -18,8 +18,8 @@
     <ProjectGuid>{17DBC02A-B1B7-47CC-A8F5-EFC4EF47D9FA}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{F184B08F-C81C-45F6-A57F-5ABD9991F28F}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
-    <RootNamespace>Connect.Modules.AccountManagement</RootNamespace>
-    <AssemblyName>Connect.Modules.AccountManagement.Manage</AssemblyName>
+    <RootNamespace>Connect.Modules.Accounts.AccountManagement</RootNamespace>
+    <AssemblyName>Connect.Modules.Accounts.AccountManagement</AssemblyName>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <OldToolsVersion>4.0</OldToolsVersion>
@@ -39,7 +39,7 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\</OutputPath>
-    <DocumentationFile>Connect.Modules.AccountManagement.Manage.xml</DocumentationFile>
+    <DocumentationFile>Connect.Modules.Accounts.AccountManagement.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
@@ -49,7 +49,7 @@
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>bin\</OutputPath>
-    <DocumentationFile>Connect.Modules.AccountManagement.Manage.xml</DocumentationFile>
+    <DocumentationFile>Connect.Modules.Accounts.AccountManagement.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
@@ -152,6 +152,13 @@
       <DependentUpon>Settings.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Templates.ascx.designer.vb">
+      <DependentUpon>Templates.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Templates.ascx.vb">
+      <DependentUpon>Templates.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="View.ascx.designer.vb">
       <DependentUpon>View.ascx</DependentUpon>
     </Compile>
@@ -187,6 +194,7 @@
     <Content Include="fonts\connectaccounts.ttf" />
     <Content Include="fonts\connectaccounts.woff" />
     <None Include="Providers\DataProviders\SqlDataProvider\01.00.00.SqlDataProvider" />
+    <Content Include="Providers\DataProviders\SqlDataProvider\01.03.00.SqlDataProvider" />
     <None Include="Providers\DataProviders\SqlDataProvider\Uninstall.SqlDataProvider" />
     <Content Include="Resources\vakata-jstree-3.0.8-0-g841eee8\vakata-jstree-841eee8\.gitignore" />
     <Content Include="Resources\vakata-jstree-3.0.8-0-g841eee8\vakata-jstree-841eee8\bower.json" />
@@ -285,6 +293,7 @@
     <Content Include="Resources\vakata-jstree-3.0.8-0-g841eee8\vakata-jstree-841eee8\test\libs\qunit.js" />
     <Content Include="Resources\vakata-jstree-3.0.8-0-g841eee8\vakata-jstree-841eee8\test\test.js" />
     <Content Include="Settings.ascx" />
+    <Content Include="Templates.ascx" />
     <Content Include="Templates\Default\Email.Account.Created.txt" />
     <Content Include="Templates\Default\Email.Account.Data.txt" />
     <Content Include="Templates\Default\Email.RoleStatusChanged.txt" />
@@ -309,13 +318,6 @@
     <Content Include="Module.Build">
       <SubType>Designer</SubType>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Library\Accounts.Library.vbproj">
-      <Project>{4f9b447a-d262-439a-822e-34849356966e}</Project>
-      <Name>Accounts.Library</Name>
-      <Private>False</Private>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
