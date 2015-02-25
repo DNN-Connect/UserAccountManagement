@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "AccountManagement", "AccountManagement\AccountManagement.vbproj", "{17DBC02A-B1B7-47CC-A8F5-EFC4EF47D9FA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{53A802BE-1013-4D28-BC45-88AC4C1E1089}"
+	ProjectSection(SolutionItems) = preProject
+		Build\ModulePackage.targets = Build\ModulePackage.targets
+		Build\MSBuild.Community.Tasks.Targets = Build\MSBuild.Community.Tasks.Targets
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{17DBC02A-B1B7-47CC-A8F5-EFC4EF47D9FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17DBC02A-B1B7-47CC-A8F5-EFC4EF47D9FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17DBC02A-B1B7-47CC-A8F5-EFC4EF47D9FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17DBC02A-B1B7-47CC-A8F5-EFC4EF47D9FA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

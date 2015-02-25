@@ -1,0 +1,336 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">12.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <TargetFrameworkProfile />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{17DBC02A-B1B7-47CC-A8F5-EFC4EF47D9FA}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{F184B08F-C81C-45F6-A57F-5ABD9991F28F}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Connect.Modules.AccountManagement</RootNamespace>
+    <AssemblyName>Connect.Modules.AccountManagement</AssemblyName>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <OptionExplicit>On</OptionExplicit>
+    <OptionCompare>Binary</OptionCompare>
+    <OptionStrict>Off</OptionStrict>
+    <OptionInfer>On</OptionInfer>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <UseIISExpress>false</UseIISExpress>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\</OutputPath>
+    <DocumentationFile>Connect.Modules.AccountManagement.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\bin\</OutputPath>
+    <DocumentationFile>Connect.Modules.AccountManagement.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DotNetNuke">
+      <HintPath>..\..\..\bin\DotNetNuke.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetNuke.Web, Version=7.1.0.2676, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\bin\DotNetNuke.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetNuke.WebUtility, Version=4.2.1.783, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\bin\DotNetNuke.WebUtility.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\bin\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.Mobile" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Telerik.Web.UI, Version=2013.1.403.40, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\bin\Telerik.Web.UI.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="DotNetNuke" />
+    <Import Include="DotNetNuke.Common" />
+    <Import Include="DotNetNuke.Common.Utilities" />
+    <Import Include="DotNetNuke.Data" />
+    <Import Include="DotNetNuke.Entities" />
+    <Import Include="DotNetNuke.Entities.Tabs" />
+    <Import Include="DotNetNuke.Framework" />
+    <Import Include="DotNetNuke.Modules" />
+    <Import Include="DotNetNuke.Security" />
+    <Import Include="DotNetNuke.Services" />
+    <Import Include="DotNetNuke.Services.Exceptions" />
+    <Import Include="DotNetNuke.Services.Localization" />
+    <Import Include="DotNetNuke.UI" />
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Collections.Specialized" />
+    <Import Include="System.Configuration" />
+    <Import Include="System.Text" />
+    <Import Include="System.Text.RegularExpressions" />
+    <Import Include="System.Web" />
+    <Import Include="System.Web.Caching" />
+    <Import Include="System.Web.SessionState" />
+    <Import Include="System.Web.Security" />
+    <Import Include="System.Web.Profile" />
+    <Import Include="System.Web.UI" />
+    <Import Include="System.Web.UI.WebControls" />
+    <Import Include="System.Web.UI.WebControls.WebParts" />
+    <Import Include="System.Web.UI.HtmlControls" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.vb" />
+    <Compile Include="Components\AccountManagementBase.vb">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Components\Common\Constants.vb" />
+    <Compile Include="Components\Common\Extensions.vb" />
+    <Compile Include="Components\Common\ModuleSettings.vb" />
+    <Compile Include="Components\Entities\UserReports.vb" />
+    <Compile Include="Reports.ascx.designer.vb">
+      <DependentUpon>Reports.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports.ascx.vb">
+      <DependentUpon>Reports.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Services\ConnectUsersAuthorizeAttribute.vb" />
+    <Compile Include="Services\RouteMapper.vb" />
+    <Compile Include="Services\UserAccountsController.vb" />
+    <Compile Include="Settings.ascx.designer.vb">
+      <DependentUpon>Settings.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Settings.ascx.vb">
+      <DependentUpon>Settings.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View.ascx.designer.vb">
+      <DependentUpon>View.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="View.ascx.vb">
+      <DependentUpon>View.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App_LocalResources\Settings.ascx.resx" />
+    <None Include="App_LocalResources\View.ascx.resx" />
+    <Content Include="Config\ToolsFile.xml" />
+    <Content Include="fonts\connectaccounts.svg" />
+    <Content Include="images\accept.png" />
+    <Content Include="images\add_user.png" />
+    <Content Include="images\back.png" />
+    <Content Include="images\error.png" />
+    <Content Include="images\folder.png" />
+    <Content Include="images\icnModule.png" />
+    <Content Include="images\play.png" />
+    <Content Include="images\required.png" />
+    <Content Include="images\search-button.png" />
+    <Content Include="images\search_user.png" />
+    <Content Include="images\success.png" />
+    <Content Include="images\users.png" />
+    <Content Include="Reports.ascx" />
+    <Content Include="AccountManagement.dnn">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Providers\DataProviders\SqlDataProvider\01.02.00.SqlDataProvider" />
+    <Content Include="packages.config" />
+    <Content Include="fonts\connectaccounts.eot" />
+    <Content Include="fonts\connectaccounts.ttf" />
+    <Content Include="fonts\connectaccounts.woff" />
+    <None Include="Providers\DataProviders\SqlDataProvider\01.00.00.SqlDataProvider" />
+    <None Include="Providers\DataProviders\SqlDataProvider\Uninstall.SqlDataProvider" />
+    <Content Include="Resources\vakata-jstree-3.0.8-0-g841eee8\vakata-jstree-841eee8\.gitignore" />
+    <Content Include="Resources\vakata-jstree-3.0.8-0-g841eee8\vakata-jstree-841eee8\bower.json" />
+    <Content Include="Resources\vakata-jstree-3.0.8-0-g841eee8\vakata-jstree-841eee8\component.json" />
+    <Content Include="Resources\vakata-jstree-3.0.8-0-g841eee8\vakata-jstree-841eee8\composer.json" />
+    <Content Include="Resources\vakata-jstree-3.0.8-0-g841eee8\vakata-jstree-841eee8\demo\basic\root.json" />
+    <Content Include="Resources\vakata-jstree-3.0.8-0-g841eee8\vakata-jstree-841eee8\demo\filebrowser\data\.htaccess" />
+    <Content Include="Resources\vakata-jstree-3.0.8-0-g841eee8\vakata-jstree-841eee8\demo\filebrowser\index.php" />
+    <Content Include="Resources\vakata-jstree-3.0.8-0-g841eee8\vakata-jstree-841eee8\demo\sitebrowser\class.db.php" />
+    <Content Include="Resources\vakata-jstree-3.0.8-0-g841eee8\vakata-jstree-841eee8\demo\sitebrowser\class.tree.php" />
+    <Content Include="Resources\vakata-jstree-3.0.8-0-g841eee8\vakata-jstree-841eee8\demo\sitebrowser\index.php" />
+    <Content Include="Resources\vakata-jstree-3.0.8-0-g841eee8\vakata-jstree-841eee8\jstree.jquery.json" />
+    <Content Include="Resources\vakata-jstree-3.0.8-0-g841eee8\vakata-jstree-841eee8\LICENSE-MIT" />
+    <Content Include="Resources\vakata-jstree-3.0.8-0-g841eee8\vakata-jstree-841eee8\package.json" />
+    <Content Include="Resources\vakata-jstree-3.0.8-0-g841eee8\vakata-jstree-841eee8\README.md" />
+    <Content Include="Resources\vakata-jstree-3.0.8-0-g841eee8\vakata-jstree-841eee8\src\themes\base.less" />
+    <Content Include="Resources\vakata-jstree-3.0.8-0-g841eee8\vakata-jstree-841eee8\src\themes\default-dark\style.less" />
+    <Content Include="Resources\vakata-jstree-3.0.8-0-g841eee8\vakata-jstree-841eee8\src\themes\default\style.less" />
+    <Content Include="Resources\vakata-jstree-3.0.8-0-g841eee8\vakata-jstree-841eee8\src\themes\main.less" />
+    <Content Include="Resources\vakata-jstree-3.0.8-0-g841eee8\vakata-jstree-841eee8\src\themes\mixins.less" />
+    <Content Include="Resources\vakata-jstree-3.0.8-0-g841eee8\vakata-jstree-841eee8\src\themes\responsive.less" />
+    <Content Include="Resources\vakata-jstree-3.0.8-0-g841eee8\vakata-jstree-841eee8\test\UNDER_CONTRUCTION" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Documentation\Documentation.css" />
+    <Content Include="Documentation\Documentation.html" />
+    <Content Include="module.css" />
+    <Content Include="Resources\chosen_v1.2.0\chosen-sprite%402x.png" />
+    <Content Include="Resources\chosen_v1.2.0\chosen-sprite.png" />
+    <Content Include="Resources\chosen_v1.2.0\chosen.css" />
+    <Content Include="Resources\chosen_v1.2.0\chosen.jquery.js" />
+    <Content Include="Resources\chosen_v1.2.0\chosen.jquery.min.js" />
+    <Content Include="Resources\chosen_v1.2.0\chosen.min.css" />
+    <Content Include="Resources\chosen_v1.2.0\chosen.proto.js" />
+    <Content Include="Resources\chosen_v1.2.0\chosen.proto.min.js" />
+    <Content Include="Resources\chosen_v1.2.0\docsupport\chosen.png" />
+    <Content Include="Resources\chosen_v1.2.0\docsupport\oss-credit.png" />
+    <Content Include="Resources\chosen_v1.2.0\docsupport\prism.css" />
+    <Content Include="Resources\chosen_v1.2.0\docsupport\prism.js" />
+    <Content Include="Resources\chosen_v1.2.0\docsupport\style.css" />
+    <Content Include="Resources\chosen_v1.2.0\index.html" />
+    <Content Include="Resources\chosen_v1.2.0\index.proto.html" />
+    <Content Include="Resources\chosen_v1.2.0\options.html" />
+    <Content Include="Resources\jsTree\jstree.min.js" />
+    <Content Include="Resources\jsTree\themes\default-dark\32px.png" />
+    <Content Include="Resources\jsTree\themes\default-dark\40px.png" />
+    <Content Include="Resources\jsTree\themes\default-dark\style.css" />
+    <Content Include="Resources\jsTree\themes\default-dark\style.min.css" />
+    <Content Include="Resources\jsTree\themes\default-dark\throbber.gif" />
+    <Content Include="Resources\jsTree\themes\default\32px.png" />
+    <Content Include="Resources\jsTree\themes\default\40px.png" />
+    <Content Include="Resources\jsTree\themes\default\style.css" />
+    <Content Include="Resources\jsTree\themes\default\style.min.css" />
+    <Content Include="Resources\jsTree\themes\default\throbber.gif" />
+    <Content Include="Resources\vakata-jstree-3.0.8-0-g841eee8\vakata-jstree-841eee8\demo\basic\index.html" />
+    <Content Include="Resources\vakata-jstree-3.0.8-0-g841eee8\vakata-jstree-841eee8\demo\filebrowser\file_sprite.png" />
+    <Content Include="Resources\vakata-jstree-3.0.8-0-g841eee8\vakata-jstree-841eee8\demo\sitebrowser\data.sql" />
+    <Content Include="Resources\vakata-jstree-3.0.8-0-g841eee8\vakata-jstree-841eee8\dist\jstree.js" />
+    <Content Include="Resources\vakata-jstree-3.0.8-0-g841eee8\vakata-jstree-841eee8\dist\jstree.min.js" />
+    <Content Include="Resources\vakata-jstree-3.0.8-0-g841eee8\vakata-jstree-841eee8\dist\themes\default-dark\32px.png" />
+    <Content Include="Resources\vakata-jstree-3.0.8-0-g841eee8\vakata-jstree-841eee8\dist\themes\default-dark\40px.png" />
+    <Content Include="Resources\vakata-jstree-3.0.8-0-g841eee8\vakata-jstree-841eee8\dist\themes\default-dark\style.css" />
+    <Content Include="Resources\vakata-jstree-3.0.8-0-g841eee8\vakata-jstree-841eee8\dist\themes\default-dark\style.min.css" />
+    <Content Include="Resources\vakata-jstree-3.0.8-0-g841eee8\vakata-jstree-841eee8\dist\themes\default-dark\throbber.gif" />
+    <Content Include="Resources\vakata-jstree-3.0.8-0-g841eee8\vakata-jstree-841eee8\dist\themes\default\32px.png" />
+    <Content Include="Resources\vakata-jstree-3.0.8-0-g841eee8\vakata-jstree-841eee8\dist\themes\default\40px.png" />
+    <Content Include="Resources\vakata-jstree-3.0.8-0-g841eee8\vakata-jstree-841eee8\dist\themes\default\style.css" />
+    <Content Include="Resources\vakata-jstree-3.0.8-0-g841eee8\vakata-jstree-841eee8\dist\themes\default\style.min.css" />
+    <Content Include="Resources\vakata-jstree-3.0.8-0-g841eee8\vakata-jstree-841eee8\dist\themes\default\throbber.gif" />
+    <Content Include="Resources\vakata-jstree-3.0.8-0-g841eee8\vakata-jstree-841eee8\gruntfile.js" />
+    <Content Include="Resources\vakata-jstree-3.0.8-0-g841eee8\vakata-jstree-841eee8\src\intro.js" />
+    <Content Include="Resources\vakata-jstree-3.0.8-0-g841eee8\vakata-jstree-841eee8\src\jstree.checkbox.js" />
+    <Content Include="Resources\vakata-jstree-3.0.8-0-g841eee8\vakata-jstree-841eee8\src\jstree.contextmenu.js" />
+    <Content Include="Resources\vakata-jstree-3.0.8-0-g841eee8\vakata-jstree-841eee8\src\jstree.dnd.js" />
+    <Content Include="Resources\vakata-jstree-3.0.8-0-g841eee8\vakata-jstree-841eee8\src\jstree.js" />
+    <Content Include="Resources\vakata-jstree-3.0.8-0-g841eee8\vakata-jstree-841eee8\src\jstree.search.js" />
+    <Content Include="Resources\vakata-jstree-3.0.8-0-g841eee8\vakata-jstree-841eee8\src\jstree.sort.js" />
+    <Content Include="Resources\vakata-jstree-3.0.8-0-g841eee8\vakata-jstree-841eee8\src\jstree.state.js" />
+    <Content Include="Resources\vakata-jstree-3.0.8-0-g841eee8\vakata-jstree-841eee8\src\jstree.types.js" />
+    <Content Include="Resources\vakata-jstree-3.0.8-0-g841eee8\vakata-jstree-841eee8\src\jstree.unique.js" />
+    <Content Include="Resources\vakata-jstree-3.0.8-0-g841eee8\vakata-jstree-841eee8\src\jstree.wholerow.js" />
+    <Content Include="Resources\vakata-jstree-3.0.8-0-g841eee8\vakata-jstree-841eee8\src\misc.js" />
+    <Content Include="Resources\vakata-jstree-3.0.8-0-g841eee8\vakata-jstree-841eee8\src\outro.js" />
+    <Content Include="Resources\vakata-jstree-3.0.8-0-g841eee8\vakata-jstree-841eee8\src\sample.js" />
+    <Content Include="Resources\vakata-jstree-3.0.8-0-g841eee8\vakata-jstree-841eee8\src\themes\default-dark\32px.png" />
+    <Content Include="Resources\vakata-jstree-3.0.8-0-g841eee8\vakata-jstree-841eee8\src\themes\default-dark\40px.png" />
+    <Content Include="Resources\vakata-jstree-3.0.8-0-g841eee8\vakata-jstree-841eee8\src\themes\default-dark\style.css" />
+    <Content Include="Resources\vakata-jstree-3.0.8-0-g841eee8\vakata-jstree-841eee8\src\themes\default-dark\throbber.gif" />
+    <Content Include="Resources\vakata-jstree-3.0.8-0-g841eee8\vakata-jstree-841eee8\src\themes\default\32px.png" />
+    <Content Include="Resources\vakata-jstree-3.0.8-0-g841eee8\vakata-jstree-841eee8\src\themes\default\40px.png" />
+    <Content Include="Resources\vakata-jstree-3.0.8-0-g841eee8\vakata-jstree-841eee8\src\themes\default\style.css" />
+    <Content Include="Resources\vakata-jstree-3.0.8-0-g841eee8\vakata-jstree-841eee8\src\themes\default\throbber.gif" />
+    <Content Include="Resources\vakata-jstree-3.0.8-0-g841eee8\vakata-jstree-841eee8\src\vakata-jstree.js" />
+    <Content Include="Resources\vakata-jstree-3.0.8-0-g841eee8\vakata-jstree-841eee8\test\index.html" />
+    <Content Include="Resources\vakata-jstree-3.0.8-0-g841eee8\vakata-jstree-841eee8\test\libs\qunit.css" />
+    <Content Include="Resources\vakata-jstree-3.0.8-0-g841eee8\vakata-jstree-841eee8\test\libs\qunit.js" />
+    <Content Include="Resources\vakata-jstree-3.0.8-0-g841eee8\vakata-jstree-841eee8\test\test.js" />
+    <Content Include="Settings.ascx" />
+    <Content Include="Templates\Default\Email.Account.Created.txt" />
+    <Content Include="Templates\Default\Email.Account.Data.txt" />
+    <Content Include="Templates\Default\Email.RoleStatusChanged.txt" />
+    <Content Include="Templates\Default\Email.AddedToRole.txt" />
+    <Content Include="Templates\Default\Email.Password.Reset.txt" />
+    <Content Include="Templates\Default\Email.RemovedFromRole.txt" />
+    <Content Include="Templates\Default\Form.Create.txt" />
+    <Content Include="Templates\Default\Form.Profile.txt" />
+    <Content Include="Templates\Default\Form.Account.txt" />
+    <Content Include="View.ascx" />
+    <Content Include="ReleaseNotes.txt" />
+    <Content Include="License.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="My Project\" />
+    <Folder Include="Resources\DataTable\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\Reports.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Module.Build">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v12.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Import Project="Module.Build" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>62597</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://dnn.connect/DesktopModules/Connect/AccountManagement</IISUrl>
+          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
+          <IISAppRootUrl>http://dnn.connect/</IISAppRootUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>True</UseCustomServer>
+          <CustomServerUrl>http://dnn.connect/DesktopModules/Connect/AccountManagement</CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

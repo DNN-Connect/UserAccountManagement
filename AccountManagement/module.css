@@ -1,0 +1,294 @@
+﻿/* more real estate for template editing */
+#ConnectAccountManagementTemplates .dnnFormItem textarea        {max-width: inherit;width: 100%;}
+
+.connect_leftcol                {width: 20%; padding: 2px 0 0 0;}
+.connect_rightcol               {width: 80%;}
+.connect_btnContainer           {width: 80%;}
+.connect_btnContainer a         {width: 89%;}
+.connect_optionscol             {width: 33%;}
+.connect_searchbox              {width: 80%;}
+.connect_searchbutton           {width: 20%;}
+.connect_searchbox input        {width: 99%;height: 30px;border-radius: 4px;border: 1px solid #ccc;padding: 0 5px 0 10px;}
+.connect_searchbutton a         {display: block; background: url(images/search-button.png) 0px 0px; text-indent:-999px; width: 30px; height: 30px;}
+.connect_drpContainer           {padding: 45px 0 0px 0;}
+.connect_drpContainer select    {width:96%;}
+.connect_rolesContainer         {padding: 25px 0 25px 0;}
+
+.connect_col50                  {width: 50%;}
+.connect_note                   { font-weight: bold; font-size: 120%; padding: 20px 0 20px 0;}
+
+.connect-gridactions            { list-style-type: none; margin: 0; padding: 0;}
+.connect-gridactions li         { list-style-type: none; margin: 0 10px 0 0; padding: 0 0 0 0px; float: left;}
+.connect-gridactions li a       { text-decoration: none; text-indent: -999em !important; }
+
+@font-face {
+	font-family: "Connectaccounts";
+	src: url("fonts/connectaccounts.eot");
+	src: url("fonts/connectaccounts.eot#iefix") format("embedded-opentype"),
+	url("fonts/connectaccounts.woff") format("woff"),
+	url("fonts/connectaccounts.ttf") format("truetype"),
+	url("fonts/connectaccounts.svg") format("svg");
+	font-weight: normal;
+	font-style: normal;
+}
+[class^="connectaccounts-"]:before, [class*=" connectaccounts-"]:before,
+[class^="connectaccounts-"]:after, [class*=" connectaccounts-"]:after {   
+	font-family: Connectaccounts;
+    font-size: 20px;
+    font-style: normal;
+    margin-left: 2px;
+}.connectaccounts-check30:before {
+	content: "\e000";
+}
+.connectaccounts-delete30:before {
+	content: "\e001";
+}
+.connectaccounts-delete48:before {
+	content: "\e002";
+}
+.connectaccounts-hourglass1:before {
+	content: "\e003";
+}
+.connectaccounts-pencil43:before {
+	content: "\e004";
+}
+.connectaccounts-undo9:before {
+	content: "\e005";
+}
+
+
+.connect-accounts-select { width: 250px; margin: 12px 0 0 5px; float:left; }
+.connect_main .chosen-container-single .chosen-single {
+    border-radius: 0px;
+    height: 35px;
+    line-height: 35px;
+}
+.connect_main .chosen-container-single .chosen-single div b {
+    background-position: 0 8px;
+}
+
+.connect_main button.DTTT_button, .connect_main div.DTTT_button, .connect_main a.DTTT_button {
+    background: -moz-linear-gradient(center top , #fff 0%, #f3f3f3 89%, #f9f9f9 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
+    border: 1px solid #999;
+    border-radius: 0px;
+    box-shadow: 1px 1px 3px #ccc;
+    color: black !important;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 0.88em;
+    margin-right: 3px;
+    padding: 0px 8px;
+    position: relative;
+    height: 34px;
+    line-height: 34px;
+}
+
+.dataTables_wrapper {
+    background: none repeat scroll 0 0 #eee;
+    border: 1px solid #ddd;
+    clear: both;
+    position: relative;
+}
+.connect_main .dataTables_wrapper .dataTables_length {
+    float: left;
+    margin: 12px 0 0 8px;
+}
+.connect_main .DTTT_container { margin: 12px 5px 0 0;}
+.connect_main .dataTables_filter { margin: 12px 8px 0 0;}
+
+.connect_main .dataTable thead { background: #ddd; }
+.connect_main table.dataTable thead th, .connect_main table.dataTable thead td { border-top: 1px solid #999; border-bottom: 1px solid #999; color: #444; text-align: left; padding: 10px; }
+.connect_main table.dataTable thead .sorting_asc,
+.connect_main table.dataTable thead .sorting_desc {
+    background-color: #deeeee;
+    background-position: right center;
+}
+
+.connect_main table.dataTable.display tbody tr.odd > .sorting_1, .connect_main table.dataTable.order-column.stripe tbody tr.odd > .sorting_1 {
+    background-color: #deeeee;
+}
+.connect_main table.dataTable.display tbody tr.even > .sorting_1, .connect_main table.dataTable.order-column.stripe tbody tr.even > .sorting_1 {
+    background-color: #deeeee;
+}
+.connect_main .dataTables_wrapper .dataTables_info {
+    padding: 0.755em;
+}
+
+.connent-arrow-left{
+	width: 0; 
+	height: 0; 
+	border-top: 20px solid transparent;
+	border-bottom: 20px solid transparent; 	
+	border-right:20px solid #ddd; 
+    float: left;
+    margin-top: 30px;
+}
+.connect-roles-content{
+    float:left;
+    background: #ddd;
+    border: 1px solid #ddd;
+    padding: 15px;
+    font-size: 12px;
+    font-weight: normal;
+}
+.connect-roles-content label { margin-left: 8px; }
+.connect-roles-content p { margin-top: 10px; }
+.connectRolesDialog
+{
+    background: transparent;
+    font-size: 2em;
+    height: 400px;
+    position: absolute;
+    width: 400px;
+    z-index: 20;
+    display: none;
+}
+.connect_main { position: relative; }
+.connect_main .processing {
+    background: rgba(0,0,0,.2);
+    font-size: 2em;
+    height: 100%;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    left: 0;
+    top:0;
+    z-index: 10;
+    display: none;
+}
+
+
+.bubblingG {
+text-align: center;
+width:200px;
+height:125px;
+margin: 100px auto;
+}
+
+.bubblingG span {
+display: inline-block;
+vertical-align: middle;
+width: 25px;
+height: 25px;
+margin: 63px auto;
+background: #FF0000;
+-moz-border-radius: 125px;
+-moz-animation: bubblingG 1.3s infinite alternate;
+-webkit-border-radius: 125px;
+-webkit-animation: bubblingG 1.3s infinite alternate;
+-ms-border-radius: 125px;
+-ms-animation: bubblingG 1.3s infinite alternate;
+-o-border-radius: 125px;
+-o-animation: bubblingG 1.3s infinite alternate;
+border-radius: 125px;
+animation: bubblingG 1.3s infinite alternate;
+}
+
+#bubblingG_1 {
+-moz-animation-delay: 0s;
+-webkit-animation-delay: 0s;
+-ms-animation-delay: 0s;
+-o-animation-delay: 0s;
+animation-delay: 0s;
+}
+
+#bubblingG_2 {
+-moz-animation-delay: 0.39s;
+-webkit-animation-delay: 0.39s;
+-ms-animation-delay: 0.39s;
+-o-animation-delay: 0.39s;
+animation-delay: 0.39s;
+}
+
+#bubblingG_3 {
+-moz-animation-delay: 0.78s;
+-webkit-animation-delay: 0.78s;
+-ms-animation-delay: 0.78s;
+-o-animation-delay: 0.78s;
+animation-delay: 0.78s;
+}
+
+@-moz-keyframes bubblingG {
+0% {
+width: 25px;
+height: 25px;
+background-color:#FF0000;
+-moz-transform: translateY(0);
+}
+
+100% {
+width: 60px;
+height: 60px;
+background-color:#FFFFFF;
+-moz-transform: translateY(-53px);
+}
+
+}
+
+@-webkit-keyframes bubblingG {
+0% {
+width: 25px;
+height: 25px;
+background-color:#FF0000;
+-webkit-transform: translateY(0);
+}
+
+100% {
+width: 60px;
+height: 60px;
+background-color:#FFFFFF;
+-webkit-transform: translateY(-53px);
+}
+
+}
+
+@-ms-keyframes bubblingG {
+0% {
+width: 25px;
+height: 25px;
+background-color:#FF0000;
+-ms-transform: translateY(0);
+}
+
+100% {
+width: 60px;
+height: 60px;
+background-color:#FFFFFF;
+-ms-transform: translateY(-53px);
+}
+
+}
+
+@-o-keyframes bubblingG {
+0% {
+width: 25px;
+height: 25px;
+background-color:#FF0000;
+-o-transform: translateY(0);
+}
+
+100% {
+width: 60px;
+height: 60px;
+background-color:#FFFFFF;
+-o-transform: translateY(-53px);
+}
+
+}
+
+@keyframes bubblingG {
+0% {
+width: 25px;
+height: 25px;
+background-color:#FF0000;
+transform: translateY(0);
+}
+
+100% {
+width: 60px;
+height: 60px;
+background-color:#FFFFFF;
+transform: translateY(-53px);
+}
+
+}
