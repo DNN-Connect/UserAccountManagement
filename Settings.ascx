@@ -25,7 +25,12 @@
 
 <div class="dnnFormItem">
      <dnn:Label ID="lblAllowExport" runat="server" resourcekey="lblAllowExport"></dnn:Label>
-     <asp:CheckBox ID="chkAllowExport" runat="server" />
+     <asp:CheckBox ID="chkAllowExport" runat="server" AutoPostBack="true" />
+</div>
+
+<div class="dnnFormItem" runat="server" id="dvExportFields">
+     <dnn:Label ID="lblExportFields" runat="server" resourcekey="lblExportFields"></dnn:Label>
+     <asp:TextBox ID="txtExportFields" TextMode="MultiLine" runat="server"></asp:TextBox>
 </div>
 
 <div class="dnnFormItem">
@@ -33,10 +38,9 @@
      <asp:CheckBox ID="chkAllowSendMessages" runat="server" />
 </div>
 
-
 <div class="dnnFormItem">
     <dnn:Label ID="lblAllowedRoles" runat="server" resourcekey="lblAllowedRoles"></dnn:Label>
-    <asp:CheckBoxList ID="chkAllowedRoles" runat="server" RepeatColumns="2" DataTextField="RoleName" DataValueField="RoleId"></asp:CheckBoxList>  
+    <asp:CheckBoxList ID="chkAllowedRoles" runat="server" RepeatColumns="2" DataTextField="RoleName" DataValueField="RoleId" AutoPostBack="true"></asp:CheckBoxList>  
 </div>
 
 <div class="dnnFormItem">
@@ -61,4 +65,6 @@
      <dnn:Label ID="lblAdditionalControls" runat="server" resourcekey="lblAdditionalControls"></dnn:Label>
      <asp:TextBox ID="txtAditionalControls" TextMode="MultiLine" runat="server"></asp:TextBox>
 </div>
+
+
 

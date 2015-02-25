@@ -183,4 +183,7 @@
   <data name="lblAllowSendMessages.Text" xml:space="preserve">
     <value>Allow sending messages to all users</value>
   </data>
+  <data name="lblExportFields.Text" xml:space="preserve">
+    <value>Export Fields:</value>
+  </data>
 </root>

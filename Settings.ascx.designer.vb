@@ -105,6 +105,33 @@ Namespace Connect.Modules.UserManagement.AccountManagement
         Protected WithEvents chkAllowExport As Global.System.Web.UI.WebControls.CheckBox
 
         '''<summary>
+        '''dvExportFields control.
+        '''</summary>
+        '''<remarks>
+        '''Auto-generated field.
+        '''To modify move field declaration from designer file to code-behind file.
+        '''</remarks>
+        Protected WithEvents dvExportFields As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+        '''<summary>
+        '''lblExportFields control.
+        '''</summary>
+        '''<remarks>
+        '''Auto-generated field.
+        '''To modify move field declaration from designer file to code-behind file.
+        '''</remarks>
+        Protected WithEvents lblExportFields As Global.DotNetNuke.UI.UserControls.LabelControl
+
+        '''<summary>
+        '''txtExportFields control.
+        '''</summary>
+        '''<remarks>
+        '''Auto-generated field.
+        '''To modify move field declaration from designer file to code-behind file.
+        '''</remarks>
+        Protected WithEvents txtExportFields As Global.System.Web.UI.WebControls.TextBox
+
+        '''<summary>
         '''lblAllowSendMessages control.
         '''</summary>
         '''<remarks>
