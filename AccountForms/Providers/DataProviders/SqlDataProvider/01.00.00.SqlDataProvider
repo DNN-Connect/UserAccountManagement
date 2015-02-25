@@ -1,0 +1,17 @@
+﻿-- no longer needed
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}Connect_Users_ListByPortal]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    drop procedure {databaseOwner}[{objectQualifier}Connect_Users_ListByPortal]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}Connect_Users_ListByRole]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    drop procedure {databaseOwner}[{objectQualifier}Connect_Users_ListByRole]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}Connect_Users_RestoreUser]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    drop procedure {databaseOwner}[{objectQualifier}Connect_Users_RestoreUser]
+GO  
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}Connect_Users_HardDeleteUser]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    drop procedure {databaseOwner}[{objectQualifier}Connect_Users_HardDeleteUser]
+GO

@@ -1,0 +1,116 @@
+<div id="ConnectRegisterForm" class="dnnForm dnnClear">
+
+    <ul id="ConnectRegisterFormTabs" runat="Server" class="dnnAdminTabNav dnnClear">
+        <li><a href="#Register" class="connect_RegisterTabLink">[RESX:LOGIN:CreateAccountTab]</a></li>
+        <li><a href="#Login" class="connect_LoginTabLink">[RESX:LOGIN:LoginTab]</a></li>
+    </ul>
+
+	<div id="Register" class="connect_register">
+		
+		<div class="dnnFormItem dnnClear">
+		  [DNNLBL:USER:Username:HideRequired]
+		  [CTL:USER:Username]
+		  [REQUIRED:USER:Username]
+		</div>
+		
+		<div class="dnnFormItem dnnClear">
+		  [DNNLBL:USER:Email:HideRequired]
+		  [CTL:USER:Email]
+		  [REQUIRED:USER:Email]
+		</div>
+
+		<div class="dnnFormItem dnnClear">
+		  [DNNLBL:USER:Firstname:HideRequired]
+		  [CTL:USER:Firstname]
+		  [REQUIRED:USER:Firstname]
+		</div>
+
+		<div class="dnnFormItem dnnClear">
+		  [DNNLBL:USER:Lastname:HideRequired]
+		  [CTL:USER:Lastname]
+		  [REQUIRED:USER:Lastname]
+		</div>
+
+		<div class="dnnFormItem dnnClear">
+		  [DNNLBL:USER:Password1:HideRequired]
+		  [CTL:USER:Password1]
+		  [REQUIRED:USER:Password1]
+		</div>
+
+		<div class="dnnFormItem dnnClear">
+		  [DNNLBL:USER:Password2:HideRequired]
+		  [CTL:USER:Password2]
+		  [REQUIRED:USER:Password2]
+		</div>
+
+		<ul class="dnnActions">
+		  <li>[CTL:UPDATEBUTTON:CreateAccount]</li>
+		</ul>
+
+	</div>
+
+	<div id="Login" class="connect_login">
+
+
+		<div class="dnnFormItem dnnClear">
+		  [DNNLBL:LOGIN:Username]
+		  [CTL:LOGIN:Username]
+		</div>
+		
+		<div class="dnnFormItem dnnClear">
+		  [DNNLBL:LOGIN:Password]
+		  [CTL:LOGIN:Password]
+		</div>
+
+		<div class="dnnFormItem dnnClear">
+		  [DNNLBL:LOGIN:Remember]
+		  [CTL:LOGIN:Remember]
+		</div>
+		
+		<ul class="dnnActions">
+		  <li>[CTL:LOGINBUTTON:Login]</li>
+		  <li>[CTL:LOSTPASSWORDBUTTON:LostPassword]</li>
+		</ul>
+						
+
+	</div>
+</div>
+
+<script language="javascript" type="text/javascript">
+/*globals jQuery, window, Sys */
+(function ($, Sys) {
+
+    function setupFormSettings() {
+        
+		$('#ConnectRegisterForm').dnnTabs();
+		
+		$('#Register > .dnnFormItem > input').keypress(function (e){
+			
+			 var key = e.which;
+			 if(key == 13) {
+				$('#Register > .dnnActions > li > .dnnPrimaryAction').click();
+				return false;
+			 }
+
+		});
+
+		$('#Login > .dnnFormItem > input').keypress(function (e){
+
+			var key = e.which;
+			if(key == 13) {
+				$('#Login > .dnnActions > li > .dnnPrimaryAction').click();
+				return false;
+			}
+
+		});
+    }
+
+    $(document).ready(function () {
+        setupFormSettings();
+        Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function () {
+            setupFormSettings();
+        });
+    });
+
+} (jQuery, window.Sys));
+</script>

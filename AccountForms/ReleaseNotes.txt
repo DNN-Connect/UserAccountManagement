@@ -1,0 +1,88 @@
+﻿<h3>Connect: AccountRegistration</h3>
+<p class="Contributor">
+	Philipp Becker<br />
+	DNN-Connect<br />
+	http://dnn-connect.org
+</p>
+<hr/>
+<div class="License">
+	
+	<h3>Release Notes</h3>
+
+	<p class="Owner">
+		<b>Version 01.03.00</b>
+	</p>
+	<p>Major Release</p>
+	
+	<ul>
+		<li>New: New Checkboxlist control for profile properties</li>
+		<li>New: Interface for handling pre-registration event</li>
+		<li>Enhancement: Customize messages displayed on screen after registration</li>
+		<li>Enhancement: Cross-browser support for pressing enter on registration and signup form</li>
+	</ul>
+	<p><a href="https://github.com/DNN-Connect/UserAccountRegistration/issues?q=milestone%3A01.03.00+is%3Aclosed" target="_blank">Full change log</a></p>
+	<p>Thanks to <a href="https://github.com/vmasanas" target="_blank">Vicenç Masanas</a> for contributing</p>
+
+	<p class="Owner">
+		<b>Version 01.02.02</b>
+	</p>
+	<p>Minor Release</p>	
+	<ul>
+		<li>moved license from BSD to GPLv2</li>
+		<li>removed unneeded SPROCs</li>
+		<li>interface specification should be Class, Assembly (https://github.com/DNN-Connect/UserAccountRegistration/issues/9)</li>
+		<li>improvements to reCaptcha feedback messages (https://github.com/DNN-Connect/UserAccountRegistration/issues/6)</li>
+	</ul>
+	<p class="Owner">
+		<b>Version 01.02.01</b>
+	</p>
+	<p>Minor Release</p>	
+	<ul>
+		<li>Added setting for regular expresion on e-mail validation (https://github.com/DNN-Connect/UserAccountRegistration/issues/3)</li>
+		<li>Added setting for comparing lastname with firstname (https://github.com/DNN-Connect/UserAccountRegistration/issues/2)</li>
+		<li>Add support for re-captcha control. You may now add a token in the form [RECAPTCHA:Your_Public_Key:Your_Theme]. You can obtain your key pair from Google: https://www.google.com/recaptcha/admin#whyrecaptcha</li>
+		<li>Added setting for reCaptach private key. Needed for validation of challenge.
+		<li>FIX: Email Templates appended rather than overwritten (https://github.com/DNN-Connect/UserAccountRegistration/issues/4)</li>
+		<li>FIX: Save Template & Exit does not exit (https://github.com/DNN-Connect/UserAccountRegistration/issues/5)</li>
+	</ul>
+	<p class="Owner">
+		<b>Version 01.02.00</b>
+	</p>
+	<p>Extended Token Support</p>	
+	<h4>Changes</h4>
+	<ul>
+			<li>New conditional token: [IFSOCIALMEMBERSHIPPENDING:XXX]...[/IFSOCIALMEMBERSHIPPENDING:XXX] renders everything in between the tokens if the current user is in the specified XXX social group and the group membership is pending.</li>
+			<li>New conditional token: [IFSOCIALMEMBERSHIPAPPROVED:XXX]...[/IFSOCIALMEMBERSHIPAPPROVED:XXX] renders everything in between the tokens if the current user is in the specified XXX social group and the group membership is pending.</li>
+			<li>New conditional token: [IFSOCIALMEMBERSHIPNONE:XXX]...[/IFSOCIALMEMBERSHIPNONE:XXX] renders everything in between the tokens if the current user is not yet in the specified XXX social group and also has not applied yet for becoming a member.</li>
+			<li>New conditional token: [IFISINROLE:XXX]...[/IFISINROLE:XXX] renders everything in between the tokens if the current user is in the specified XXX role.</li>
+			<li>New conditional token: [IFNOTISINROLE:XXX]...[/IFNOTISINROLE:XXX] renders everything in between the tokens if the current user is not in the specified XXX role.</li>
+			<li>New control token: [CTL:ROLEMEMBERSHP:XXX] renders a checkbox that - once checked - will add the user account to the specified XXX role.</li>
+			<li>New control token: [CTL:ROLEMEMBERSHP:XXX:Pending] will do the same but will rather make the role membership pending.</li>
+			<li>New Setting: When adding users to a role through the modulesettings you can now set the status of that role membership</li>
+	</ul>
+	<p class="Owner">
+		<b>Version 01.00.01</b>
+	</p>
+	<p>Service release. Mainly focused on better support for password management in newer dnn installations where password retrieval is disabled.</p>	
+	<h4>Changes</h4>
+	<ul>
+			<li>New token in e-mail templates: [RESETLINK]</li>
+			<li>New token in forms: [PASSWORDCURRENT]; needed for setting a new password in the account update form</li>
+	</ul>
+	<p class="Owner">
+		<b>Version 01.00.00</b>
+	</p>
+	<p>Initial release of Account registration, login and update module. The formly module dnnWerk.Users has been separated into dedocated modules for registering and updating account. The main task for this release was to extract the actual modules from the original package. I do have improved the feature set in various ways though:</p>	
+	<h4>Changes</h4>
+	<ul>
+			<li>Added template management view to simplify template management</li>
+			<li>Made sharing templates across module instances possible</li>
+			<li>Added tokens for letting users login from within the registration module</li>
+			<li>Changed notification e-mail setting to notification role. This will now send e-mails to all members of a given role on submitting the form</li>
+			<li>Made tokens compatible with the DNN form pattern</li>
+			<li>Added support for question and answer fields</li>
+			<li>Added support for changing usernames when registering through e-mail address is configured</li>
+			<li>Improved error handling</li>
+	</ul>
+	
+</div>

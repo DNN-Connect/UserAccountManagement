@@ -1,0 +1,36 @@
+This is the default template:
+
+<p>Dear [DISPLAYNAME],</p>
+<p>your user account on the website <strong>[PORTALNAME]</strong> has been created succesfully. To finalize the activation of the account we require you to verify your e-mail address. This is to prevent automated systems to register accounts on our website and we're trying to make that last step as easy as possible for you. Simply click on the link below and your account will be activated instantly. In case you will be asked of a verification code while logging on to the website you can also enter the key provided below.</p>
+
+<div style="margin-top: 20px;padding: 20px;border: 1px dashed #ccc;background-color: #eee;">
+    <a href="[VERIFYURL]">Click to activate Account</a>
+</div>
+
+<p>It is adviseable to keep your registration details in a safe place in case you need it one day.</p>
+
+<h2>Details about your account</h2>
+<table>
+    <tr>
+        <td>Username:</td><td>[USERNAME]</td>
+    </tr>
+    <tr>
+        <td>Password:</td><td>[PASSWORD]</td>
+    </tr> 
+    <tr>
+        <td>Verification Code:</td><td>[VERIFICATIONCODE]</td>
+    </tr>         
+    <tr>
+        <td>E-Mail Adress:</td><td>[EMAIL]</td>
+    </tr>                           
+</table>
+
+<p style="padding-top:20px;">
+    Once your account is activated you can use the following link to manage your account details:
+</p>
+
+<div style="margin-top: 20px;padding: 20px;border: 1px dashed #ccc;background-color: #eee;">
+    <a href="[USERURL]">Click to manage Account</a>
+</div>
+    
+

@@ -1,0 +1,24 @@
+
+<p>A user has registered an account on the website <a href="[PORTALURL]"><strong>[PORTALNAME]</strong></a>.</p>
+<p>The registration mode of the portal is set to <strong><i>[REGISTRATIONMODE]</i></strong>, so the following action is necessary:</p>
+<ul>
+    <li>[ADMINACTION]</li>
+</ul>
+<h2>Details about the account</h2>
+<table>
+    <tr>
+        <td>Username:</td><td>[USERNAME]</td>
+    </tr>
+    <tr>
+        <td>Name:</td><td>[FIRSTNAME] [LASTNAME]</td>
+    </tr>  
+    <tr>
+        <td>E-Mail Adress:</td><td>[EMAIL]</td>
+    </tr>                           
+</table>
+
+<div style="margin-top: 20px;padding: 20px;border: 1px dashed #ccc;background-color: #eee;">
+    <a href="[USERURL]">Click to manage Account</a>
+</div>
+    
+

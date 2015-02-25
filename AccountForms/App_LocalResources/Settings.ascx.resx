@@ -1,0 +1,243 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ControlTitle_settings.Text" xml:space="preserve">
+    <value>Registration Settings</value>
+  </data>
+  <data name="lblUsernameMode.Text" xml:space="preserve">
+    <value>Username Mode:</value>
+  </data>
+  <data name="lblUsernameMode.Help" xml:space="preserve">
+    <value>Select how to create usernames. Note that your template must reflect this setting by using the correct tokens!</value>
+  </data>
+  <data name="Username_FreeEnter.Text" xml:space="preserve">
+    <value>Let the user select</value>
+  </data>
+  <data name="Username_UseEmail.Text" xml:space="preserve">
+    <value>Create from E-Mail Address</value>
+  </data>
+  <data name="Username_FirstletterLastname.Text" xml:space="preserve">
+    <value>Create in the form [Firstletter from Firstname + .Lastname]</value>
+  </data>
+  <data name="Displayname_FirstletterLastname" xml:space="preserve">
+    <value>Create in the form [Firstletter from Firstname + .Lastname]</value>
+  </data>
+  <data name="Displayname_FirstnameLastname" xml:space="preserve">
+    <value>Create in the form [Firstname.Lastname]</value>
+  </data>
+  <data name="Displayname_FreeEnter.Text" xml:space="preserve">
+    <value>Let the user select</value>
+  </data>
+  <data name="Displayname_FromEmail" xml:space="preserve">
+    <value>Create from E-Mail Address</value>
+  </data>
+  <data name="Displayname_Lastname" xml:space="preserve">
+    <value>Create from Lastname</value>
+  </data>
+  <data name="lblAddToRole.Help" xml:space="preserve">
+    <value>You may optionally select a role that the user is being added to once registering through this module instance</value>
+  </data>
+  <data name="lblAddToRole.Text" xml:space="preserve">
+    <value>Add to Role on Submit:</value>
+  </data>
+  <data name="lblDisplaynameMode.Help" xml:space="preserve">
+    <value>Select how to create displaynames. Note that your template must reflect this setting by using the correct tokens!</value>
+  </data>
+  <data name="lblDisplaynameMode.Text" xml:space="preserve">
+    <value>Displayname Mode:</value>
+  </data>
+  <data name="lblNotifyRole.Help" xml:space="preserve">
+    <value>You may optionally select a role where all members of that role receive an e-mail notification on submitting the form</value>
+  </data>
+  <data name="lblNotifyRole.Text" xml:space="preserve">
+    <value>Send confirmation role to select role:</value>
+  </data>
+  <data name="lblNotifyUser.Help" xml:space="preserve">
+    <value>Select wether the user receives an e-mail verification on submitting the form</value>
+  </data>
+  <data name="lblNotifyUser.Text" xml:space="preserve">
+    <value>Send confirmation to user:</value>
+  </data>
+  <data name="lblRedirectAfterSubmit.Help" xml:space="preserve">
+    <value>Select the page that the user gets redirected to after submitting the form</value>
+  </data>
+  <data name="lblRedirectAfterSubmit.Text" xml:space="preserve">
+    <value>Redirect after Submit:</value>
+  </data>
+  <data name="lblUsermanagementTab.Help" xml:space="preserve">
+    <value>Select the page where the usermanagement module resides on. This setting is being used for generating the link to the user's details in the administrator notification e-mail</value>
+  </data>
+  <data name="lblUsermanagementTab.Text" xml:space="preserve">
+    <value>Usermanagement Page:</value>
+  </data>
+  <data name="Username_FirstnameLastname" xml:space="preserve">
+    <value>Create in the form [Firstname.Lastname]</value>
+  </data>
+  <data name="Username_Lastname" xml:space="preserve">
+    <value>Create from Lastname</value>
+  </data>
+  <data name="lblInterface.Help" xml:space="preserve">
+    <value>Enter the external interface qualifier. See &lt;a href="https://github.com/DNN-Connect/UserAccountRegistration/wiki/External-Interfaces" target="_blank"&gt;this article&lt;/a&gt; on how to do that and how it can help you.</value>
+  </data>
+  <data name="lblInterface.Text" xml:space="preserve">
+    <value>External Interface</value>
+  </data>
+  <data name="lblAddToRoleStatus.Help" xml:space="preserve">
+    <value>Select the status of the role membership after submitting the form</value>
+  </data>
+  <data name="lblAddToRoleStatus.Text" xml:space="preserve">
+    <value>Role status after submit:</value>
+  </data>
+  <data name="StatusApproved.Text" xml:space="preserve">
+    <value>Approved</value>
+  </data>
+  <data name="StatusPending.Text" xml:space="preserve">
+    <value>Pending</value>
+  </data>
+  <data name="lblPrivateCaptchaKey.Help" xml:space="preserve">
+    <value>Enter the private key from your captcha account. (Get your key &lt;a href="https://www.google.com/recaptcha/admin#whyrecaptcha" target="_blank"&gt;here&lt;/a&gt;)</value>
+  </data>
+  <data name="lblPrivateCaptchaKey.Text" xml:space="preserve">
+    <value>Private reCaptcha Key:</value>
+  </data>
+  <data name="lblCompareFirstNameLastName.Help" xml:space="preserve">
+    <value>If checked, a check is being done if the firstname is not equal to the lastname. Note that you will have to setup your form template to include both fields!</value>
+  </data>
+  <data name="lblCompareFirstNameLastName.Text" xml:space="preserve">
+    <value>Compare firstname with lastname:</value>
+  </data>
+  <data name="lblEmailRegex.Help" xml:space="preserve">
+    <value>Enter the regular expression for validating e-mail adresses</value>
+  </data>
+  <data name="lblEmailRegex.Text" xml:space="preserve">
+    <value>Regex Validation for E-Mail Adresses:</value>
+  </data>
+  <data name="lblValidateEmailThroughRegex.Help" xml:space="preserve">
+    <value>If checked, e-mail adresses will be verified against the regular expression below</value>
+  </data>
+  <data name="lblValidateEmailThroughRegex.Text" xml:space="preserve">
+    <value>Validate e-mail through Regex:</value>
+  </data>
+  <data name="lblRedirectAfterLogin.Help" xml:space="preserve">
+    <value>If the template also allows users to login using this module you may define a page that the user is being redirected to after logging in</value>
+  </data>
+  <data name="lblRedirectAfterLogin.Text" xml:space="preserve">
+    <value>Redirect after login:</value>
+  </data>
+</root>

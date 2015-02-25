@@ -19,7 +19,7 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{F184B08F-C81C-45F6-A57F-5ABD9991F28F}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <RootNamespace>Connect.Modules.AccountManagement</RootNamespace>
-    <AssemblyName>Connect.Modules.AccountManagement</AssemblyName>
+    <AssemblyName>Connect.Modules.AccountManagement.Manage</AssemblyName>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <OldToolsVersion>4.0</OldToolsVersion>
@@ -39,7 +39,7 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\</OutputPath>
-    <DocumentationFile>Connect.Modules.AccountManagement.xml</DocumentationFile>
+    <DocumentationFile>Connect.Modules.AccountManagement.Manage.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
@@ -48,8 +48,8 @@
     <DefineDebug>false</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\..\bin\</OutputPath>
-    <DocumentationFile>Connect.Modules.AccountManagement.xml</DocumentationFile>
+    <OutputPath>bin\</OutputPath>
+    <DocumentationFile>Connect.Modules.AccountManagement.Manage.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
@@ -309,6 +309,13 @@
     <Content Include="Module.Build">
       <SubType>Designer</SubType>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Library\Accounts.Library.vbproj">
+      <Project>{4f9b447a-d262-439a-822e-34849356966e}</Project>
+      <Name>Accounts.Library</Name>
+      <Private>False</Private>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />

@@ -7,12 +7,12 @@ Imports System.Runtime.InteropServices
 ' associated with an assembly.
 
 ' Review the values of the assembly attributes
-<Assembly: AssemblyTitle("Connect UsersLibrary")> 
-<Assembly: AssemblyDescription("A library for handling user management in DNN")> 
+<Assembly: AssemblyTitle("Connect AccountManagementLibrary")> 
+<Assembly: AssemblyDescription("A library for handling user management in from DNN-Connect")> 
 <Assembly: AssemblyConfiguration("")> 
 <Assembly: AssemblyCompany("")> 
 <Assembly: AssemblyProduct("")> 
-<Assembly: AssemblyCopyright("$Year$ Philipp Becker")> 
+<Assembly: AssemblyCopyright("$Year$ dnn-connect.org")> 
 <Assembly: AssemblyTrademark("")> 
 
 <Assembly: ComVisible(False)>

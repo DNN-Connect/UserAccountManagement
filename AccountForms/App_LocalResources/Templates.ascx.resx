@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ModuleHelp.Text" xml:space="preserve">
+    <value>&lt;p&gt;Use the template managing control to edit the templates used by this module&lt;/p&gt;</value>
+  </data>
+  <data name="ControlTitle_edit.Text" xml:space="preserve">
+    <value>Manage Templates</value>
+  </data>
+  <data name="cmdCancel.Text" xml:space="preserve">
+    <value>Back to Registration Form</value>
+  </data>
+  <data name="cmdCopySelected.Text" xml:space="preserve">
+    <value>Copy Selected</value>
+  </data>
+  <data name="cmdDeleteSelected.Text" xml:space="preserve">
+    <value>Delete Selected</value>
+  </data>
+  <data name="cmdUpdateExit.Text" xml:space="preserve">
+    <value>Save Templates and Exit</value>
+  </data>
+  <data name="lblConfirmDelete.Text" xml:space="preserve">
+    <value>This will delete the selected theme. Are you sure?</value>
+  </data>
+  <data name="lblCouldNotCopyTheme.Text" xml:space="preserve">
+    <value>An error occured while creating a copy of the selected theme. Make sure you have setup write permissions correctly in the file system of this installation</value>
+  </data>
+  <data name="lblCouldNotWriteTheme.Text" xml:space="preserve">
+    <value>An error occured while saving the selected theme. Make sure you have setup write permissions correctly in the file system of this installation and that none of the files in the theme is opened by another program.</value>
+  </data>
+  <data name="lblDeleteThemeError.Text" xml:space="preserve">
+    <value>An error occured while deleting the selected theme. Make sure you have setup write permissions correctly in the file system of this installation and that none of the files in the theme is opened by another program.</value>
+  </data>
+  <data name="lblEmailAdminTemplate.Text" xml:space="preserve">
+    <value>E-Mail to Admin</value>
+  </data>
+  <data name="lblEmailUser.Text" xml:space="preserve">
+    <value>Email to User</value>
+  </data>
+  <data name="lblEmailUserPrivate.Text" xml:space="preserve">
+    <value>E-Mail to User (private)</value>
+  </data>
+  <data name="lblEmailUserVerified.Text" xml:space="preserve">
+    <value>E-Mail to User (verified)</value>
+  </data>
+  <data name="lblFormTemplate.Text" xml:space="preserve">
+    <value>Registration Form</value>
+  </data>
+  <data name="lblInvalidFolderName.Text" xml:space="preserve">
+    <value>A folder with that name could not be created. Please provide a valid name for the theme.</value>
+  </data>
+  <data name="lblMustEnterTemplate.Text" xml:space="preserve">
+    <value>You must fill in each template</value>
+  </data>
+  <data name="lblMustEnterTemplateName.Text" xml:space="preserve">
+    <value>You must enter a name for the new theme</value>
+  </data>
+  <data name="lblPasswordRetrievalDisabled.Text" xml:space="preserve">
+    <value>Note that password retrieval is disabled in this installation. Make sure your e-mail templates take this into account (e.g. dot not use the [password] token). </value>
+  </data>
+  <data name="lblRequiresQuestionAndAnswer.Text" xml:space="preserve">
+    <value>Also note that this system requires members to maintain a question and answer. Your form template therefor should include those fields.</value>
+  </data>
+  <data name="lblThemeInUse.Text" xml:space="preserve">
+    <value>This theme is being used by this module instance. Deleting this them will cause the module to use the default theme.</value>
+  </data>
+  <data name="plTemplateName.Help" xml:space="preserve">
+    <value>Enter a name to better identify the template set</value>
+  </data>
+  <data name="plTemplateName.Text" xml:space="preserve">
+    <value>Theme Name:</value>
+  </data>
+  <data name="plTheme.Help" xml:space="preserve">
+    <value>Select the theme used by this module. You may create a new theme based on the currently selected one.</value>
+  </data>
+  <data name="plTheme.Text" xml:space="preserve">
+    <value>Select Theme</value>
+  </data>
+  <data name="plUseTheme.Help" xml:space="preserve">
+    <value>Use the selected theme in this module instance</value>
+  </data>
+  <data name="plUseTheme.Text" xml:space="preserve">
+    <value>Use selected theme</value>
+  </data>
+  <data name="plLocale.Help" xml:space="preserve">
+    <value>Select the locale that you want to edit</value>
+  </data>
+  <data name="plLocale.Text" xml:space="preserve">
+    <value>Template Locale:</value>
+  </data>
+  <data name="cmdUpdate.Text" xml:space="preserve">
+    <value>Save Templates</value>
+  </data>
+</root>

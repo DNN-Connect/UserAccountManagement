@@ -1,0 +1,28 @@
+
+<p>Dear [DISPLAYNAME],</p>
+<p>your user account on the website <strong>[PORTALNAME]</strong> has been created succesfully.</p>
+<p>It is adviseable to keep your registration details in a safe place in case you need it one day.</p>
+
+<h2>Details about your account</h2>
+<table>
+    <tr>
+        <td>Username:</td><td>[USERNAME]</td>
+    </tr>
+    <tr>
+        <td>Password:</td><td>[PASSWORD]</td>
+    </tr>     
+    <tr>
+        <td>E-Mail Adress:</td><td>[EMAIL]</td>
+    </tr>                           
+</table>
+
+<div style="margin-top: 20px;padding: 20px;border: 1px dashed #ccc;background-color: #eee;">
+    <a href="[USERURL]">Click to manage Account</a>
+</div>
+
+<p style="padding-top: 20px;">
+    Best wishes,<br />the team from [PORTALNAME]
+</p>
+<p>
+    [PORTALURL]
+</p>

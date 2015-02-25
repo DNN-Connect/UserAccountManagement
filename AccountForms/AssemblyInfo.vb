@@ -7,7 +7,7 @@ Imports System.Runtime.InteropServices
 ' associated with an assembly.
 
 ' Review the values of the assembly attributes
-<Assembly: AssemblyTitle("Connect AccountManagementManager")> 
+<Assembly: AssemblyTitle("Connect AccountManagementForms")> 
 <Assembly: AssemblyDescription("A user management module from DNN-Connect")> 
 <Assembly: AssemblyConfiguration("")> 
 <Assembly: AssemblyCompany("DNN-Connect")> 

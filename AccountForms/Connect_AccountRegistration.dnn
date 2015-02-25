@@ -1,0 +1,114 @@
+<dotnetnuke type="Package" version="5.0">
+  <packages>
+    <package name="Connect AccountRegistrationForm" type="Module" version="01.03.00">
+      <friendlyName>Connect: AccountRegistration</friendlyName>
+      <description>A community module that handles account registrations and login in DNN</description>
+      <iconFile>Desktopmodules/Connect/AccountRegistration/Images/icnModule.png</iconFile>
+      <owner>
+        <name>Philipp Becker</name>
+        <organization>DNN-Connect</organization>
+        <url>http://dnn-connect.org</url>
+        <email>connectmodules.usermanagement@dnn-connect.org</email>
+      </owner>
+      <license src="License.txt"/>
+      <releaseNotes src="ReleaseNotes.txt" />
+
+      <dependencies>
+        <dependency type="CoreVersion">07.02.01</dependency>
+      </dependencies>
+
+      <components>
+          
+        <component type="Script">
+          <scripts>
+            <basePath>DesktopModules\Connect\AccountRegistration</basePath>
+            <script type="Install">
+              <path>Providers\DataProviders\SqlDataProvider</path>
+              <name>01.00.00.SqlDataProvider</name>
+              <version>01.00.00</version>
+            </script>
+            <script type="Install">
+              <path>Providers\DataProviders\SqlDataProvider</path>
+              <name>01.03.00.SqlDataProvider</name>
+              <version>01.03.00</version>
+            </script>
+            <script type="UnInstall">
+              <path>Providers\DataProviders\SqlDataProvider</path>
+              <name>Uninstall.SqlDataProvider</name>
+              <version>01.00.00</version>
+            </script>
+          </scripts>
+        </component>
+
+        <component type="ResourceFile">
+          <resourceFiles>
+            <basePath>DesktopModules/Connect/AccountRegistration</basePath>
+            <resourceFile>
+              <name>Resources.zip</name>
+            </resourceFile>
+          </resourceFiles>
+        </component>
+
+        <component type="Module">
+          <desktopModule>
+            <moduleName>Connect AccountRegistration</moduleName>
+            <foldername>AccountRegistration</foldername>
+            <businessControllerClass></businessControllerClass>
+            <supportedFeatures />
+            <moduleDefinitions>
+              <moduleDefinition>
+                <friendlyName>Connect AccountRegistration</friendlyName>
+                <defaultCacheTime>0</defaultCacheTime>
+                <moduleControls>
+                  <moduleControl>
+                    <controlKey />
+                    <controlSrc>DesktopModules/Connect/AccountRegistration/View.ascx</controlSrc>
+                    <supportsPartialRendering>False</supportsPartialRendering>
+                    <controlTitle />
+                    <controlType>View</controlType>
+                    <iconFile />
+                    <helpUrl />
+                    <viewOrder>0</viewOrder>
+                  </moduleControl>
+                  <moduleControl>
+                    <controlKey>ManageTemplates</controlKey>
+                    <controlSrc>DesktopModules/Connect/AccountRegistration/Templates.ascx</controlSrc>
+                    <supportsPartialRendering>False</supportsPartialRendering>
+                    <controlTitle>Manage Templates</controlTitle>
+                    <controlType>Edit</controlType>
+                    <iconFile />
+                    <helpUrl />
+                    <viewOrder>0</viewOrder>
+                  </moduleControl>
+                  <moduleControl>
+                    <controlKey>Settings</controlKey>
+                    <controlSrc>DesktopModules/Connect/AccountRegistration/Settings.ascx</controlSrc>
+                    <supportsPartialRendering>False</supportsPartialRendering>
+                    <controlTitle>Registration Settings</controlTitle>
+                    <controlType>Edit</controlType>
+                    <iconFile />
+                    <helpUrl />
+                    <viewOrder>0</viewOrder>
+                  </moduleControl>
+                </moduleControls>
+              </moduleDefinition>
+            </moduleDefinitions>
+          </desktopModule>
+        </component>
+          
+        <component type="Assembly">
+          <assemblies>
+            <basePath>bin</basePath>
+            <assembly>
+              <name>Connect.Modules.AccountRegistration.dll</name>
+            </assembly>
+            <assembly>
+              <name>Connect.Libraries.UserManagement.dll</name>
+            </assembly>              
+          </assemblies>
+        </component>
+          
+      </components>
+    </package>
+  </packages>
+</dotnetnuke>
