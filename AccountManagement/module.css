@@ -19,42 +19,9 @@
 
 .connect-gridactions            { list-style-type: none; margin: 0; padding: 0;}
 .connect-gridactions li         { list-style-type: none; margin: 0 10px 0 0; padding: 0 0 0 0px; float: left;}
-.connect-gridactions li a       { text-decoration: none; text-indent: -999em !important; }
-
-@font-face {
-	font-family: "Connectaccounts";
-	src: url("fonts/connectaccounts.eot");
-	src: url("fonts/connectaccounts.eot#iefix") format("embedded-opentype"),
-	url("fonts/connectaccounts.woff") format("woff"),
-	url("fonts/connectaccounts.ttf") format("truetype"),
-	url("fonts/connectaccounts.svg") format("svg");
-	font-weight: normal;
-	font-style: normal;
-}
-[class^="connectaccounts-"]:before, [class*=" connectaccounts-"]:before,
-[class^="connectaccounts-"]:after, [class*=" connectaccounts-"]:after {   
-	font-family: Connectaccounts;
-    font-size: 20px;
-    font-style: normal;
-    margin-left: 2px;
-}.connectaccounts-check30:before {
-	content: "\e000";
-}
-.connectaccounts-delete30:before {
-	content: "\e001";
-}
-.connectaccounts-delete48:before {
-	content: "\e002";
-}
-.connectaccounts-hourglass1:before {
-	content: "\e003";
-}
-.connectaccounts-pencil43:before {
-	content: "\e004";
-}
-.connectaccounts-undo9:before {
-	content: "\e005";
-}
+.connect-gridactions li a       { text-decoration: none; font-size: 20px; }
+.connect-gridactions li a.cmdAccountSetRoles { font-size: 18px; }
+.actions i {margin-right: 10px; }
 
 
 .connect-accounts-select { width: 250px; margin: 12px 0 0 5px; float:left; }
@@ -292,3 +259,16 @@ transform: translateY(-53px);
 }
 
 }
+
+.connect-accounts-editform          {}
+
+.connect-accounts-editform h2.page-header                   { border-bottom: 1px solid #eee; margin: 40px 0; padding-bottom: 15px; font-size: 36px; color: #337ab7; font-weight: bold; }
+.connect-accounts-editform h2.page-header a                 { margin-right: 20px; font-size: 32px; font-weight: bold; text-decoration: none; color: #337ab7;}
+.connect-accounts-editform .user                            { height: 400px; }
+
+.connect-accounts-editform .panel-title a                   { color: #fefefe; text-decoration: none; display: block; }
+.connect-accounts-editform .panel-title a:focus             { outline: none; }
+.connect-accounts-editform .panel-default .panel-heading    { background-image: linear-gradient(to bottom, #5c5c5c 0%, #555555 100%); border-radius: 3px; }
+.connect-accounts-editform .panel                           { border: none; }
+
+.connect-accounts-editform .page-header img                 { float:right; border: 1px solid #ccc; background: #fff; padding: 2px; }

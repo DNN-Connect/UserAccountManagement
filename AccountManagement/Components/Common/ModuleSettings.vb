@@ -29,6 +29,7 @@
         Public Property UserTabs As String() = New String() {"Account", "Profile", "Password", "Email", "Roles", "Sites"}
         Public Property AllRoles As Boolean = True
         Public Property ModuleTheme As String = "default"
+        Public Property LoadResources As Boolean = True
 
         Public ReadOnly Property ModuleId As Integer
             Get

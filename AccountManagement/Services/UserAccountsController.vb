@@ -119,6 +119,17 @@ Namespace Services
             Public Property RoleId As Integer
         End Class
 
+        Public Class UserRoleDTO
+            Public Property RoleId As Integer
+            Public Property RoleName As String
+        End Class
+
+        Public Class SetUserRolesDTO
+            Public Property UserId As Integer
+            Public Property PortalId As Integer
+            Public Property Roles As String()
+        End Class
+
 
 #Region "Private Members"
 
@@ -128,6 +139,65 @@ Namespace Services
 #End Region
 
 #Region "Service Methods "
+
+        <ConnectUsersAuthorize(SecurityAccessLevel.ViewModule)>
+        <HttpPost>
+        Public Function SetUserRoles(postData As SetUserRolesDTO) As HttpResponseMessage
+
+            Dim rolesDTO As New List(Of UserRoleDTO)
+
+            Dim user As UserInfo = UserController.Instance.GetUserById(postData.PortalId, postData.UserId)
+            If Not user Is Nothing Then
+                Dim rc As New RoleController
+                Dim roles As IList(Of UserRoleInfo) = RoleController.Instance.GetUserRoles(user, True)
+                For Each role As UserRoleInfo In roles
+
+                    Dim blnIsStillInRole As Boolean = False
+                    For Each newRoleId As String In postData.Roles
+                        If Convert.ToInt32(newRoleId) = role.RoleID Then
+                            blnIsStillInRole = True
+                            Exit For
+                        End If
+                    Next
+
+                    If Not blnIsStillInRole Then
+                        RoleController.Instance.UpdateUserRole(postData.PortalId, postData.UserId, role.RoleID, RoleStatus.Disabled, False, True)
+                    End If
+
+                Next
+
+                For Each newRoleId As String In postData.Roles
+                    RoleController.Instance.AddUserRole(postData.PortalId, postData.UserId, Convert.ToInt32(newRoleId), RoleStatus.Approved, False, Date.Now, Null.NullDate)
+                Next
+
+            End If
+
+            Return Request.CreateResponse(HttpStatusCode.OK)
+
+        End Function
+
+        <ConnectUsersAuthorize(SecurityAccessLevel.ViewModule)>
+        <HttpPost>
+        Public Function GetUserRoles(postData As ActionRequestDTO) As HttpResponseMessage
+
+            Dim rolesDTO As New List(Of UserRoleDTO)
+
+            Dim user As UserInfo = UserController.Instance.GetUserById(postData.PortalId, postData.UserId)
+            If Not user Is Nothing Then
+                Dim roles As IList(Of UserRoleInfo) = RoleController.Instance.GetUserRoles(user, True)
+                For Each role As UserRoleInfo In roles
+                    Dim roleDTO As New UserRoleDTO
+                    roleDTO.RoleId = role.RoleID
+                    roleDTO.RoleName = role.RoleName
+                    rolesDTO.Add(roleDTO)
+                Next
+            End If
+
+            Dim strJson As Object = Serialize(Of List(Of UserRoleDTO))(rolesDTO)
+
+            Return Request.CreateResponse(HttpStatusCode.OK, rolesDTO)
+
+        End Function
 
         <ConnectUsersAuthorize(SecurityAccessLevel.ViewModule)>
         <HttpPost>
@@ -176,7 +246,7 @@ Namespace Services
                     Dim role As RoleInfo = roleController.GetRoleById(postData.PortalId, postData.RoleId)
                     If Not role Is Nothing Then
                         roleController.UpdateUserRole(postData.PortalId, postData.UserId, postData.RoleId, RoleStatus.Approved, False, False)
-                        ClearRoleCache(postData.RoleId)
+                        CacheUtilities.ClearRoleCache(postData.RoleId)
                     End If
 
                     result.Success = True
@@ -208,7 +278,7 @@ Namespace Services
                     Dim role As RoleInfo = roleController.GetRoleById(postData.PortalId, postData.RoleId)
                     If Not role Is Nothing Then
                         roleController.UpdateUserRole(postData.PortalId, postData.UserId, postData.RoleId, RoleStatus.Pending, False, False)
-                        ClearRoleCache(postData.RoleId)
+                        CacheUtilities.ClearRoleCache(postData.RoleId)
                     End If
 
                     result.Success = True
@@ -240,7 +310,7 @@ Namespace Services
                     Dim role As RoleInfo = rc.GetRoleById(postData.PortalId, postData.RoleId)
                     If Not role Is Nothing Then
                         RoleController.DeleteUserRole(user, role, PortalSettings, False)
-                        ClearRoleCache(postData.RoleId)
+                        CacheUtilities.ClearRoleCache(postData.RoleId)
                     End If
 
                     result.Success = True
@@ -261,48 +331,13 @@ Namespace Services
 
         <ConnectUsersAuthorize(SecurityAccessLevel.ViewModule)>
         <HttpPost>
-        Public Function SetUserPending(postData As ActionRequestDTO) As HttpResponseMessage
-
-            Dim result As New ActionResultDTO
-            Dim user As UserInfo = UserController.GetUserById(postData.PortalId, postData.UserId)
-            If Not user Is Nothing Then
-                Try
-                    For Each userRole As UserRoleInfo In RoleController.Instance.GetUserRoles(user, True)
-                        RoleController.DeleteUserRole(user, RoleController.Instance.GetRole(postData.PortalId, Function(r) (r.RoleID = userRole.RoleID)), PortalSettings, False)
-                    Next
-                    Dim role As RoleInfo = RoleController.Instance.GetRole(postData.PortalId, Function(r) (r.RoleName = "Unverified Users"))
-                    If Not role Is Nothing Then
-                        RoleController.Instance.AddUserRole(postData.PortalId, user.UserID, role.RoleID, RoleStatus.Approved, False, Null.NullDate, Null.NullDate)
-                        ClearRoleCache(role.RoleID)
-                    End If
-                    ClearRoleCache(PortalSettings.RegisteredRoleId)
-                    result.Success = True
-                    result.Response = ""
-                Catch ex As Exception
-                    result.Success = False
-                    result.Response = "ERROR_COULD_NOT_SET_USER_PENDING"
-                End Try
-            Else
-                result.Success = False
-                result.Response = "ERROR_USER_NOT_FOUND"
-            End If
-
-            Dim strJson As Object = Serialize(Of ActionResultDTO)(result)
-            Return Request.CreateResponse(HttpStatusCode.OK, strJson)
-
-        End Function
-
-        <ConnectUsersAuthorize(SecurityAccessLevel.ViewModule)>
-        <HttpPost>
         Public Function SetUserUnAuthorized(postData As ActionRequestDTO) As HttpResponseMessage
 
             Dim result As New ActionResultDTO
             Dim user As UserInfo = UserController.GetUserById(postData.PortalId, postData.UserId)
             If Not user Is Nothing Then
                 Try
-                    user.Membership.Approved = False
-                    DotNetNuke.Entities.Users.UserController.UpdateUser(user.PortalID, user)
-                    ClearRoleCache(PortalSettings.RegisteredRoleId)
+                    ManagementController.SetUserUnAuthorized(user, postData.PortalId)
                     result.Success = True
                     result.Response = ""
                 Catch ex As Exception
@@ -327,9 +362,7 @@ Namespace Services
             Dim user As UserInfo = UserController.GetUserById(postData.PortalId, postData.UserId)
             If Not user Is Nothing Then
                 Try
-                    user.Membership.Approved = True
-                    DotNetNuke.Entities.Users.UserController.UpdateUser(user.PortalID, user)
-                    ClearRoleCache(PortalSettings.RegisteredRoleId)
+                    ManagementController.SetUserAuthorized(user, postData.PortalId)
                     result.Success = True
                     result.Response = ""
                 Catch ex As Exception
@@ -348,46 +381,14 @@ Namespace Services
 
         <ConnectUsersAuthorize(SecurityAccessLevel.ViewModule)>
         <HttpPost>
-        Public Function SetUserApproved(postData As ActionRequestDTO) As HttpResponseMessage
-
-            Dim result As New ActionResultDTO
-            Dim user As UserInfo = UserController.GetUserById(postData.PortalId, postData.UserId)
-            If Not user Is Nothing Then
-                Try
-                    user.Membership.Approved = True
-                    DotNetNuke.Entities.Users.UserController.UpdateUser(user.PortalID, user)
-                    DotNetNuke.Entities.Users.UserController.ApproveUser(user)
-                    Dim role As RoleInfo = RoleController.Instance.GetRoleByName(user.PortalID, "Unverified Users")
-                    If Not role Is Nothing Then
-                        ClearRoleCache(role.RoleID)
-                    End If
-                    ClearRoleCache(PortalSettings.RegisteredRoleId)
-                    result.Success = True
-                    result.Response = ""
-                Catch ex As Exception
-                    result.Success = False
-                    result.Response = "ERROR_COULD_NOT_SET_USER_APPROVED"
-                End Try
-            Else
-                result.Success = False
-                result.Response = "ERROR_USER_NOT_FOUND"
-            End If
-
-            Dim strJson As Object = Serialize(Of ActionResultDTO)(result)
-            Return Request.CreateResponse(HttpStatusCode.OK, strJson)
-
-        End Function
-
-        <ConnectUsersAuthorize(SecurityAccessLevel.ViewModule)>
-        <HttpPost>
         Public Function SetUserDeleted(postData As ActionRequestDTO) As HttpResponseMessage
 
             Dim result As New ActionResultDTO
             Dim user As UserInfo = UserController.GetUserById(postData.PortalId, postData.UserId)
             If Not user Is Nothing Then
-                If DotNetNuke.Entities.Users.UserController.DeleteUser(user, False, True) Then
-                    ClearRoleCache(PortalSettings.RegisteredRoleId)
-                    ClearRoleCache(-2)
+                If ManagementController.SetUserDeleted(user) Then
+                    CacheUtilities.ClearRoleCache(PortalSettings.RegisteredRoleId)
+                    CacheUtilities.ClearRoleCache(-2)
                     result.Success = True
                     result.Response = ""
                 Else
@@ -413,8 +414,8 @@ Namespace Services
 
             If Not user Is Nothing Then
                 If DotNetNuke.Entities.Users.UserController.RestoreUser(user) Then
-                    ClearRoleCache(PortalSettings.RegisteredRoleId)
-                    ClearRoleCache(-2)
+                    CacheUtilities.ClearRoleCache(PortalSettings.RegisteredRoleId)
+                    CacheUtilities.ClearRoleCache(-2)
                     result.Success = True
                     result.Response = ""
                 Else
@@ -440,8 +441,8 @@ Namespace Services
 
             If Not user Is Nothing Then
                 If DotNetNuke.Entities.Users.UserController.RemoveUser(user) Then
-                    ClearRoleCache(PortalSettings.RegisteredRoleId)
-                    ClearRoleCache(-2)
+                    CacheUtilities.ClearRoleCache(PortalSettings.RegisteredRoleId)
+                    CacheUtilities.ClearRoleCache(-2)
                     result.Success = True
                     result.Response = ""
                 Else
@@ -573,11 +574,6 @@ Namespace Services
             Return lstUsers
 
         End Function
-
-        Private Sub ClearRoleCache(RoleId As Integer)
-            Dim keyCache As String = String.Format("DNNCONNECT_USERS_{0}", RoleId.ToString)
-            DataCache.RemoveCache(keyCache)
-        End Sub
 
 #End Region
 
