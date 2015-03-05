@@ -1,0 +1,45 @@
+﻿
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}Connect_Accounts_GetUnAuthAccounts]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    drop procedure {databaseOwner}[{objectQualifier}Connect_Accounts_GetUnAuthAccounts]
+GO
+
+alter PROCEDURE {databaseOwner}[{objectQualifier}Connect_Accounts_GetUnAuthAccounts]
+	@RoleId int,
+	@PortalId int
+AS
+SELECT DISTINCT
+	U.UserId,
+	U.Username,
+	U.FirstName,
+	U.LastName,
+	U.DisplayName,
+	U.Email,
+	U.Street,
+	U.Unit,
+	U.PostalCode,
+	U.City,
+	U.Country,	
+	U.Region,	
+	U.Telephone,
+	U.Cell,
+	U.PreferredTimeZone,
+	U.TimeZone,
+	U.PreferredLocale,
+	U.IsDeleted,
+	U.IsSuperUser,
+	UP.Authorised as 'Status',
+	(Select @RoleId) as 'RoleId',
+	U.LastLoginDate,		
+	UP.CreatedDate as 'CreatedDate'	
+FROM
+	{databaseOwner}[{objectQualifier}vw_Connect_Users] U
+	Inner Join {databaseOwner}[{objectQualifier}UserPortals] UP on U.UserId = UP.UserId
+WHERE
+	UP.PortalId = @PortalId
+AND
+	UP.Authorised = 0
+AND
+	U.IsSuperUser = 0
+GO
+
