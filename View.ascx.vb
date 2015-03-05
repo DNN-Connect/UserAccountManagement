@@ -2374,9 +2374,7 @@ Namespace Connect.Modules.UserManagement.AccountManagement
 
                     For Each objRole As RoleInfo In roles
                         If objRole.RoleGroupID = objGroup.RoleGroupID Then
-
                             If (Not AllowedRoles Is Nothing AndAlso (Array.IndexOf(AllowedRoles, objRole.RoleID.ToString) > -1 Or Array.IndexOf(AllowedRoles, "all") > -1)) OrElse (AllowedRoles Is Nothing) Then
-
                                 Dim rolenode As New DnnTreeNode()
                                 rolenode.Text = objRole.RoleName
                                 rolenode.Value = objRole.RoleID.ToString
@@ -2394,25 +2392,17 @@ Namespace Connect.Modules.UserManagement.AccountManagement
                                 roleItem.ImageUrl = Me.TemplateSourceDirectory & "/images/users.png"
                                 roleItem.Attributes.Add("style", "margin-left: 20px;")
                                 drpRoles.Items.Add(roleItem)
-
                             End If
-
                         End If
-
                     Next
-
                     If groupnode.Nodes.Count > 0 Then
                         ctlRoles.Nodes.Add(groupnode)
                     End If
-
-
                 Next
 
                 For Each objRole As RoleInfo In roles
                     If objRole.RoleGroupID = Null.NullInteger Then
-
                         If (Not AllowedRoles Is Nothing AndAlso (Array.IndexOf(AllowedRoles, objRole.RoleID.ToString) > -1 Or Array.IndexOf(AllowedRoles, "all") > -1)) OrElse (AllowedRoles Is Nothing) Then
-
                             Dim rolenode As New DnnTreeNode()
                             rolenode.Text = objRole.RoleName
                             rolenode.Value = objRole.RoleID.ToString
@@ -2428,18 +2418,12 @@ Namespace Connect.Modules.UserManagement.AccountManagement
                                 roleItem.ImageUrl = Me.TemplateSourceDirectory & "/images/users.png"
                                 drpRoles.Items.Add(roleItem)
                             End If
-
                         End If
-
-
                     End If
-
                 Next
             Else
                 For Each objRole As RoleInfo In roles
-
                     If (Not AllowedRoles Is Nothing AndAlso (Array.IndexOf(AllowedRoles, objRole.RoleID.ToString) > -1 Or Array.IndexOf(AllowedRoles, "all") > -1)) OrElse (AllowedRoles Is Nothing) Then
-
                         Dim rolenode As New DnnTreeNode()
                         rolenode.Text = objRole.RoleName
                         rolenode.Value = objRole.RoleID.ToString
@@ -2447,7 +2431,6 @@ Namespace Connect.Modules.UserManagement.AccountManagement
                         rolenode.Attributes.Add("IsGroup", False)
                         rolenode.NavigateUrl = NavigateURL(TabId, "", "RoleId=" & objRole.RoleID.ToString)
                         ctlRoles.Nodes.Add(rolenode)
-
                         If objRole.RoleID <> PortalSettings.RegisteredRoleId Then
                             Dim roleItem As New RadComboBoxItem
                             roleItem.Text = objRole.RoleName
@@ -2455,9 +2438,7 @@ Namespace Connect.Modules.UserManagement.AccountManagement
                             roleItem.ImageUrl = Me.TemplateSourceDirectory & "/images/users.png"
                             drpRoles.Items.Add(roleItem)
                         End If
-
                     End If
-
                 Next
             End If
 
@@ -2471,27 +2452,29 @@ Namespace Connect.Modules.UserManagement.AccountManagement
                 ctlRoles.Nodes.Add(binnode)
             End If
 
+            ' unauthorized
+            Dim unAuthNode As New DnnTreeNode()
+            unAuthNode.Text = "Unauthorized users"
+            unAuthNode.Value = "-3"
+            unAuthNode.ImageUrl = Me.TemplateSourceDirectory & "/images/users.png"
+            unAuthNode.Attributes.Add("IsGroup", False)
+            unAuthNode.NavigateUrl = NavigateURL(TabId, "", "RoleId=-3")
+            ctlRoles.Nodes.Add(unAuthNode)
 
             Dim SelectedRole As String = ""
             If Not Request.QueryString("RoleId") Is Nothing Then
                 SelectedRole = Request.QueryString("RoleId")
             Else
                 If Request.QueryString("RoleId") Is Nothing AndAlso Request.QueryString("ReportsResult") = "true" Then
-
                     'Me.ctlFilterTabs.SelectedIndex = 1
                     'Me.pvFilters.SelectedIndex = 1
-
                 Else
-
                     If Me.PreSelectRole <> Null.NullInteger Then
                         SelectedRole = Me.PreSelectRole.ToString
                     Else
                         SelectedRole = PortalSettings.RegisteredRoleId.ToString
                     End If
-
                 End If
-
-
             End If
 
             Try
@@ -2565,7 +2548,6 @@ Namespace Connect.Modules.UserManagement.AccountManagement
             Dim strSearch As String = Null.NullString
             Dim blnUseCache As Boolean = True
 
-
             If Not ctlRoles.SelectedNode Is Nothing Then
                 If CType(ctlRoles.SelectedNode.Attributes("IsGroup"), Boolean) = False Then
                     Try
@@ -2602,6 +2584,8 @@ Namespace Connect.Modules.UserManagement.AccountManagement
                         dr = DotNetNuke.Data.DataProvider.Instance().ExecuteReader("Connect_Accounts_GetSuperUsers", intRole)
                     ElseIf intRole = -2 Then
                         dr = DotNetNuke.Data.DataProvider.Instance().ExecuteReader("Connect_Accounts_GetDeletedAccounts", intRole, PortalId)
+                    ElseIf intRole = -3 Then
+                        dr = DotNetNuke.Data.DataProvider.Instance().ExecuteReader("Connect_Accounts_GetUnAuthAccounts", intRole, PortalId)
                     Else
                         dr = DotNetNuke.Data.DataProvider.Instance().ExecuteReader("Connect_Accounts_GetRoleMembers", intRole, PortalId)
                     End If
@@ -2734,7 +2718,6 @@ Namespace Connect.Modules.UserManagement.AccountManagement
         End Property
 
 #End Region
-
 
     End Class
 
