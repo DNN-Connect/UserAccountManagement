@@ -467,8 +467,9 @@ Namespace Connect.Modules.UserManagement.AccountManagement
 
         Private Sub cmdUnlockAccount_Click(sender As Object, e As EventArgs) Handles cmdUnlockAccount.Click
             Dim oUser As UserInfo = User
-            oUser.Membership.LockedOut = False
-            UserController.UpdateUser(PortalId, oUser)
+            'oUser.Membership.LockedOut = False
+            'UserController.UpdateUser(PortalId, oUser)
+            UserController.UnLockUser(oUser)
             BindUser(oUser.UserID)
         End Sub
 
