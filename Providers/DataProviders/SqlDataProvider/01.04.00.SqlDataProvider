@@ -4,7 +4,7 @@ if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{
     drop procedure {databaseOwner}[{objectQualifier}Connect_Accounts_GetUnAuthAccounts]
 GO
 
-alter PROCEDURE {databaseOwner}[{objectQualifier}Connect_Accounts_GetUnAuthAccounts]
+CREATE PROCEDURE {databaseOwner}[{objectQualifier}Connect_Accounts_GetUnAuthAccounts]
 	@RoleId int,
 	@PortalId int
 AS
