@@ -52,7 +52,8 @@ Namespace Connect.Modules.UserManagement.AccountManagement
                 If Settings.Contains("ModuleTheme") Then
                     Try
                         SelectTheme(CType(Settings("ModuleTheme"), String))
-                    Catch
+                    Catch exc As Exception
+                        ProcessModuleLoadException(Me, exc)
                     End Try
                 End If
 
@@ -170,7 +171,8 @@ Namespace Connect.Modules.UserManagement.AccountManagement
                         chkUseTheme.Checked = False
                         DotNetNuke.UI.Utilities.ClientAPI.AddButtonConfirm(cmdDeleteSelected, Localization.GetSafeJSString(Localization.GetString("lblConfirmDelete", LocalResourceFile)))
                     End If
-                Catch
+                Catch exc As Exception
+                    ProcessModuleLoadException(Me, exc)
                 End Try
             Else
                 DotNetNuke.UI.Utilities.ClientAPI.AddButtonConfirm(cmdDeleteSelected, Localization.GetSafeJSString(Localization.GetString("lblConfirmDelete", LocalResourceFile)))
@@ -334,8 +336,7 @@ Namespace Connect.Modules.UserManagement.AccountManagement
                     If file.EndsWith(Constants.TemplateName_ProfileForm) Then
                         SaveTemplate(drpThemes.SelectedValue, Constants.TemplateName_ProfileForm, drpLocales.SelectedValue)
                     End If
-
-
+                    
                 Next
 
             Catch ex As Exception
@@ -389,7 +390,8 @@ Namespace Connect.Modules.UserManagement.AccountManagement
 
             Try
                 drpLocales.Items(0).Selected = True
-            Catch
+            Catch exc As Exception
+                ProcessModuleLoadException(Me, exc)
             End Try
 
 
