@@ -1,3 +1,6 @@
+** This project is no longer acively maintained. Use at own risk. **
+
+
 [![Stories in Ready](https://badge.waffle.io/DNN-Connect/UserAccountManagement.png?label=ready&title=Ready)](https://waffle.io/DNN-Connect/UserAccountManagement)
 UserAccountManagement
 =====================
